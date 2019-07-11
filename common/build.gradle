@@ -15,7 +15,6 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
     }
 

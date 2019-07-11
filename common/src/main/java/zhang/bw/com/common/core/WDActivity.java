@@ -17,6 +17,7 @@ import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
+import zhang.bw.com.common.util.LogUtils;
 
 /**
  * @author dingtao
@@ -45,11 +46,11 @@ public abstract class WDActivity extends AppCompatActivity {
 //        if (userInfos != null && userInfos.size() > 0) {
 //            LOGIN_USER = userInfos.get(0);//读取第一项
 //        }
-//        //打印堆栈ID
-//        LogUtils.e("getTaskId = " + getTaskId());
-//        initLoad();
-//        setContentView(getLayoutId());
-//        ARouter.getInstance().inject(this);
+        //打印堆栈ID
+        LogUtils.e("getTaskId = " + getTaskId());
+        initLoad();
+        setContentView(getLayoutId());
+        //ARouter.getInstance().inject(this);
         ButterKnife.bind(this);//绑定布局
         initView();
     }

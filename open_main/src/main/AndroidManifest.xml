@@ -1,12 +1,3 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="zhang.bw.com.open_main">
-    <application>
-    <activity android:name="zhang.bw.com.open_main.MainActivity">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter>
-    </activity>
-    </application>
 </manifest>

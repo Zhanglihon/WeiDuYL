@@ -12,11 +12,10 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.KeyEvent;
 import android.view.View;
-import android.view.Window;
+
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
-import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
 import butterknife.ButterKnife;
@@ -63,7 +62,7 @@ public abstract class WDActivity extends AppCompatActivity {
         LogUtils.e("getTaskId = " + getTaskId());
         initLoad();
         setContentView(getLayoutId());
-        //ARouter.getInstance().inject(this);
+        ARouter.getInstance().inject(this);
         ButterKnife.bind(this);//绑定布局
         initView();
     }

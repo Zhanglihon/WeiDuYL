@@ -28,5 +28,6 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(path: ':open_main')
+    implementation project(':open_main')
+    implementation project(':open_wallet')
 }

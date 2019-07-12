@@ -1,6 +1,7 @@
 package zhang.bw.com.open_main;
 
 
+import android.app.Application;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,10 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhang.bw.com.common.core.WDActivity;
+import zhang.bw.com.common.core.WDApplication;
+import zhang.bw.com.common.util.Constant;
 
+@Route(path = Constant.ACTIVITY_URL_MAIN)
 public class MainActivity extends WDActivity {
 
 
@@ -59,6 +66,7 @@ public class MainActivity extends WDActivity {
 
     @Override
     protected void initView() {
+
         tt1.setText("");
         tt2.setText("八维移动通讯学院学生作品");
         List images = new ArrayList<>();
@@ -220,6 +228,7 @@ public class MainActivity extends WDActivity {
     public void onViewClicked() {
         //跳转到首页
 
+      ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
 
 
     }

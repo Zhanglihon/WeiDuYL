@@ -57,4 +57,5 @@ dependencies {
     api 'org.greenrobot:greendao:3.2.2'
     api 'org.greenrobot:greendao-generator:3.2.2'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    api 'com.github.xiaohaibin:XBanner:1.6.4'
 }

@@ -35,5 +35,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    implementation 'com.github.xiaohaibin:XBanner:1.6.4'
     implementation project(path: ':common')
 }

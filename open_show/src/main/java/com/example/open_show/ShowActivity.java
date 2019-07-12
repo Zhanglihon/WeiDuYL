@@ -9,6 +9,7 @@ import butterknife.OnClick;
 import fragment.Fragmentone;
 import fragment.Fragmentthree;
 import fragment.Fragmenttwo;
+import zhang.bw.com.common.util.Constant;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -16,9 +17,12 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-
+@Route(path =Constant.ACTIVITY_URL_SHOW)
 public class ShowActivity extends AppCompatActivity {
     @BindView(R2.id.btn1)
     RadioButton btn1;
@@ -29,7 +33,6 @@ public class ShowActivity extends AppCompatActivity {
     @BindView(R2.id.frameLayout)
     FrameLayout frameLayout;
     private List<Fragment> fragments = new ArrayList<>();
-    @SuppressLint("InvalidR2Usage")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -20,7 +20,7 @@
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/the_bottom_bar"
+                android:background="@mipmap/the_bottom_bar"
                 >
                 <RadioButton
                     android:id="@+id/btn1"

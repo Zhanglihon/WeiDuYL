@@ -1,6 +1,7 @@
 package zhang.bw.com.open_main;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,6 +10,9 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +23,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import zhang.bw.com.common.core.WDActivity;
-
+import zhang.bw.com.common.util.Constant;
+@Route(path =Constant.ACTIVITY_URL_MAIN)
 public class MainActivity extends WDActivity {
 
 
@@ -219,8 +224,6 @@ public class MainActivity extends WDActivity {
     @OnClick(R2.id.but_ru)
     public void onViewClicked() {
         //跳转到首页
-
-
-
+        ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation(this);
     }
 }

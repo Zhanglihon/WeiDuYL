@@ -18,9 +18,11 @@ public class Constant {
     //-----------open_main----首页模块随便动，我看提交历史删你库-----
 
     public final static String ACTIVITY_URL_MAIN = "/main/MainActivity";
-
-
-
     //-----------open_main----首页模块随便动，我看提交历史删你库-----
+
+    //-----------open_show----首页模块随便动，我看提交历史删你库-----
+    public final static String ACTIVITY_URL_SHOW= "/show/ShowActivity";
+
+    //-----------open_show----首页模块随便动，我看提交历史删你库-----
 
 }

@@ -33,7 +33,7 @@ public abstract class WDFragment extends Fragment {
 		// 每次ViewPager要展示该页面时，均会调用该方法获取显示的View
 		long time = System.currentTimeMillis();
 		View view = inflater.inflate(getLayoutId(),container,false);
-		ARouter.getInstance().inject(this);
+//		ARouter.getInstance().inject(this);
 		unbinder = ButterKnife.bind(this,view);
 		initView();
 //		LogUtils.e(this.toString()+"页面加载使用："+(System.currentTimeMillis()-time));
@@ -63,7 +63,6 @@ public abstract class WDFragment extends Fragment {
 	/**
 	 * 设置页面名字 用于友盟统计
 	 */
-	public abstract String getPageName();
 	/**
 	 * 设置layoutId
 	 * @return

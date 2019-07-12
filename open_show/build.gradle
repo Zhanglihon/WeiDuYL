@@ -1,19 +1,24 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.library'
+apply plugin: 'com.jakewharton.butterknife'
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
+
+
+
     defaultConfig {
-        applicationId "com.wd.health"
         minSdkVersion 18
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
+
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -27,9 +32,8 @@ android {
 }
 
 dependencies {
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation project(':open_main')
-    implementation project(':open_wallet')
-    implementation project(path: ':open_main')
-    implementation project(path: ':open_show')
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
+    implementation project(path: ':common')
 }

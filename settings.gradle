@@ -1,1 +1,2 @@
 include ':app', ':common', ':open_main', ':open_wallet'
+include ':app', ':common', ':open_main', ':open_show'

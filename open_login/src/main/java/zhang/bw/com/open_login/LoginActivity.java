@@ -10,15 +10,18 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
+import zhang.bw.com.common.util.Constant;
 import zhang.bw.com.common.util.MD5Utils;
 import zhang.bw.com.common.util.RsaCoder;
 import zhang.bw.com.open_login.presenter.LoginPresenter;
-
+@Route(path = Constant.ACTIVITY_URL_LOGIN)
 public class LoginActivity extends WDActivity {
 
     @BindView(R2.id.login_email)

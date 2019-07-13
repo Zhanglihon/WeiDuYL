@@ -58,10 +58,11 @@
             android:textSize="72sp" />
 
         <EditText
+            android:id="@+id/edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/qian"
-            android:layout_marginLeft="0dp"
+            android:layout_marginLeft="-3dp"
             android:layout_marginBottom="2dp"
             android:layout_toRightOf="@id/qian"
             android:background="@null"
@@ -195,7 +196,9 @@
             android:text="充值"
             android:layout_below="@id/image_zfb"
             android:layout_marginRight="20dp"
+            android:textColor="#fff"
             android:layout_marginLeft="20dp"
+            android:background="@drawable/yuanjiao_zise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

@@ -8,7 +8,7 @@ package zhang.bw.com.common.util;
 public class Constant {
     //-----------open_login----都不要动我的开放登录变量，谁动谁傻叉-----
     public final static String ACTIVITY_URL_LOGIN = "/login/LoginActivity";
-    public final static String ACTIVITY_URL_REGISTER = "/login/RegisterActivity";
+    public final static String ACTIVITY_URL_REGISTER = "/login/RegistActivity";
     public final static String ACTIVITY_URL_WELCOME = "/login/WelcomeActivity";
 
 

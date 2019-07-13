@@ -229,7 +229,8 @@ public class MainActivity extends WDActivity {
     @OnClick(R2.id.but_ru)
     public void onViewClicked() {
         //跳转到首页
-
+    //ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
+        ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
 
 
     }

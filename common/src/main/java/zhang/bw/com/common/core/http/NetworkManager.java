@@ -37,19 +37,6 @@ public class NetworkManager {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-//                .addInterceptor(new Interceptor() {
-//                    @Override
-//                    public Response intercept(Chain chain) throws IOException {
-//                        UserInfoDao userInfoDao = DaoMaster.newDevSession(WDApplication.getContext(),UserInfoDao.TABLENAME).getUserInfoDao();
-//                        List<UserInfo> userInfos = userInfoDao.queryBuilder().where(UserInfoDao.Properties.Status.eq(1)).list();
-//                        UserInfo userInfo = userInfos.get(0);//读取第一项
-//                        Request request = chain.request().newBuilder()
-//                                .addHeader("userId",userInfo.getUserId()+"")
-//                                .addHeader("sessionId",userInfo.getSessionId())
-//                                .build();
-//                        return chain.proceed(request);
-//                    }
-//                })
                 .connectTimeout(5,TimeUnit.SECONDS)
                 .writeTimeout(5,TimeUnit.SECONDS)
                 .readTimeout(5,TimeUnit.SECONDS)
@@ -72,6 +59,14 @@ public class NetworkManager {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用Rxjava对回调数据进行处理
                 .addConverterFactory(GsonConverterFactory.create())//响应结果的解析器，包含gson，xml，protobuf
                 .build();
+//        baidu_retrofit = new Retrofit.Builder()
+//                .client(okHttpClient)
+////                .baseUrl("http://169.254.101.220:8080/")//base_url:http+域名
+////                .baseUrl("http://172.17.8.100/small/")//base_url:http+域名
+//                .baseUrl("http://mobile.bwstudent.com/small/")//base_url:http+域名
+//                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())//使用Rxjava对回调数据进行处理
+//                .addConverterFactory(GsonConverterFactory.create())//响应结果的解析器，包含gson，xml，protobuf
+//                .build();
     }
 
     public <T> T create(int requestType ,final Class<T> service){

@@ -5,6 +5,12 @@ package zhang.bw.com.common.core.http;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.GET;
+import retrofit2.http.Query;
+import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.MyjiankangBean;
+import zhang.bw.com.common.bean.Result;
+import zhang.bw.com.common.bean.ShowBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
@@ -16,6 +22,15 @@ import zhang.bw.com.common.bean.Result;
  * qq:1940870847
  */
 public interface IAppRequest {
+    @GET("share/v1/bannersShow")
+    Observable<Result<List<BannerBean>>>bannersShow();
+    @GET("share/knowledgeBase/v1/findDepartment")
+    Observable<Result<List<ShowBean>>>findDepartment();
+    @GET("share/knowledgeBase/v1/findDrugsCategoryList")
+    Observable<Result<List<MyjiankangBean>>>findInformationPlateList();
+    @GET("share/information/v1/findInformationList")
+    Observable<Result>findInformationList(@Query("plateId")String plateId,@Query("page")String page,@Query("count")String count);
+
     //发送邮箱验证码
     @FormUrlEncoded
     @POST("user/v1/sendOutEmailCode")

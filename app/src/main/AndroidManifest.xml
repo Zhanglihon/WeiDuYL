@@ -17,5 +17,6 @@
             </intent-filter>
         </activity>
         <activity android:name="com.bw.open_wallet.WalletActivity"/>
+        <activity android:name="com.bw.open_wallet.RechargeActivity"/>
     </application>
 </manifest>

@@ -1,39 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:orientation="vertical"
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
         android:background="@mipmap/my_wallet_background"
         android:layout_height="308dp">
+
         <ImageView
+            android:id="@+id/image_fan"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginLeft="20dp"
             android:layout_marginTop="40dp"
-            android:layout_width="16dp"
-            android:src="@mipmap/wallet_bai_left"
-            android:layout_height="16dp" />
+            android:src="@mipmap/wallet_bai_left" />
 
 
         <TextView
             android:id="@+id/text_title"
-            android:layout_marginTop="40dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="我的钱包"
             android:layout_centerHorizontal="true"
-            android:textColor="#fff"/>
+            android:layout_marginTop="40dp"
+            android:text="我的钱包"
+            android:textColor="#fff"
+            android:textSize="16sp" />
 
+        <RelativeLayout
+            android:orientation="vertical"
+            android:id="@+id/cicle"
+            android:background="@drawable/yuan"
+            android:layout_centerHorizontal="true"
+            android:layout_width="116dp"
+            android:layout_height="116dp"
+            android:layout_marginTop="32dp"
+            android:layout_below="@id/text_title"
+            >
+        <TextView
+            android:textColor="#3087EA"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="48sp"
+            android:id="@+id/text_hb"
+            android:text="1500"/>
 
+            <TextView
+                android:textColor="#3087EA"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_below="@id/text_hb"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:textSize="14sp"
+                android:text="H币"/>
 
+        </RelativeLayout>
+        
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textSize="10sp"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/cicle"
+            android:id="@+id/text_h"
 
-        <!--<com.bw.opne_wallet.view.CirleImageView-->
-            <!--android:layout_marginTop="32dp"-->
-            <!--android:layout_below="@id/text_title"-->
-            <!--android:layout_width="116dp"-->
-            <!--android:background="#fff"-->
-            <!--android:layout_centerHorizontal="true"-->
-            <!--android:layout_height="116dp">-->
-        <!--</com.bw.opne_wallet.view.CirleImageView>-->
+            android:layout_centerHorizontal="true"
+            android:text="满2000H币可提现"/>
+        <Button
+            android:layout_width="58dp"
+            android:layout_height="30dp"
+            android:text="提现"
+            android:background="@drawable/yuanjiaobaise"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:layout_marginLeft="70dp"
+            android:textColor="#3087EA"
+            android:id="@+id/but_tx"
+            />
+        <Button
+            android:layout_width="58dp"
+            android:layout_height="30dp"
+            android:text="充值"
+            android:background="@drawable/yuanjiaobaise"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="70dp"
+            android:id="@+id/but_cz"
+            android:textColor="#3087EA"
+            />
     </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyc_view"></androidx.recyclerview.widget.RecyclerView>
+
+
 </LinearLayout>

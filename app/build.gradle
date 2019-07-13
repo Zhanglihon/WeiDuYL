@@ -32,4 +32,5 @@ dependencies {
     implementation project(':open_wallet')
     implementation project(path: ':open_main')
     implementation project(path: ':open_show')
+    implementation project(path: ':open_login')
 }

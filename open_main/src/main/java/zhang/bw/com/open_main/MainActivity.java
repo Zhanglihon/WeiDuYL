@@ -2,6 +2,7 @@ package zhang.bw.com.open_main;
 
 
 import android.app.Application;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,7 +27,8 @@ import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.WDApplication;
 import zhang.bw.com.common.util.Constant;
 
-@Route(path = Constant.ACTIVITY_URL_MAIN)
+
+@Route(path =Constant.ACTIVITY_URL_MAIN)
 public class MainActivity extends WDActivity {
 
 
@@ -228,7 +230,6 @@ public class MainActivity extends WDActivity {
     public void onViewClicked() {
         //跳转到首页
 
-      ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
 
 
     }

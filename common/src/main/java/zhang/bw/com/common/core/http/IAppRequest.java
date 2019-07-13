@@ -5,16 +5,10 @@ package zhang.bw.com.common.core.http;
 import java.util.List;
 
 import io.reactivex.Observable;
-import okhttp3.MultipartBody;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
-import retrofit2.http.GET;
-import retrofit2.http.Header;
 import retrofit2.http.POST;
-import retrofit2.http.PUT;
-import retrofit2.http.Path;
-import retrofit2.http.Query;
+import zhang.bw.com.common.bean.Result;
 
 /**
  * @author dingtao
@@ -22,5 +16,20 @@ import retrofit2.http.Query;
  * qq:1940870847
  */
 public interface IAppRequest {
-
+    //发送邮箱验证码
+    @FormUrlEncoded
+    @POST("user/v1/sendOutEmailCode")
+    Observable<Result> sendOutEmailCode(@Field("email")String email);
+    //注册
+    @FormUrlEncoded
+    @POST("user/v1/register")
+    Observable<Result> register(@Field("email")String email,
+                                @Field("code")String code,
+                                @Field("pwd1")String pwd1,
+                                @Field("pwd2")String pwd2);
+    //登录
+    @FormUrlEncoded
+    @POST("user/v1/login")
+    Observable<Result> login(@Field("email")String email,
+                             @Field("pwd")String pwd);
 }

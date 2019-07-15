@@ -1,5 +1,6 @@
 package fragment;
 
+import android.annotation.SuppressLint;
 import android.text.TextPaint;
 import android.view.View;
 import android.widget.EditText;
@@ -15,12 +16,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import adapter.MyAdapter1;
+import adapter.MyjiKangAdapter1;
 import adapter.MyjikangAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.ShowBean;
 import zhang.bw.com.common.core.BannerPresenter;
@@ -44,17 +47,27 @@ public class Fragmentone extends WDFragment {
     RecyclerView one_recyc;
     @BindView(R2.id.two_recyc)
     RecyclerView two_recyc;
+    @BindView(R2.id.three_recyc)
+    RecyclerView three_recyc;
+    @BindView(R2.id.one_image1)
+    ImageView one_image1;
+    @BindView(R2.id.one_image2)
+    ImageView one_image2;
    private BannerPresenter bannerPresenter;
    private FindDepartmentPresenter findDepartmentPresenter;
    private FindInformationPlateList findInformationPlateList;
    private FindInformationList findInformationList;
    private MyAdapter1 myAdapter1;
    private MyjikangAdapter myjikangAdapter;
+   private MyjiKangAdapter1 myjiKangAdapter1;
+    private String id11;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragmentone;
     }
 
+    @SuppressLint("WrongConstant")
     @Override
     protected void initView() {
 
@@ -74,16 +87,33 @@ public class Fragmentone extends WDFragment {
         one_recyc.setLayoutManager(new GridLayoutManager(getContext(),4));
         myjikangAdapter = new MyjikangAdapter(getContext());
         two_recyc.setAdapter(myjikangAdapter);
+        findInformationList = new FindInformationList(new Back4());
+        findInformationList.reqeust("1","1","5");
         two_recyc.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
         myjikangAdapter.setJianBack(new MyjikangAdapter.JianBack() {
             @Override
             public void jian(int i, List<MyjiankangBean> list) {
                 String id = list.get(i).id;
-                findInformationList = new FindInformationList(new Back4());
                 findInformationList.reqeust(id,"1","5");
 
             }
         });
+        myjiKangAdapter1 = new MyjiKangAdapter1(getContext());
+        three_recyc.setAdapter(myjiKangAdapter1);
+        three_recyc.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        one_image1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+        one_image2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
     class Back1 implements DataCall<List<BannerBean>>{
 
@@ -131,10 +161,13 @@ public class Fragmentone extends WDFragment {
         }
 
     }
-    class Back4 implements DataCall{
+    class Back4 implements DataCall<List<JanBean>>{
+
 
         @Override
-        public void success(Object data, Object... args) {
+        public void success(List<JanBean> data, Object... args) {
+            myjiKangAdapter1.addALL(data);
+            myjiKangAdapter1.notifyDataSetChanged();
 
         }
 

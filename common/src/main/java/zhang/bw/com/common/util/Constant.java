@@ -23,6 +23,10 @@ public class Constant {
     //-----------open_wallet----首页模块随便动，我看提交历史删你库-----
     public final static String ACTIVITY_URL_WALLET = "/wallet/MainActivity";
     public final static String ACTIVITY_URL_RECHARGE = "/wallet/RechargeActivity";
+    public final static String ACTIVITY_URL_EMBODY = "/wallet/EmbodyActivity";
+    public final static String ACTIVITY_URL_SUCCEED = "/wallet/SucceedActivity";
+    public final static String ACTIVITY_URL_DEPOSIT = "/wallet/DepositActivity";
+    public final static String ACTIVITY_URL_RECORD = "/wallet/RecordActivity";
 //    public final static String ACTIVITY_URL_CIRLE = "/wallet/CirleImageView";
     //-----------open_wallet----首页模块随便动，我看提交历史删你库-----
 

@@ -24,6 +24,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:text="我的钱包"
+            android:textStyle="bold"
             android:textColor="#fff"
             android:textSize="16sp" />
 

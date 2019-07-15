@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_fan"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="40dp"
+        android:src="@mipmap/wallet_left" />
+
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="H币提现"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/text_jilu"
+            android:layout_alignParentRight="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="体现记录"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/text_k"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@id/image_fan"
+            android:layout_marginTop="40dp"
+            android:background="#F2F2F2" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:background="@drawable/ziti"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        
+        <TextView
+        android:id="@+id/text_kk"
+        android:layout_marginTop="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:textSize="12sp"
+        android:text="到帐银行卡"/>
+        <TextView
+        android:layout_marginTop="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="34dp"
+        android:layout_toRightOf="@id/text_kk"
+        android:textSize="12sp"
+        android:text="中国建设银行"/>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="34dp"
+            android:layout_below="@id/text_kk"
+            android:layout_toRightOf="@id/text_kk"
+            android:textSize="12sp"
+            android:layout_marginBottom="20dp"
+            android:textColor="#3087EA"
+            android:text="当前24点前结账"/>
+        
+        <ImageView
+            android:id="@+id/image_next"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@mipmap/my_icon_next_n"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"/>
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/ziti">
+
+        <TextView
+            android:id="@+id/text_kkk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20sp"
+            android:text="体现金额"
+            android:textSize="12sp" />
+
+
+        <TextView
+            android:id="@+id/text_qian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_kkk"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="26dp"
+            android:text="￥"
+            android:textColor="#333333"
+            android:textSize="72sp" />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/text_qian"
+            android:layout_marginBottom="2dp"
+            android:layout_toRightOf="@id/text_qian"
+            android:background="@null"
+            android:gravity="center_vertical"
+            android:inputType="number|numberDecimal"
+            android:lines="1"
+            android:textColor="#3087EA"
+            android:textSize="72sp" />
+
+        <TextView
+            android:id="@+id/text_kkkk"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/text_qian"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="6sp"
+            android:layout_marginRight="20dp"
+            android:background="#fff" />
+
+        <CheckBox
+            android:id="@+id/checkbox_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_kkkk"
+            android:layout_marginTop="10dp"
+            android:text="全部体现。3050H币，可体现30元。"
+            android:textColor="#333333" />
+
+        <Button
+            android:id="@+id/but_tx"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/checkbox_1"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/yuanjiao_zise"
+            android:text="体现"
+            android:textColor="#fff" />
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

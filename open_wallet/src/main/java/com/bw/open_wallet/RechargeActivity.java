@@ -1,6 +1,7 @@
 package com.bw.open_wallet;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,7 +27,6 @@ public class RechargeActivity extends WDActivity {
     ImageView imageFan;
     @BindView(R2.id.qian)
     TextView qian;
-    EditText editText;
     @BindView(R2.id.radio_wx)
     RadioButton radioWx;
     @BindView(R2.id.radio_zfb)
@@ -34,6 +34,7 @@ public class RechargeActivity extends WDActivity {
     @BindView(R2.id.but_cz)
     Button butCz;
 
+    EditText editText;
     @Override
     protected int getLayoutId() {
         return R.layout.layout_recharge;
@@ -41,7 +42,19 @@ public class RechargeActivity extends WDActivity {
 
     @Override
     protected void initView() {
-        editText.findViewById(R.id.edit_text);
+        editText=findViewById(R.id.edit_text);
+        //点击事件
+        onclicks();
+
+    }
+
+    private void onclicks() {
+        imageFan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

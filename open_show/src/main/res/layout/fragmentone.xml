@@ -14,50 +14,52 @@
     <com.stx.xhb.xbanner.XBanner
         android:id="@+id/xBanner"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="260dp">
         <LinearLayout
+            android:layout_marginTop="32dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/show_tx"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_marginLeft="12dp"
                 android:layout_marginTop="20dp"
                 android:background="@mipmap/historical_inquiry" />
 
             <EditText
                 android:id="@+id/edit"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="32dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                  android:layout_marginRight="10dp"
                 android:layout_weight="1"
-            android:background="@drawable/aa"
+                android:background="@drawable/aa"
+                android:textSize="12sp"
                 android:hint="  病症、 药品名称、 医生姓名"
                 android:textColorHint="#ffff" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="12dp"
                 android:background="@mipmap/common_nav_message_white_n" />
         </LinearLayout>
     </com.stx.xhb.xbanner.XBanner>
     <LinearLayout
         android:layout_width="match_parent"
         android:background="#fff"
-        android:layout_height="60dp">
+        android:layout_height="40dp">
         <TextView
             android:id="@+id/one_text1"
             android:text="| 知识宝典"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
-            android:textSize="25sp"
+            android:textSize="16sp"
             android:textColor="#4694ED"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -72,16 +74,17 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:background="#ffff"
-            android:layout_marginTop="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="2dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
             <TextView
                 android:text="常见病症"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:background="#ffff"
-                android:textSize="20sp"
-                android:layout_marginLeft="20dp"
+                android:textSize="14sp"
+                android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <ImageView
@@ -92,18 +95,19 @@
         </LinearLayout>
         <LinearLayout
             android:background="#ffff"
-            android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginLeft="6dp"
+            android:layout_marginTop="2dp"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:layout_marginBottom="4dp"
             android:orientation="vertical"
             android:layout_height="wrap_content">
             <TextView
                 android:text="常见药品"
                 android:layout_marginTop="10dp"
                 android:background="#ffff"
-                android:textSize="20sp"
-                android:layout_marginLeft="20dp"
+                android:textSize="14sp"
+                android:layout_marginLeft="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
             <ImageView
@@ -120,12 +124,12 @@
         <TextView
             android:id="@+id/one_text2"
             android:text="| 问诊咨询"
-            android:layout_marginTop="10dp"
+            android:gravity="center"
             android:layout_marginLeft="20dp"
-            android:textSize="25sp"
+            android:textSize="16sp"
             android:textColor="#4694ED"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="40dp" />
     </LinearLayout>
 <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/one_recyc"
@@ -144,28 +148,36 @@
             android:text="| 健康评测"
             android:layout_marginTop="8dp"
             android:layout_marginLeft="20dp"
-            android:textSize="25sp"
+            android:textSize="16sp"
             android:textColor="#4694ED"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-        <ImageView
-            android:background="@mipmap/health_assessment"
-            android:layout_width="match_parent"
-            android:layout_height="180dp" />
+            android:layout_height="40dp" />
     </LinearLayout>
+    <ImageView
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="4dp"
+        android:background="@mipmap/health_assessment"
+        android:layout_width="match_parent"
+        android:layout_height="180dp" />
 
 <androidx.recyclerview.widget.RecyclerView
     android:background="#fff"
+    android:layout_marginTop="1dp"
     android:id="@+id/two_recyc"
     android:layout_width="match_parent"
     android:layout_height="20dp">
 </androidx.recyclerview.widget.RecyclerView>
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/three_recyc"
-        android:layout_marginLeft="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+   <LinearLayout
+       android:background="#fff"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content">
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/three_recyc"
+           android:layout_marginLeft="12dp"
+           android:layout_marginRight="12dp"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+   </LinearLayout>
     <TextView
         android:text="查看更多>>"
         android:textColor="#4795ED"

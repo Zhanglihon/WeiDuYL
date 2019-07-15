@@ -2,8 +2,10 @@ package adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import com.example.open_show.R;
@@ -26,7 +28,7 @@ public class MyjikangAdapter extends RecyclerView.Adapter<MyjikangAdapter.ViewHo
     @NonNull
     @Override
     public MyjikangAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view =View.inflate(context,R.layout.jiankang,null);
+        View view =LayoutInflater.from(context).inflate(R.layout.jiankang,parent,false);
         return new ViewHolder(view);
     }
 

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/image_fan"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:src="@mipmap/wallet_left" />
+
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="40dp"
+            android:text="充值"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/text_k"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_below="@id/image_fan"
+            android:layout_marginTop="40dp"
+            android:background="#F2F2F2" />
+
+        <TextView
+            android:id="@+id/text_cz"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_k"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="54dp"
+            android:text="充值金额"
+            android:textColor="#333333"
+            android:textSize="16sp" />
+
+
+        <TextView
+            android:id="@+id/qian"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_cz"
+            android:layout_marginLeft="20dp"
+            android:text="￥"
+            android:textColor="#333333"
+            android:textSize="72sp" />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/qian"
+            android:layout_marginLeft="-3dp"
+            android:layout_marginBottom="2dp"
+            android:layout_toRightOf="@id/qian"
+            android:background="@null"
+            android:cursorVisible="false"
+            android:gravity="center_vertical"
+            android:inputType="number|numberDecimal"
+            android:lines="1"
+            android:textColor="#3087EA"
+            android:textSize="72sp" />
+
+        <LinearLayout
+            android:id="@+id/linelayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/qian"
+            android:layout_alignParentRight="true"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="本次可获得"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/text_hh"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/qian"
+                android:layout_alignParentRight="true"
+                android:text="0"
+                android:textColor="#f00"
+                android:textSize="12sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:text="H币"
+                android:textSize="12sp" />
+
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/text_kk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/linelayout"
+            android:layout_marginLeft="20dp"
+            android:text="最低充值1元，1元可兑换100H币。" />
+
+        <TextView
+            android:layout_marginTop="50dp"
+            android:textSize="14sp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_kk"
+            android:textColor="#333333"
+            android:id="@+id/text_kkk"
+            android:text="选择充值方式"/>
+        
+        <ImageView
+            android:id="@+id/image_wx"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@id/text_kkk"
+            android:src="@mipmap/wallet_weixin"/>
+
+        <TextView
+            android:text="微信支付"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_kkk"
+            android:layout_toRightOf="@id/image_wx"
+            android:layout_marginLeft="10dp"/>
+
+
+
+        <ImageView
+            android:id="@+id/image_zfb"
+            android:layout_marginTop="60dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_below="@id/text_kkk"
+            android:src="@mipmap/wallet_zhifubao"/>
+
+        <TextView
+            android:text="微信支付"
+            android:layout_marginTop="60dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_kkk"
+            android:layout_toRightOf="@id/image_wx"
+            android:layout_marginLeft="10dp"/>
+
+        <RadioGroup
+            android:layout_marginRight="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="15dp"
+            android:layout_below="@id/text_kkk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <RadioButton
+                android:id="@+id/radio_wx"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <RadioButton
+                android:layout_marginTop="10dp"
+                android:id="@+id/radio_zfb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </RadioGroup>
+
+
+        <Button
+            android:id="@+id/but_cz"
+            android:layout_marginTop="132dp"
+            android:text="充值"
+            android:layout_below="@id/image_zfb"
+            android:layout_marginRight="20dp"
+            android:textColor="#fff"
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/yuanjiao_zise"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

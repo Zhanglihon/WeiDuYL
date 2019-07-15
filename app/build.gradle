@@ -8,6 +8,7 @@ android {
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+        multiDexEnabled true
         javaCompileOptions {
             annotationProcessorOptions {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
@@ -28,6 +29,10 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation project(':open_main')
+    implementation project(':open_wallet')
     implementation project(path: ':open_main')
     implementation project(path: ':open_show')
+    implementation project(path: ':open_login')
+    implementation 'com.android.support:multidex:1.0.3'
 }

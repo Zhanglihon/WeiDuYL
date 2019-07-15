@@ -37,4 +37,5 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
     implementation 'com.github.xiaohaibin:XBanner:1.6.4'
     implementation project(path: ':common')
+    api project(path: ':common')
 }

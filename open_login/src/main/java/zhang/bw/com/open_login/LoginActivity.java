@@ -11,9 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import zhang.bw.com.common.DaoMaster;
+import zhang.bw.com.common.LoginBeanDao;
+import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
@@ -36,6 +40,7 @@ public class LoginActivity extends WDActivity {
     TextView loginLjzc;
     @BindView(R2.id.login_wxdl)
     ImageView loginWxdl;
+    private LoginBeanDao loginBeanDao;
 
     @Override
     protected int getLayoutId() {
@@ -44,6 +49,7 @@ public class LoginActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        loginBeanDao = DaoMaster.newDevSession(LoginActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao();
         loginDl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -80,11 +86,17 @@ public class LoginActivity extends WDActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
-    class dl implements DataCall{
-
+    class dl implements DataCall<LoginBean>{
         @Override
-        public void success(Object data, Object... args) {
+        public void success(LoginBean data, Object... args) {
             Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+
+            Log.i("aaa",data.id+"-----"+data.sessionId);
+            ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
+            loginBeanDao.insertOrReplaceInTx(data);
+            String sessionId = data.sessionId;
+            long id=data.id;
+            Toast.makeText(LoginActivity.this,sessionId+"---------"+id,Toast.LENGTH_SHORT).show();
         }
 
         @Override

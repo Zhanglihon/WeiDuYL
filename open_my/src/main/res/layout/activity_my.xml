@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MyActivity">
+    <RelativeLayout
+        android:background="@mipmap/my_background"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+
+        <RelativeLayout
+            android:id="@+id/aaa"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:layout_marginLeft="20dp"
+                android:layout_width="16dp"
+                android:background="@mipmap/common_icon_back_black_n"
+                android:layout_height="16dp" />
+
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/common_nav_message_white_n"
+                android:layout_width="24dp"
+                android:layout_height="24dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/wwww"
+            android:layout_marginTop="24dp"
+            android:layout_below="@+id/aaa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/image_view"
+                android:layout_marginLeft="20dp"
+                android:background="@mipmap/historical_inquiry"
+                android:layout_width="50dp"
+                android:layout_height="50dp" />
+
+            <TextView
+                android:layout_toRightOf="@+id/image_view"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:textSize="16dp"
+                android:textColor="@android:color/white"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="欧欧"
+                />
+
+            <Button
+                android:background="@drawable/login_shape"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="58dp"
+                android:layout_height="30dp"
+                android:text="签到"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/nnnnnnnnnnnnn"
+        android:layout_marginTop="150dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/login_shape"
+        android:layout_width="320dp"
+        android:layout_height="170dp">
+
+
+        <TextView
+            android:id="@+id/wenzhneg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的问诊"
+            android:textSize="16dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            />
+        <RelativeLayout
+            android:id="@+id/pppp"
+            android:layout_below="@+id/wenzhneg"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/aaaw"
+                android:background="@mipmap/the_current_inquiry"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="当前问诊"
+                android:layout_toRightOf="@+id/aaaw"
+                android:layout_marginLeft="20dp"
+                />
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/my_icon_next_n"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/qqqqqqq"
+            android:layout_below="@+id/pppp"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <ImageView
+                android:id="@+id/mmmm"
+                android:background="@mipmap/historical_inquiry"
+                android:layout_width="40dp"
+                android:layout_height="40dp" />
+            <TextView
+                android:layout_toRightOf="@+id/mmmm"
+                android:layout_marginTop="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="历史问诊"
+                android:layout_marginLeft="20dp"
+                />
+            <ImageView
+                android:layout_marginRight="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_alignParentRight="true"
+                android:background="@mipmap/my_icon_next_n"
+                android:layout_width="10dp"
+                android:layout_height="10dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/bbbbbbbbbbbbbbbbb"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_below="@id/nnnnnnnnnnnnn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <GridView
+            android:id="@+id/grid_view"
+            android:numColumns="3"
+            android:background="#ffff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></GridView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_below="@id/bbbbbbbbbbbbbbbbb"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content">
+        <TextView
+            android:textSize="14sp"
+            android:layout_marginHorizontal="20dp"
+            android:text="©八维移动通信学院毕业作品"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</RelativeLayout>

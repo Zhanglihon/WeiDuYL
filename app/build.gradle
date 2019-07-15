@@ -34,5 +34,6 @@ dependencies {
     implementation project(path: ':open_main')
     implementation project(path: ':open_show')
     implementation project(path: ':open_login')
+    implementation project(path: ':open_my')
     implementation 'com.android.support:multidex:1.0.3'
 }

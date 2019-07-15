@@ -72,7 +72,7 @@ public class WalletActivity extends WDActivity {
         butTx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_EMBODY).navigation();
             }
         });
     }

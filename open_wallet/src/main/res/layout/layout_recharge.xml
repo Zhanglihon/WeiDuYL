@@ -25,12 +25,14 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
             android:text="充值"
+            android:textStyle="bold"
+            android:textColor="#333333"
             android:textSize="16sp" />
 
         <TextView
             android:id="@+id/text_k"
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="6dp"
             android:layout_below="@id/image_fan"
             android:layout_marginTop="40dp"
             android:background="#F2F2F2" />

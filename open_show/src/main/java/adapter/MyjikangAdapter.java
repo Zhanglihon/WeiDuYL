@@ -1,6 +1,7 @@
 package adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -36,9 +37,17 @@ public class MyjikangAdapter extends RecyclerView.Adapter<MyjikangAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 jianBack.jian(position,list);
+//                   if(true){
+//                       holder.textView1.setTextColor(Color.BLUE);
+//                   }else {
+//                       holder.textView1.setTextColor(Color.BLACK);
+//                   }
+
             }
         });
+
     }
+
 
     @Override
     public int getItemCount() {

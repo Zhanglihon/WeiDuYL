@@ -8,6 +8,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.Result;
 import zhang.bw.com.common.bean.ShowBean;
@@ -29,7 +30,7 @@ public interface IAppRequest {
     @GET("share/knowledgeBase/v1/findDrugsCategoryList")
     Observable<Result<List<MyjiankangBean>>>findInformationPlateList();
     @GET("share/information/v1/findInformationList")
-    Observable<Result>findInformationList(@Query("plateId")String plateId,@Query("page")String page,@Query("count")String count);
+    Observable<Result<List<JanBean>>>findInformationList(@Query("plateId")String plateId, @Query("page")String page, @Query("count")String count);
 
     //发送邮箱验证码
     @FormUrlEncoded

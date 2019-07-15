@@ -3,6 +3,7 @@ package zhang.bw.com.open_main;
 
 import android.app.Application;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,6 +61,7 @@ public class MainActivity extends WDActivity {
     private String[] picTrueArr;
     private boolean isAutoPlay;
     private ArrayList<View> pageview;
+    private SharedPreferences sp;
 
     @Override
     protected int getLayoutId() {
@@ -68,6 +70,13 @@ public class MainActivity extends WDActivity {
 
     @Override
     protected void initView() {
+
+        sp = getSharedPreferences("logu", MODE_PRIVATE);
+        boolean b = sp.getBoolean("edit", false);
+        if (b){
+            ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
+        }
+
 
         tt1.setText("");
         tt2.setText("八维移动通讯学院学生作品");
@@ -228,9 +237,12 @@ public class MainActivity extends WDActivity {
 
     @OnClick(R2.id.but_ru)
     public void onViewClicked() {
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putBoolean("edit",true);
+        edit.apply();
         //跳转到首页
-    //ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
-        ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
+    ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
+
 
 
     }

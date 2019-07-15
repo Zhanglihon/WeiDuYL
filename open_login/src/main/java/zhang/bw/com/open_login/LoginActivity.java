@@ -90,7 +90,6 @@ public class LoginActivity extends WDActivity {
         @Override
         public void success(LoginBean data, Object... args) {
             Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-
             Log.i("aaa",data.id+"-----"+data.sessionId);
             ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
             loginBeanDao.insertOrReplaceInTx(data);
@@ -102,7 +101,6 @@ public class LoginActivity extends WDActivity {
         @Override
         public void fail(ApiException data, Object... args) {
             Log.i("aaa","123"+data.getDisplayMessage());
-
             Toast.makeText(LoginActivity.this,"登录失败",Toast.LENGTH_SHORT).show();
 
         }

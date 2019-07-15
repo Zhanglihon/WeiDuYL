@@ -7,12 +7,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.open_show.R;
 import com.example.open_show.R2;
 import com.stx.xhb.xbanner.XBanner;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import adapter.MyAdapter1;
@@ -33,12 +33,13 @@ import zhang.bw.com.common.core.FindInformationList;
 import zhang.bw.com.common.core.FindInformationPlateList;
 import zhang.bw.com.common.core.WDFragment;
 import zhang.bw.com.common.core.exception.ApiException;
+import zhang.bw.com.common.util.Constant;
 
 public class Fragmentone extends WDFragment {
     @BindView(R2.id.one_text1)
     TextView one_text1;
     @BindView(R2.id.one_text2)
-    TextView  one_text2;
+    TextView one_text2;
     @BindView(R2.id.edit)
     EditText edit;
     @BindView(R2.id.xBanner)
@@ -53,13 +54,15 @@ public class Fragmentone extends WDFragment {
     ImageView one_image1;
     @BindView(R2.id.one_image2)
     ImageView one_image2;
-   private BannerPresenter bannerPresenter;
-   private FindDepartmentPresenter findDepartmentPresenter;
-   private FindInformationPlateList findInformationPlateList;
-   private FindInformationList findInformationList;
-   private MyAdapter1 myAdapter1;
-   private MyjikangAdapter myjikangAdapter;
-   private MyjiKangAdapter1 myjiKangAdapter1;
+    @BindView(R2.id.show_tx)
+    ImageView showTx;
+    private BannerPresenter bannerPresenter;
+    private FindDepartmentPresenter findDepartmentPresenter;
+    private FindInformationPlateList findInformationPlateList;
+    private FindInformationList findInformationList;
+    private MyAdapter1 myAdapter1;
+    private MyjikangAdapter myjikangAdapter;
+    private MyjiKangAdapter1 myjiKangAdapter1;
     private String id11;
 
     @Override
@@ -70,7 +73,12 @@ public class Fragmentone extends WDFragment {
     @SuppressLint("WrongConstant")
     @Override
     protected void initView() {
-
+        showTx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
+            }
+        });
         TextPaint paint = one_text1.getPaint();
         paint.setFakeBoldText(true);
         TextPaint paint2 = one_text2.getPaint();
@@ -84,23 +92,23 @@ public class Fragmentone extends WDFragment {
         findInformationPlateList.reqeust();
         myAdapter1 = new MyAdapter1(getContext());
         one_recyc.setAdapter(myAdapter1);
-        one_recyc.setLayoutManager(new GridLayoutManager(getContext(),4));
+        one_recyc.setLayoutManager(new GridLayoutManager(getContext(), 4));
         myjikangAdapter = new MyjikangAdapter(getContext());
         two_recyc.setAdapter(myjikangAdapter);
         findInformationList = new FindInformationList(new Back4());
-        findInformationList.reqeust("1","1","5");
-        two_recyc.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        findInformationList.reqeust("1", "1", "5");
+        two_recyc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         myjikangAdapter.setJianBack(new MyjikangAdapter.JianBack() {
             @Override
             public void jian(int i, List<MyjiankangBean> list) {
                 String id = list.get(i).id;
-                findInformationList.reqeust(id,"1","5");
+                findInformationList.reqeust(id, "1", "5");
 
             }
         });
         myjiKangAdapter1 = new MyjiKangAdapter1(getContext());
         three_recyc.setAdapter(myjiKangAdapter1);
-        three_recyc.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        three_recyc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         one_image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,17 +123,18 @@ public class Fragmentone extends WDFragment {
         });
 
     }
-    class Back1 implements DataCall<List<BannerBean>>{
+
+    class Back1 implements DataCall<List<BannerBean>> {
 
         @Override
         public void success(List<BannerBean> data, Object... args) {
-               xBanner.setBannerData(data);
-               xBanner.loadImage(new XBanner.XBannerAdapter() {
-                   @Override
-                   public void loadBanner(XBanner banner, Object model, View view, int position) {
-                        Glide.with(getActivity()).load(data.get(position).imageUrl).into((ImageView) view);
-                   }
-               });
+            xBanner.setBannerData(data);
+            xBanner.loadImage(new XBanner.XBannerAdapter() {
+                @Override
+                public void loadBanner(XBanner banner, Object model, View view, int position) {
+                    Glide.with(getActivity()).load(data.get(position).imageUrl).into((ImageView) view);
+                }
+            });
         }
 
         @Override
@@ -133,7 +142,8 @@ public class Fragmentone extends WDFragment {
 
         }
     }
-    class Back2 implements DataCall<List<ShowBean>>{
+
+    class Back2 implements DataCall<List<ShowBean>> {
 
         @Override
         public void success(List<ShowBean> data, Object... args) {
@@ -147,7 +157,8 @@ public class Fragmentone extends WDFragment {
 
         }
     }
-    class Back3 implements DataCall<List<MyjiankangBean>>{
+
+    class Back3 implements DataCall<List<MyjiankangBean>> {
 
         @Override
         public void success(List<MyjiankangBean> data, Object... args) {
@@ -161,7 +172,8 @@ public class Fragmentone extends WDFragment {
         }
 
     }
-    class Back4 implements DataCall<List<JanBean>>{
+
+    class Back4 implements DataCall<List<JanBean>> {
 
 
         @Override

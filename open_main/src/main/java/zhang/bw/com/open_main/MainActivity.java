@@ -74,7 +74,7 @@ public class MainActivity extends WDActivity {
         sp = getSharedPreferences("logu", MODE_PRIVATE);
         boolean b = sp.getBoolean("edit", false);
         if (b){
-            ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
+            ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
         }
 
 

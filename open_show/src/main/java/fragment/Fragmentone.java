@@ -1,6 +1,7 @@
 package fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.text.TextPaint;
 import android.view.View;
 import android.widget.EditText;
@@ -11,6 +12,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.open_show.R;
 import com.example.open_show.R2;
+import com.example.open_show.ShowActivity1;
 import com.stx.xhb.xbanner.XBanner;
 
 import java.util.List;
@@ -96,7 +98,7 @@ public class Fragmentone extends WDFragment {
         myjikangAdapter = new MyjikangAdapter(getContext());
         two_recyc.setAdapter(myjikangAdapter);
         findInformationList = new FindInformationList(new Back4());
-        findInformationList.reqeust("1", "1", "5");
+
         two_recyc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         myjikangAdapter.setJianBack(new MyjikangAdapter.JianBack() {
             @Override
@@ -112,13 +114,18 @@ public class Fragmentone extends WDFragment {
         one_image1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ShowActivity1.class);
+                intent.putExtra("text","1");
+                startActivity(intent);
 
             }
         });
         one_image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getActivity(),ShowActivity1.class);
+                intent.putExtra("text","2");
+                startActivity(intent);
             }
         });
 
@@ -162,6 +169,8 @@ public class Fragmentone extends WDFragment {
 
         @Override
         public void success(List<MyjiankangBean> data, Object... args) {
+            String id = data.get(0).id;
+            findInformationList.reqeust(id, "1", "5");
             myjikangAdapter.addALL(data);
             myjikangAdapter.notifyDataSetChanged();
         }

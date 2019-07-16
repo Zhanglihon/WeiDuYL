@@ -8,6 +8,7 @@ import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.BingBean;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
@@ -17,6 +18,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import zhang.bw.com.common.bean.Result;
+import zhang.bw.com.common.bean.YaoBean;
 
 /**
  * @author dingtao
@@ -30,9 +32,12 @@ public interface IAppRequest {
     Observable<Result<List<ShowBean>>>findDepartment();
     @GET("share/knowledgeBase/v1/findDrugsCategoryList")
     Observable<Result<List<MyjiankangBean>>>findInformationPlateList();
+    @GET("share/knowledgeBase/v1/findDrugsKnowledgeList")
+    Observable<Result<List<YaoBean>>>findDrugsKnowledgeList(@Query("drugsCategoryId")String drugsCategoryId, @Query("page")String page, @Query("count")String count);
     @GET("share/information/v1/findInformationList")
     Observable<Result<List<JanBean>>>findInformationList(@Query("plateId")String plateId, @Query("page")String page, @Query("count")String count);
-
+    @GET("share/knowledgeBase/v1/findDiseaseCategory")
+    Observable<Result<List<BingBean>>>findDiseaseCategory(@Query("departmentId")String departmentId);
     //发送邮箱验证码
     @FormUrlEncoded
     @POST("user/v1/sendOutEmailCode")

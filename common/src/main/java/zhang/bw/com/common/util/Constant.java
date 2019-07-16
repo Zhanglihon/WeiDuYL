@@ -37,4 +37,8 @@ public class Constant {
 
     //-----------open_show----首页模块随便动，我看提交历史删你库-----
 
+    //-----------open_my----首页模块随便动，我看提交历史删你库-----
+    public final static String ACTIVITY_URL_MY="/my/MyActivity";
+    //-----------open_my----首页模块随便动，我看提交历史删你库-----
+
 }

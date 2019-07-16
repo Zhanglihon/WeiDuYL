@@ -74,6 +74,10 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
             RightImageHolder holder2  = (RightImageHolder) holder;
             holder2.jian1_text1.setText(list.get(position).title);
             holder2.jian1_text2.setText(list.get(position).source);
+            String format = "yyyy-MM-dd";
+            long releaseTime = list.get(position).releaseTime;
+            SimpleDateFormat formatter = new SimpleDateFormat(format);
+            holder2.jian1_item.setText(formatter.format(new Date(releaseTime)));
             Glide.with(context).load(split[0]).into(holder2.jian1_image1);
             Glide.with(context).load(split[1]).into(holder2.jian1_image2);
             Glide.with(context).load(split[2]).into(holder2.jian1_image3);
@@ -120,7 +124,7 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
     }
     private class RightImageHolder extends RecyclerView.ViewHolder {
         private ImageView jian1_image1,jian1_image2,jian1_image3;
-        private TextView jian1_text1,jian1_text2;
+        private TextView jian1_text1,jian1_text2,jian1_item;
         public RightImageHolder(View itemView) {
             super(itemView);
             jian1_image1= itemView.findViewById(R.id.jian1_image1);
@@ -128,6 +132,7 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
             jian1_image3 = itemView.findViewById(R.id.jian1_image3);
             jian1_text1 = itemView.findViewById(R.id.jian1_text);
             jian1_text2 = itemView.findViewById(R.id.jian1_text2);
+            jian1_item = itemView.findViewById(R.id.jian1_item);
         }
     }
 

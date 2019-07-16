@@ -96,6 +96,8 @@ public class LoginActivity extends WDActivity {
             String sessionId = data.sessionId;
             long id=data.id;
             Toast.makeText(LoginActivity.this,sessionId+"---------"+id,Toast.LENGTH_SHORT).show();
+            ARouter.getInstance().build(Constant.ACTIVITY_URL_MY).navigation();
+            finish();
         }
 
         @Override

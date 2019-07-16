@@ -3,11 +3,15 @@ package zhang.bw.com.common.core.http;
 
 
 import java.util.List;
+import java.util.Queue;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.HbchaXun;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
@@ -49,4 +53,9 @@ public interface IAppRequest {
     @POST("user/v1/login")
     Observable<Result<LoginBean>> login(@Field("email")String email,
                                         @Field("pwd")String pwd);
+
+    //查询用户H币通知列表
+    @GET("user/verify/v1/findHealthyCurrencyNoticeList")
+    Observable<Result<List<HbchaXun>>> Hchaxun(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                         @Query("page") String page, @Query("count") String count);
 }

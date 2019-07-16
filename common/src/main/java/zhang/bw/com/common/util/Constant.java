@@ -27,6 +27,8 @@ public class Constant {
     public final static String ACTIVITY_URL_SUCCEED = "/wallet/SucceedActivity";
     public final static String ACTIVITY_URL_DEPOSIT = "/wallet/DepositActivity";
     public final static String ACTIVITY_URL_RECORD = "/wallet/RecordActivity";
+    public final static String ACTIVITY_URL_SHENGZ = "/wallet/ShengfzActivity";
+    public final static String ACTIVITY_URL_YINGHK = "/wallet/YinghkAcitivity";
 //    public final static String ACTIVITY_URL_CIRLE = "/wallet/CirleImageView";
     //-----------open_wallet----首页模块随便动，我看提交历史删你库-----
 

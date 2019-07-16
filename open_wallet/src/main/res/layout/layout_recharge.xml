@@ -68,9 +68,8 @@
             android:layout_marginBottom="2dp"
             android:layout_toRightOf="@id/qian"
             android:background="@null"
-            android:cursorVisible="false"
             android:gravity="center_vertical"
-            android:inputType="number|numberDecimal"
+            android:inputType="numberDecimal"
             android:lines="1"
             android:textColor="#3087EA"
             android:textSize="72sp" />

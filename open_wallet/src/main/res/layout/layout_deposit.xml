@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="40dp"
-            android:text="H币体现"
+            android:text="H币提现"
             android:textStyle="bold"
             android:textColor="#333333"
             android:textSize="16sp" />

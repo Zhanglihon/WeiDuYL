@@ -3,5 +3,6 @@
 
     <application>
         <activity android:name=".DepositActivity" />
+        <activity android:name=".YinghkAcitivity" />
     </application>
 </manifest>

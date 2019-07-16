@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wd.health">
+    <uses-permission android:name="android.permission.CAMERA"/>
 
     <application
         android:name="zhang.bw.com.common.core.WDApplication"
@@ -23,5 +24,7 @@
         <activity android:name="com.bw.open_wallet.SucceedActivity"/>
         <activity android:name="com.bw.open_wallet.DepositActivity"/>
         <activity android:name="com.bw.open_wallet.RecordActivity"/>
+        <activity android:name="com.bw.open_wallet.ShengfzActivity"/>
+        <activity android:name="com.bw.open_wallet.YinghkAcitivity"/>
     </application>
 </manifest>

@@ -83,7 +83,7 @@ public class Fragmentone extends WDFragment {
         paint.setFakeBoldText(true);
         TextPaint paint2 = one_text2.getPaint();
         paint2.setFakeBoldText(true);
-        edit.getBackground().setAlpha(100);
+        edit.getBackground().setAlpha(30);
         bannerPresenter = new BannerPresenter(new Back1());
         bannerPresenter.reqeust();
         findDepartmentPresenter = new FindDepartmentPresenter(new Back2());

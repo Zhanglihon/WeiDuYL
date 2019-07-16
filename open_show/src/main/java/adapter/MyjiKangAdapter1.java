@@ -73,19 +73,19 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
             String[] split = list.get(position).thumbnail.split(";");
             RightImageHolder holder2  = (RightImageHolder) holder;
             holder2.jian1_text1.setText(list.get(position).title);
-//            holder2.jian1_text2.setText(list.get(position).source);
+            holder2.jian1_text2.setText(list.get(position).source);
             Glide.with(context).load(split[0]).into(holder2.jian1_image1);
             Glide.with(context).load(split[1]).into(holder2.jian1_image2);
             Glide.with(context).load(split[2]).into(holder2.jian1_image3);
 
         }else if(holder instanceof ThreeImageHolder){
-            String[] split = list.get(position).thumbnail.split(";");
-            ThreeImageHolder holder3  = (ThreeImageHolder) holder;
-            holder3.jian2_text1.setText(list.get(position).title);
-            holder3.jian3_text1.setText(list.get(position).source);
-            Glide.with(context).load(split[0]).into(holder3.jian2_image1);
-            Glide.with(context).load(split[1]).into(holder3.jian2_image2);
-            Glide.with(context).load(split[2]).into(holder3.jian3_image3);
+//            String[] split = list.get(position).thumbnail.split(";");
+//            ThreeImageHolder holder3  = (ThreeImageHolder) holder;
+//            holder3.jian2_text1.setText(list.get(position).title);
+//            holder3.jian3_text1.setText(list.get(position).source);
+//            Glide.with(context).load(split[0]).into(holder3.jian2_image1);
+//            Glide.with(context).load(split[1]).into(holder3.jian2_image2);
+//            Glide.with(context).load(split[2]).into(holder3.jian3_image3);
         }
 
 
@@ -136,11 +136,11 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
         private ImageView jian2_image1,jian2_image2,jian3_image3;
         public ThreeImageHolder(View itemView) {
             super(itemView);
-            jian2_text1 = itemView.findViewById(R.id.jian2_text);
-            jian3_text1 = itemView.findViewById(R.id.jian3_text1);
-            jian2_image1 = itemView.findViewById(R.id.jian2_image1);
-            jian2_image2 = itemView.findViewById(R.id.jian2_image2);
-            jian3_image3 = itemView.findViewById(R.id.jian2_image3);
+//            jian2_text1 = itemView.findViewById(R.id.jian2_text);
+//            jian3_text1 = itemView.findViewById(R.id.jian3_text1);
+//            jian2_image1 = itemView.findViewById(R.id.jian2_image1);
+//            jian2_image2 = itemView.findViewById(R.id.jian2_image2);
+//            jian3_image3 = itemView.findViewById(R.id.jian2_image3);
         }
     }
 }

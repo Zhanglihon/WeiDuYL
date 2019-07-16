@@ -2,8 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="zhang.bw.com.open_my">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application>
-        <activity android:name=".MyActivity"></activity>
+        <activity android:name=".MyActivity" />
+        <activity android:name=".WdszActivity"></activity>
     </application>
 
 </manifest>

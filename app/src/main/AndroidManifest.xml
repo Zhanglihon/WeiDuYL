@@ -23,5 +23,9 @@
         <activity android:name="com.bw.open_wallet.SucceedActivity"/>
         <activity android:name="com.bw.open_wallet.DepositActivity"/>
         <activity android:name="com.bw.open_wallet.RecordActivity"/>
+
+        <!-- 张利宏-->
+        <activity android:name="zhang.bw.com.open_my.MyActivity"/>
+        <!-- 张利宏-->
     </application>
 </manifest>

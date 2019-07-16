@@ -242,7 +242,7 @@ public class MainActivity extends WDActivity {
         edit.apply();
         //跳转到首页
     ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
-
+        finish();
 
 
     }

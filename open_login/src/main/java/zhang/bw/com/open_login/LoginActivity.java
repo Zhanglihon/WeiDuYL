@@ -91,11 +91,12 @@ public class LoginActivity extends WDActivity {
         public void success(LoginBean data, Object... args) {
             Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
             Log.i("aaa",data.id+"-----"+data.sessionId);
-            ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
             loginBeanDao.insertOrReplaceInTx(data);
             String sessionId = data.sessionId;
             long id=data.id;
             Toast.makeText(LoginActivity.this,sessionId+"---------"+id,Toast.LENGTH_SHORT).show();
+            ARouter.getInstance().build(Constant.ACTIVITY_URL_MY).navigation();
+            finish();
         }
 
         @Override

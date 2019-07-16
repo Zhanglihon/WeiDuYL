@@ -37,9 +37,9 @@ public class NetworkManager {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
-                .connectTimeout(5,TimeUnit.SECONDS)
-                .writeTimeout(5,TimeUnit.SECONDS)
-                .readTimeout(5,TimeUnit.SECONDS)
+                .connectTimeout(60,TimeUnit.SECONDS)
+                .writeTimeout(60,TimeUnit.SECONDS)
+                .readTimeout(60,TimeUnit.SECONDS)
                 .build();
 
         app_retrofit = new Retrofit.Builder()

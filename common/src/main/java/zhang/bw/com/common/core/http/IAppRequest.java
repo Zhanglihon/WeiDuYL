@@ -5,7 +5,10 @@ package zhang.bw.com.common.core.http;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
 import zhang.bw.com.common.bean.JanBean;
@@ -17,6 +20,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import zhang.bw.com.common.bean.Result;
+import zhang.bw.com.common.bean.TxscBean;
 
 /**
  * @author dingtao
@@ -49,4 +53,9 @@ public interface IAppRequest {
     @POST("user/v1/login")
     Observable<Result<LoginBean>> login(@Field("email")String email,
                                         @Field("pwd")String pwd);
+    //头像上传
+    @POST("user/verify/v1/modifyHeadPic")
+    Observable<Result<String>> modifyHeadPic(@Header("userId")long userId,
+                                               @Header("sessionId")String sessionId,
+                                               @Body MultipartBody body);
 }

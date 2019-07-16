@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+<androidx.recyclerview.widget.RecyclerView
+    android:background="#F2F2F2"
+    android:id="@+id/recyc1"
+    android:layout_width="80dp"
+    android:layout_height="match_parent">
+</androidx.recyclerview.widget.RecyclerView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyc2"
+        android:layout_marginTop="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

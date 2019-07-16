@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ShowActivity1">
+    <RelativeLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/show_tx"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/historical_inquiry" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="12dp"
+            android:background="@mipmap/common_nav_message_black_n"
+            />
+    </RelativeLayout>
+   <RelativeLayout
+       android:layout_marginTop="6dp"
+       android:layout_width="match_parent"
+       android:layout_height="36dp">
+       <RadioButton
+           android:id="@+id/show1_btn1"
+           android:checked="true"
+           android:textSize="16sp"
+           android:text="常见病症"
+           android:layout_marginLeft="58dp"
+           android:button="@null"
+           android:layout_width="wrap_content"
+           android:layout_height="36dp"></RadioButton>
+       <RadioButton
+           android:id="@+id/show1_btn2"
+           android:textSize="16sp"
+           android:text="常见药品"
+           android:layout_alignParentRight="true"
+           android:layout_marginRight="58dp"
+           android:layout_marginLeft="58dp"
+           android:button="@null"
+           android:layout_width="wrap_content"
+           android:layout_height="36dp"></RadioButton>
+   </RelativeLayout>
+    <FrameLayout
+        android:id="@+id/show1_frame"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        ></FrameLayout>
+
+</LinearLayout>

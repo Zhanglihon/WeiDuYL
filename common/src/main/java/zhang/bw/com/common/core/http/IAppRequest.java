@@ -9,9 +9,12 @@ import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.PUT;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
 import zhang.bw.com.common.bean.BingBean;
+import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
@@ -63,4 +66,18 @@ public interface IAppRequest {
     Observable<Result<String>> modifyHeadPic(@Header("userId")long userId,
                                                @Header("sessionId")String sessionId,
                                                @Body MultipartBody body);
+    //根据用户ID查询用户信息
+    @GET("user/verify/v1/getUserInfoById")
+    Observable<Result<CXBean>> getUserInfoById(@Header("userId") long userId,
+                                               @Header("sessionId") String sessionId);
+    //检验验证码
+    @FormUrlEncoded
+    @POST("user/v1/checkCode")
+    Observable<Result> checkCode(@Field("email")String email,
+                                 @Field("code")String code);
+    //重置用户密码（忘记密码用）
+    @PUT("user/v1/resetUserPwd")
+    Observable<Result> resetUserPwd(@Query("email") String email,
+                                    @Query("pwd1") String pwd1,
+                                    @Query("pwd2")String pwd2);
 }

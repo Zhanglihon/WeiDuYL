@@ -3,13 +3,16 @@ package fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.open_show.R;
 import com.example.open_show.R2;
 import com.example.open_show.ShowActivity1;
@@ -24,8 +27,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+import zhang.bw.com.common.DaoMaster;
+import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.BannerBean;
 import zhang.bw.com.common.bean.JanBean;
+import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.ShowBean;
 import zhang.bw.com.common.core.BannerPresenter;
@@ -66,6 +72,8 @@ public class Fragmentone extends WDFragment {
     private MyjikangAdapter myjikangAdapter;
     private MyjiKangAdapter1 myjiKangAdapter1;
     private String id11;
+    private List<LoginBean> list;
+    private LoginBeanDao dao;
 
     @Override
     protected int getLayoutId() {
@@ -75,12 +83,7 @@ public class Fragmentone extends WDFragment {
     @SuppressLint("WrongConstant")
     @Override
     protected void initView() {
-        showTx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
-            }
-        });
+        dao = DaoMaster.newDevSession(getActivity(),LoginBeanDao.TABLENAME).getLoginBeanDao();
         TextPaint paint = one_text1.getPaint();
         paint.setFakeBoldText(true);
         TextPaint paint2 = one_text2.getPaint();
@@ -198,4 +201,19 @@ public class Fragmentone extends WDFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        list=dao.loadAll();
+        showTx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (list.size()==0){
+                    ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
+                }else{
+                    ARouter.getInstance().build(Constant.ACTIVITY_URL_MY).navigation();
+                }
+            }
+        });
+    }
 }

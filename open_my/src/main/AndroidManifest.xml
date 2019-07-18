@@ -8,7 +8,9 @@
 
     <application>
         <activity android:name=".MyActivity" />
-        <activity android:name=".WdszActivity"></activity>
+        <activity android:name=".WdszActivity" />
+        <activity android:name=".WdxxActivity" />
+        <activity android:name=".WddaActivity"></activity>
     </application>
 
 </manifest>

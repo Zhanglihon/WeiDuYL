@@ -37,6 +37,7 @@ public class LoginBeanDao extends AbstractDao<LoginBean, Long> {
         public final static Property Email = new Property(10, String.class, "email", false, "EMAIL");
         public final static Property WhetherBingWeChat = new Property(11, String.class, "whetherBingWeChat", false, "WHETHER_BING_WE_CHAT");
         public final static Property InvitationCode = new Property(12, String.class, "invitationCode", false, "INVITATION_CODE");
+        public final static Property Datas = new Property(13, int.class, "datas", false, "DATAS");
     }
 
 
@@ -64,7 +65,8 @@ public class LoginBeanDao extends AbstractDao<LoginBean, Long> {
                 "\"WEIGHT\" TEXT," + // 9: weight
                 "\"EMAIL\" TEXT," + // 10: email
                 "\"WHETHER_BING_WE_CHAT\" TEXT," + // 11: whetherBingWeChat
-                "\"INVITATION_CODE\" TEXT);"); // 12: invitationCode
+                "\"INVITATION_CODE\" TEXT," + // 12: invitationCode
+                "\"DATAS\" INTEGER NOT NULL );"); // 13: datas
     }
 
     /** Drops the underlying database table. */
@@ -137,6 +139,7 @@ public class LoginBeanDao extends AbstractDao<LoginBean, Long> {
         if (invitationCode != null) {
             stmt.bindString(13, invitationCode);
         }
+        stmt.bindLong(14, entity.getDatas());
     }
 
     @Override
@@ -203,6 +206,7 @@ public class LoginBeanDao extends AbstractDao<LoginBean, Long> {
         if (invitationCode != null) {
             stmt.bindString(13, invitationCode);
         }
+        stmt.bindLong(14, entity.getDatas());
     }
 
     @Override
@@ -225,7 +229,8 @@ public class LoginBeanDao extends AbstractDao<LoginBean, Long> {
             cursor.isNull(offset + 9) ? null : cursor.getString(offset + 9), // weight
             cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10), // email
             cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11), // whetherBingWeChat
-            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12) // invitationCode
+            cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12), // invitationCode
+            cursor.getInt(offset + 13) // datas
         );
         return entity;
     }
@@ -245,6 +250,7 @@ public class LoginBeanDao extends AbstractDao<LoginBean, Long> {
         entity.setEmail(cursor.isNull(offset + 10) ? null : cursor.getString(offset + 10));
         entity.setWhetherBingWeChat(cursor.isNull(offset + 11) ? null : cursor.getString(offset + 11));
         entity.setInvitationCode(cursor.isNull(offset + 12) ? null : cursor.getString(offset + 12));
+        entity.setDatas(cursor.getInt(offset + 13));
      }
     
     @Override

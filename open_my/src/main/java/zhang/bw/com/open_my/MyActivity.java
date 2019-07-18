@@ -29,7 +29,6 @@ import butterknife.ButterKnife;
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.LoginBean;
-import zhang.bw.com.common.bean.TxscBean;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
@@ -65,10 +64,7 @@ public class MyActivity extends WDActivity {
     RelativeLayout bbbbbbbbbbbbbbbbb;
     @BindView(R2.id.wd_image_back)
     ImageView wdImageBack;
-    private String path = Environment.getExternalStorageDirectory() + "/hh.jpg";
-    private MyPresenter myPresenter;
-    private LoginBeanDao loginBeanDao;
-    private LoginBean loginBean;
+
 
     @Override
     protected int getLayoutId() {
@@ -77,29 +73,6 @@ public class MyActivity extends WDActivity {
 
     @Override
     protected void initView() {
-        loginBean = DaoMaster.newDevSession(MyActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
-        myPresenter = new MyPresenter(new Txsc());
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(MyActivity.this)
-                        .setItems(new String[]{"相机", "相册"}, new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which){
-                                    case 0:
-                                        xiangji();
-                                        break;
-                                    case 1:
-                                        xiangce();
-                                        break;
-                                }
-                            }
-                        });
-
-                builder.create().show();
-            }
-        });
         wdImageBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -157,7 +130,8 @@ public class MyActivity extends WDActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 int index = i + 1;
                 if (index == 1) {
-                    //intentByRouter(Constant.ACTIVITY_URL_Wode_danan);
+                    Intent intent=new Intent(MyActivity.this,WddaActivity.class);
+                    startActivity(intent);
                 } else if (index == 2) {
                     intentByRouter(Constant.ACTIVITY_URL_WALLET);
                 } else if (index == 3) {
@@ -179,55 +153,9 @@ public class MyActivity extends WDActivity {
             }
         });
     }
-    //相册
-    private void xiangce() {
-        Intent intent = new Intent(Intent.ACTION_PICK);
-        intent.setType("image/*");
-        startActivityForResult(intent, 200);
-    }
-    //相机
-    private void xiangji() {
-        //创建拍照的隐式意图对象
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        //把拍完的照片,输出到指定路径上
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path)));
-        //开启页面
-        startActivityForResult(intent, 100);
-    }
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 100) {
-            //取出拍照的照片
-            Uri uri = Uri.fromFile(new File(path));
-            File file=new File(path);
-            imageView.setImageURI(uri);
-            myPresenter.reqeust(loginBean.getId(),loginBean.getSessionId(),file);
-        }
-        if (requestCode==200){
-            String realPathFromUri=RealPathFromUriUtils.getRealPathFromUri(MyActivity.this,data.getData());
-            File filea=new File(realPathFromUri);
-            Uri uri=data.getData();
-            imageView.setImageURI(uri);
-            Glide.with(MyActivity.this).load(uri).apply(RequestOptions.circleCropTransform()).into(imageView);
-            myPresenter.reqeust(loginBean.getId(),loginBean.getSessionId(),filea);
-        }
-    }
     @Override
     protected void destoryData() {
 
-    }
-    class Txsc implements DataCall<String>{
-
-        @Override
-        public void success(String data, Object... args) {
-            Toast.makeText(MyActivity.this,"头像上传成功",Toast.LENGTH_SHORT).show();
-        }
-
-        @Override
-        public void fail(ApiException data, Object... args) {
-            Toast.makeText(MyActivity.this,"头像上传失败",Toast.LENGTH_SHORT).show();
-        }
     }
     @Override
     protected void onCreate(Bundle savedInstanceState) {

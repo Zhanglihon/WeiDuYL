@@ -27,11 +27,12 @@ public class LoginBean {
     public String email;
     public String whetherBingWeChat;
     public String invitationCode;
-    @Generated(hash = 1538598764)
+    public int datas=0;
+    @Generated(hash = 1532007112)
     public LoginBean(long id, String sessionId, String nickName, String userName,
             String jiGuangPwd, String headPic, String sex, String age,
             String height, String weight, String email, String whetherBingWeChat,
-            String invitationCode) {
+            String invitationCode, int datas) {
         this.id = id;
         this.sessionId = sessionId;
         this.nickName = nickName;
@@ -45,6 +46,7 @@ public class LoginBean {
         this.email = email;
         this.whetherBingWeChat = whetherBingWeChat;
         this.invitationCode = invitationCode;
+        this.datas = datas;
     }
     @Generated(hash = 1112702939)
     public LoginBean() {
@@ -52,7 +54,7 @@ public class LoginBean {
     public long getId() {
         return this.id;
     }
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
     public String getSessionId() {
@@ -127,7 +129,10 @@ public class LoginBean {
     public void setInvitationCode(String invitationCode) {
         this.invitationCode = invitationCode;
     }
-    public void setId(long id) {
-        this.id = id;
+    public int getDatas() {
+        return this.datas;
+    }
+    public void setDatas(int datas) {
+        this.datas = datas;
     }
 }

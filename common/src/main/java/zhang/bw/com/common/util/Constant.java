@@ -41,4 +41,11 @@ public class Constant {
     public final static String ACTIVITY_URL_MY="/my/MyActivity";
     //-----------open_my----首页模块随便动，我看提交历史删你库-----
 
+
+
+    //-----------open_inquiry----首页模块随便动，我看提交历史删你库-----
+    public final static String ACTIVITY_URL_INSHOW= "/inquiry/ShowActivity";
+
+    //-----------open_inquiry----首页模块随便动，我看提交历史删你库-----
+
 }

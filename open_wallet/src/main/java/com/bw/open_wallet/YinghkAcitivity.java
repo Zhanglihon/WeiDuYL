@@ -27,7 +27,7 @@ import zhang.bw.com.common.util.Constant;
  * @Author：郭强
  * @E-mail： 69666501@163.com
  * @Date：2019/7/16
- * @Description：XXXX
+ * @Description：上传银行卡
  */
 @Route(path = Constant.ACTIVITY_URL_YINGHK)
 public class YinghkAcitivity extends WDActivity {

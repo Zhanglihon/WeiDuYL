@@ -169,6 +169,7 @@
             android:layout_marginLeft="10dp"/>
 
         <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="15dp"
@@ -179,6 +180,7 @@
 
             <RadioButton
                 android:id="@+id/radio_wx"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

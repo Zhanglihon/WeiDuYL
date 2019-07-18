@@ -12,7 +12,7 @@ import zhang.bw.com.common.util.Constant;
  * @Author：郭强
  * @E-mail： 69666501@163.com
  * @Date：2019/7/15
- * @Description：XXXX
+ * @Description：充值成功页面
  */
 @Route(path = Constant.ACTIVITY_URL_SUCCEED)
 public class SucceedActivity extends WDActivity {

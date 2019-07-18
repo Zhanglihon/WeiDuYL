@@ -42,6 +42,7 @@ public class MyActivity extends WDActivity {
 
     @BindView(R2.id.aaa)
     RelativeLayout aaa;
+
     @BindView(R2.id.image_view)
     ImageView imageView;
     @BindView(R2.id.wwww)
@@ -158,7 +159,7 @@ public class MyActivity extends WDActivity {
                 if (index == 1) {
                     //intentByRouter(Constant.ACTIVITY_URL_Wode_danan);
                 } else if (index == 2) {
-                    // intentByRouter(Constant.ACTIVITY_URL_WALLECT);
+                    intentByRouter(Constant.ACTIVITY_URL_WALLET);
                 } else if (index == 3) {
                     //intentByRouter(Constant.ACTIVITY_URL_COLLECT);
                 } else if (index == 4) {

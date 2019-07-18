@@ -90,6 +90,7 @@ public class Fragmentone extends WDFragment {
         bannerPresenter.reqeust();
         findDepartmentPresenter = new FindDepartmentPresenter(new Back2());
         findDepartmentPresenter.reqeust();
+
         findInformationPlateList = new FindInformationPlateList(new Back3());
         findInformationPlateList.reqeust();
         myAdapter1 = new MyAdapter1(getContext());
@@ -126,6 +127,12 @@ public class Fragmentone extends WDFragment {
                 Intent intent = new Intent(getActivity(),ShowActivity1.class);
                 intent.putExtra("text","2");
                 startActivity(intent);
+            }
+        });
+        one_text2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_INSHOW).navigation();
             }
         });
 

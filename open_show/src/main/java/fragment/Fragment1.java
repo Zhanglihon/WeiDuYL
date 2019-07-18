@@ -53,9 +53,9 @@ public class Fragment1 extends WDFragment {
         myAdapter1.setBackf(new MyAdapter2.Backf() {
             @Override
             public void baf(int i, List<ShowBean> list) {
-                String id = list.get(i).id;
+                int id = list.get(i).id;
                 findDiseaseCategory = new FindDiseaseCategory(new Backh());
-                findDiseaseCategory.reqeust(id);
+                findDiseaseCategory.reqeust(id+"");
                //嫑忘记刷新适配器
                 myAdapter1.notifyDataSetChanged();
 
@@ -75,8 +75,8 @@ public class Fragment1 extends WDFragment {
 
         @Override
         public void success(List<ShowBean> data, Object... args) {
-            String id = data.get(0).id;
-            findDiseaseCategory.reqeust(id);
+            int id = data.get(0).id;
+            findDiseaseCategory.reqeust(id+"");
             myAdapter1.addAll(data);
             myAdapter1.notifyDataSetChanged();
 

@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bw.open_wallet.adapter.HbAdapter;
+import com.bw.open_wallet.prensenter.MemoneyPresenter;
 import com.bw.open_wallet.prensenter.WalletPresenter;
 
 import java.util.ArrayList;
@@ -27,7 +28,6 @@ import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.HbchaXun;
 import zhang.bw.com.common.bean.LoginBean;
-import zhang.bw.com.common.bean.Result;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
@@ -60,6 +60,7 @@ public class WalletActivity extends WDActivity {
    private WalletPresenter walletPresenter;
     List<HbchaXun> list = new ArrayList<>();
     private HbAdapter adapter;
+    private MemoneyPresenter memoneyPresenter;
 
     @Override
     protected int getLayoutId() {
@@ -72,12 +73,18 @@ public class WalletActivity extends WDActivity {
         //生成数据库
         LoginBeanDao dao = DaoMaster.newDevSession(WalletActivity.this, LoginBeanDao.TABLENAME).getLoginBeanDao();
         List<LoginBean> loginBeans = dao.loadAll();
-//        String sessionId = loginBeans.get(0).getSessionId();
-//        long id = loginBeans.get(0).getId();
+        String sessionId = loginBeans.get(0).getSessionId();
+        long id = loginBeans.get(0).getId();
         //点击事件
         initoncilik();
-        walletPresenter = new WalletPresenter(new request());
-//        walletPresenter.reqeust(id,sessionId,2+"",5+"");
+        //请求列表
+         walletPresenter = new WalletPresenter(new request());
+         walletPresenter.reqeust(id,sessionId,2+"",5+"");
+
+        //请求H币
+        memoneyPresenter = new MemoneyPresenter(new money());
+        memoneyPresenter.reqeust(id,sessionId);
+
 
         //适配器
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -120,10 +127,11 @@ public class WalletActivity extends WDActivity {
     class request implements DataCall{
         @Override
         public void success(Object data, Object... args) {
-      List<HbchaXun> listResult = (List<HbchaXun>) data;
-            //list.addAll(listResult.getResult());
+          List<HbchaXun> listResult = (List<HbchaXun>) data;
+            list.addAll(listResult);
             adapter.setData(listResult);
             adapter.notifyDataSetChanged();
+
         }
 
         @Override
@@ -139,5 +147,17 @@ public class WalletActivity extends WDActivity {
     }
 
 
+    private class money implements DataCall<Integer>{
 
+
+        @Override
+        public void success(Integer data, Object... args) {
+            textHb.setText(data+"");
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+            Log.e("aaa",data.getDisplayMessage());
+        }
+    }
 }

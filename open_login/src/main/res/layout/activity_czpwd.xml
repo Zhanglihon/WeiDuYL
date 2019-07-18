@@ -10,6 +10,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="30dp"
         android:gravity="center_vertical">
     <ImageView
         android:layout_width="wrap_content"
@@ -26,82 +27,112 @@
         android:textColor="#fff" />
     </RelativeLayout>
     <RelativeLayout
-        android:layout_width="280dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:background="@drawable/login_shape">
+        android:gravity="center_horizontal">
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="240dp"
+            android:layout_height="145dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/login_shape"
+            android:alpha="0.4"></LinearLayout>
+
+        <LinearLayout
+            android:layout_width="260dp"
+            android:layout_height="135dp"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/login_shape"
+            android:layout_marginTop="30dp"
+            android:alpha="0.6"></LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="280dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="30dp"
-            android:orientation="vertical">
+            android:layout_centerHorizontal="true"
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/login_shape">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
-                <EditText
-                    android:id="@+id/czpwd_pwd"
-                    android:layout_width="120dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="14dp"
-                    android:layout_gravity="center"
-                    android:background="@null"
-                    android:hint="请设置新密码"
-                    android:textSize="12sp" />
-                <RadioButton
-                    android:id="@+id/czpwd_radiobutton_eyes"
-                    android:layout_width="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/czpwd_pwd"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="14dp"
+                        android:background="@null"
+                        android:hint="请设置新密码"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/czpwd_radiobutton_eyes"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/check_select"
+                        android:button="@null" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#D4D4D4" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:button="@null"
-                    android:layout_marginLeft="60dp"
-                    android:background="@mipmap/login_icon_show_password"/>
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#D4D4D4"
-                android:layout_marginTop="10dp"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="horizontal">
+                    android:layout_marginTop="20dp"
+                    android:orientation="horizontal">
 
 
-                <EditText
-                    android:id="@+id/czpwd_yzm"
-                    android:layout_width="120dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="14dp"
-                    android:layout_gravity="center"
-                    android:background="@null"
-                    android:hint="请再次确认密码"
-                    android:textSize="12sp" />
-                <RadioButton
-                    android:id="@+id/czpwd_radiobutton_eyes2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:button="@null"
-                    android:layout_marginLeft="60dp"
-                    android:background="@mipmap/login_icon_show_password"/>
+                    <EditText
+                        android:id="@+id/czpwd_yzm"
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="14dp"
+                        android:background="@null"
+                        android:hint="请再次确认密码"
+                        android:textSize="12sp" />
+
+                    <CheckBox
+                        android:id="@+id/czpwd_radiobutton_eyes2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="60dp"
+                        android:background="@drawable/check_select"
+                        android:button="@null" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="#D4D4D4" />
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="#D4D4D4"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"/>
-        </LinearLayout>
+        </RelativeLayout>
     </RelativeLayout>
     <Button
         android:id="@+id/czpwd_wc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
         android:background="@drawable/forge_shape"
         android:layout_marginTop="240dp"
         android:text="完成"/>

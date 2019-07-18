@@ -28,6 +28,10 @@
             android:layout_marginTop="0dp"
             android:text="我的档案" />
     </RelativeLayout>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -118,26 +122,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="144dp"
                 android:layout_marginTop="10dp"
+                android:scaleType="fitXY"
                 android:background="@drawable/ic_launcher_background" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/wdda_sc"
+                    android:layout_width="84dp"
+                    android:layout_height="34dp"
                     android:layout_marginLeft="60dp"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
                     android:textColor="#fff"
-                    android:text="删除"/>
+                    android:text="删除"
+                    android:background="@drawable/wdda_shape1"/>
                 <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:id="@+id/wdda_bj"
+                    android:layout_width="84dp"
+                    android:layout_height="34dp"
                     android:layout_alignParentRight="true"
                     android:layout_marginTop="30dp"
                     android:layout_marginRight="60dp"
                     android:text="编辑"
-                    android:textColor="#fff"/>
+                    android:textColor="#fff"
+                    android:background="@drawable/wdda_shape"/>
             </RelativeLayout>
         </LinearLayout>
     </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

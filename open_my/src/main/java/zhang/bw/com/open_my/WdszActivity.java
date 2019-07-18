@@ -4,10 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
+
+import com.alibaba.android.arouter.launcher.ARouter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import zhang.bw.com.common.DaoMaster;
+import zhang.bw.com.common.LoginBeanDao;
+import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.core.WDActivity;
+import zhang.bw.com.common.util.Constant;
 
 public class WdszActivity extends WDActivity {
 
@@ -15,6 +22,9 @@ public class WdszActivity extends WDActivity {
     ImageView wdszImageBack;
     @BindView(R2.id.wdsz_image_wdxx)
     ImageView wdszImageWdxx;
+    @BindView(R2.id.wdsz_tcdl)
+    TextView wdszTcdl;
+    private LoginBean loginBean;
 
     @Override
     protected int getLayoutId() {
@@ -23,6 +33,15 @@ public class WdszActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        loginBean = DaoMaster.newDevSession(WdszActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
+        wdszTcdl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                loginBean.setDatas(0);
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
+                finish();
+            }
+        });
         wdszImageBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -32,7 +51,7 @@ public class WdszActivity extends WDActivity {
         wdszImageWdxx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(WdszActivity.this,WdxxActivity.class);
+                Intent intent = new Intent(WdszActivity.this, WdxxActivity.class);
                 startActivity(intent);
             }
         });

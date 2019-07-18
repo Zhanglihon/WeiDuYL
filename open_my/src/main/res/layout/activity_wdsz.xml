@@ -11,6 +11,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="30dp"
         android:background="#fff">
         <ImageView
             android:id="@+id/wdsz_image_back"
@@ -217,6 +218,7 @@
         android:gravity="center"
         android:background="#fff">
         <TextView
+            android:id="@+id/wdsz_tcdl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"

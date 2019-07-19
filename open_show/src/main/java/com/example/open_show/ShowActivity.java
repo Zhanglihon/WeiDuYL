@@ -6,6 +6,7 @@ import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import fragment.Fragmentfore;
 import fragment.Fragmentone;
 import fragment.Fragmentthree;
 import fragment.Fragmenttwo;
@@ -41,6 +42,8 @@ public class ShowActivity extends AppCompatActivity {
         fragments.add(new Fragmentone());
         fragments.add(new Fragmenttwo());
         fragments.add(new Fragmentthree());
+        fragments.add(new Fragmentfore());
+
         getSupportFragmentManager().beginTransaction().add(R.id.frameLayout,fragments.get(0)).commit();
 
     }
@@ -62,7 +65,6 @@ public class ShowActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
             btn2.setChecked(false);
             btn1.setChecked(false);
-
         }
     }
 

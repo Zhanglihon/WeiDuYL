@@ -13,6 +13,7 @@ import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.ByXiangqingBean;
 import zhang.bw.com.common.bean.Byliebiao;
 import zhang.bw.com.common.bean.HbchaXun;
 import zhang.bw.com.common.bean.BingBean;
@@ -110,5 +111,15 @@ public interface IAppRequest {
         //关键字搜索病友圈
     @GET("user/sickCircle/v1/searchSickCircle")
     Observable<Result<List<Byliebiao>>> guanjianzi(@Query("keyWord") String keyWord);
+        //请求H币信息
+    @GET("user/verify/v1/findHealthyCurrencyNoticeList")
+    Observable<Result<List<HbchaXun>>> Hchaxun(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                               @Query("page") String page, @Query("count") String count);
+
+    //病友圈请求详情
+    @GET("user/sickCircle/v1/findSickCircleInfo")
+    Observable<Result<ByXiangqingBean>> Byxiangqing(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                                          @Query("sickCircleId") String sickCircleId);
+
 
 }

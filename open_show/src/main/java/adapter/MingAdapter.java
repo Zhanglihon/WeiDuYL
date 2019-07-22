@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.example.open_show.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -22,11 +23,11 @@ import zhang.bw.com.common.bean.ShowBean;
  * @Description：XXXX
  */
 public class MingAdapter extends RecyclerView.Adapter<MingAdapter.Holder> {
-    List<ShowBean> list ;
+    List<ShowBean> list =new ArrayList<>();
     Context context;
 
-    public MingAdapter(List<ShowBean> list, Context context) {
-        this.list = list;
+    public MingAdapter(Context context) {
+
         this.context = context;
     }
 
@@ -49,7 +50,7 @@ public class MingAdapter extends RecyclerView.Adapter<MingAdapter.Holder> {
                 }
                 list.get(i).textcolor=Color.parseColor("#3087ea");
                 notifyDataSetChanged();
-                myCallBack.oncelicks(list.get(i).getId());
+                myCallBack.oncelicks(list.get(i).getId(),list.get(i).getDepartmentName());
 
             }
         });
@@ -81,6 +82,6 @@ public class MingAdapter extends RecyclerView.Adapter<MingAdapter.Holder> {
     }
 
     public interface MyCallBack{
-        public void oncelicks(int id);
+        public void oncelicks(int id,String name);
     }
 }

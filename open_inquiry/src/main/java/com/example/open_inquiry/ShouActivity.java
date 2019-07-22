@@ -58,7 +58,6 @@ public class ShouActivity extends WDActivity {
         List<LoginBean> loginBeans = dao.loadAll();
         id = loginBeans.get(0).getId();
         sessionId = loginBeans.get(0).getSessionId();
-
         recycler_view = findViewById(R.id.recyc_view);
         recyc_view_1 = findViewById(R.id.recyc_view_1);
         //请求医生
@@ -120,9 +119,9 @@ public class ShouActivity extends WDActivity {
 
         @Override
         public void success(List<YishengBean> data, Object... args) {
-            Log.e("aaa",data.toString());
 
-           // yishengBeans.addAll(data);
+
+
 
         }
 

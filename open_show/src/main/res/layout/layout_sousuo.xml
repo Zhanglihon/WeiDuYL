@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+
+            android:id="@+id/image_haid_sou"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="32dp"
+            android:src="@mipmap/wallet_left" />
+
+
+
+        <EditText
+            android:id="@+id/search_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/search_tv"
+            android:layout_toRightOf="@id/image_haid_sou"
+            android:background="@drawable/shurukuang"
+            android:hint="请输入病症名称或标题关键字"
+            android:lines="1"
+            android:paddingLeft="10dp"
+         />
+
+        <TextView
+            android:id="@+id/search_tv"
+            android:layout_width="32dp"
+            android:textColor="#3087ea"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="12dp"
+            android:src="@mipmap/common_nav_message_black_n"
+            android:text="搜索" />
+
+        <TextView
+            android:id="@+id/text_k"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@id/image_haid_sou"
+            android:layout_marginTop="20dp"
+            android:background="#F2F2F2" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/history_search_layout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:textColor="#3087ea"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="12dp"
+            android:src="@mipmap/common_nav_message_black_n"
+            android:text="搜索历史" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/history_search_recycler"></androidx.recyclerview.widget.RecyclerView>
+
+
+        <TextView
+            android:id="@+id/history_empty_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="清除所有历史记录"
+            android:textColor="#dddddd"
+            android:textSize="13sp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:gravity="center"/>
+
+    </LinearLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyc_view2"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>

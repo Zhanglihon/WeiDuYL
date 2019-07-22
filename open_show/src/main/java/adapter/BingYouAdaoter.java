@@ -1,13 +1,18 @@
 package adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.open_show.R;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
@@ -17,7 +22,11 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+import fragment.Fragmentfore;
+import zhang.bw.com.common.DaoMaster;
+import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.Byliebiao;
+import zhang.bw.com.common.bean.LoginBean;
 
 /**
  * @Author：郭强
@@ -30,6 +39,7 @@ public class BingYouAdaoter extends RecyclerView.Adapter<BingYouAdaoter.Holder> 
     Context context;
 
     public BingYouAdaoter(Context context) {
+
         this.context = context;
     }
 
@@ -42,6 +52,7 @@ public class BingYouAdaoter extends RecyclerView.Adapter<BingYouAdaoter.Holder> 
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
+
         holder.text_titel.setText(list.get(i).getTitle());
         long releaseTime = list.get(i).getReleaseTime();
         SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -58,13 +69,23 @@ public class BingYouAdaoter extends RecyclerView.Adapter<BingYouAdaoter.Holder> 
             holder.text_num.setText(amount+"");
         }
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Byliebiao byliebiao = list.get(i);
-            myCallBack.listjieh(byliebiao);
+            LoginBeanDao dao = DaoMaster.newDevSession(context, LoginBeanDao.TABLENAME).getLoginBeanDao();
+            List<LoginBean> loginBeans = dao.loadAll();
+
+            if(loginBeans.size()!=0){
+                Byliebiao byliebiao = list.get(i);
+                EventBus.getDefault().post(new Fragmentfore());
+                EventBus.getDefault().postSticky(byliebiao);
+            }else{
+                Toast.makeText(context, "请先登录", Toast.LENGTH_SHORT).show();
+            }
+
         }
-    });
+     });
 
     }
 
@@ -74,6 +95,9 @@ public class BingYouAdaoter extends RecyclerView.Adapter<BingYouAdaoter.Holder> 
     }
 
     public void addalter(List<Byliebiao> data) {
+        if(!data.isEmpty()){
+            list.clear();
+        }
         list.addAll(data);
     }
 
@@ -92,13 +116,6 @@ public class BingYouAdaoter extends RecyclerView.Adapter<BingYouAdaoter.Holder> 
         }
 
     }
-    MyCallBack myCallBack;
 
-    public void setMyCallBack(MyCallBack myCallBack) {
-        this.myCallBack = myCallBack;
-    }
 
-    public interface MyCallBack{
-        public void  listjieh(Byliebiao listd);
-    }
 }

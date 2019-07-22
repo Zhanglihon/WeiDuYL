@@ -22,7 +22,6 @@ import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
-import zhang.bw.com.common.util.MD5Utils;
 import zhang.bw.com.common.util.RsaCoder;
 import zhang.bw.com.open_login.presenter.LoginPresenter;
 @Route(path = Constant.ACTIVITY_URL_LOGIN)
@@ -49,6 +48,13 @@ public class LoginActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        loginForgetpwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(LoginActivity.this,ForgeActivity.class);
+                startActivity(intent);
+            }
+        });
         loginBeanDao = DaoMaster.newDevSession(LoginActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao();
         loginDl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,12 +96,15 @@ public class LoginActivity extends WDActivity {
         @Override
         public void success(LoginBean data, Object... args) {
             Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
+            data.datas=1;
             Log.i("aaa",data.id+"-----"+data.sessionId);
-            ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
+            ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
             loginBeanDao.insertOrReplaceInTx(data);
             String sessionId = data.sessionId;
             long id=data.id;
             Toast.makeText(LoginActivity.this,sessionId+"---------"+id,Toast.LENGTH_SHORT).show();
+            ARouter.getInstance().build(Constant.ACTIVITY_URL_MY).navigation();
+            finish();
         }
 
         @Override

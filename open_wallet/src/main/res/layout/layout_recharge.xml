@@ -68,9 +68,8 @@
             android:layout_marginBottom="2dp"
             android:layout_toRightOf="@id/qian"
             android:background="@null"
-            android:cursorVisible="false"
             android:gravity="center_vertical"
-            android:inputType="number|numberDecimal"
+            android:inputType="numberDecimal"
             android:lines="1"
             android:textColor="#3087EA"
             android:textSize="72sp" />
@@ -170,6 +169,7 @@
             android:layout_marginLeft="10dp"/>
 
         <RadioGroup
+            android:id="@+id/radio_group"
             android:layout_marginRight="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginTop="15dp"
@@ -180,6 +180,7 @@
 
             <RadioButton
                 android:id="@+id/radio_wx"
+                android:checked="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

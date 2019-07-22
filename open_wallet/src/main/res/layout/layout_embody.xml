@@ -133,7 +133,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/text_qian"
-            android:layout_marginBottom="2dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="5dp"
             android:layout_toRightOf="@id/text_qian"
             android:background="@null"
             android:gravity="center_vertical"
@@ -170,11 +171,9 @@
             android:layout_marginTop="40dp"
             android:layout_marginRight="20dp"
             android:layout_marginBottom="30dp"
-            android:background="@drawable/yuanjiao_zise"
-            android:text="体现"
+            android:background="@drawable/yuanjiao"
+            android:text="提现"
             android:textColor="#fff" />
-
-
     </RelativeLayout>
 
 

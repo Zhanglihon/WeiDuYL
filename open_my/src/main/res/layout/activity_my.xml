@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff"
     tools:context=".MyActivity">
     <RelativeLayout
         android:background="@mipmap/my_background"
@@ -15,11 +16,13 @@
             android:layout_marginTop="20dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
+
             <ImageView
-                android:layout_marginLeft="20dp"
+                android:id="@+id/wd_image_back"
                 android:layout_width="16dp"
-                android:background="@mipmap/common_icon_back_black_n"
-                android:layout_height="16dp" />
+                android:layout_height="16dp"
+                android:layout_marginLeft="20dp"
+                android:background="@mipmap/common_icon_back_white_n" />
 
             <ImageView
                 android:layout_marginRight="20dp"
@@ -70,7 +73,7 @@
         android:id="@+id/nnnnnnnnnnnnn"
         android:layout_marginTop="150dp"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/login_shape"
+        android:background="@drawable/my_shape"
         android:layout_width="320dp"
         android:layout_height="170dp">
 
@@ -143,11 +146,9 @@
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/bbbbbbbbbbbbbbbbb"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="30dp"
         android:layout_marginTop="30dp"
         android:layout_below="@id/nnnnnnnnnnnnn"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <GridView
             android:id="@+id/grid_view"

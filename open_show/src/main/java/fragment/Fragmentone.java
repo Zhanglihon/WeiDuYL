@@ -3,14 +3,17 @@ package fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.open_show.ChaActivity;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.open_show.R;
 import com.example.open_show.R2;
 import com.example.open_show.ShowActivity1;
@@ -26,8 +29,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+import zhang.bw.com.common.DaoMaster;
+import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.BannerBean;
 import zhang.bw.com.common.bean.JanBean;
+import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.ShowBean;
 import zhang.bw.com.common.core.BannerPresenter;
@@ -69,6 +75,9 @@ public class Fragmentone extends WDFragment {
     private MyAdapter1 myAdapter1;
     private MyjikangAdapter myjikangAdapter;
     private MyjiKangAdapter1 myjiKangAdapter1;
+    private String id11;
+    private List<LoginBean> list;
+    private LoginBeanDao dao;
     private String id;
 
     @Override
@@ -79,12 +88,7 @@ public class Fragmentone extends WDFragment {
     @SuppressLint("WrongConstant")
     @Override
     protected void initView() {
-        showTx.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
-            }
-        });
+        dao = DaoMaster.newDevSession(getActivity(),LoginBeanDao.TABLENAME).getLoginBeanDao();
         TextPaint paint = one_text1.getPaint();
         paint.setFakeBoldText(true);
         TextPaint paint2 = one_text2.getPaint();
@@ -94,6 +98,7 @@ public class Fragmentone extends WDFragment {
         bannerPresenter.reqeust();
         findDepartmentPresenter = new FindDepartmentPresenter(new Back2());
         findDepartmentPresenter.reqeust();
+
         findInformationPlateList = new FindInformationPlateList(new Back3());
         findInformationPlateList.reqeust();
         myAdapter1 = new MyAdapter1(getContext());
@@ -132,6 +137,12 @@ public class Fragmentone extends WDFragment {
                 Intent intent = new Intent(getActivity(),ShowActivity1.class);
                 intent.putExtra("text","2");
                 startActivity(intent);
+            }
+        });
+        one_text2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_INSHOW).navigation();
             }
         });
         text_duo.setOnClickListener(new View.OnClickListener() {
@@ -213,4 +224,19 @@ public class Fragmentone extends WDFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        list=dao.loadAll();
+        showTx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (list.size()==0){
+                    ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
+                }else{
+                    ARouter.getInstance().build(Constant.ACTIVITY_URL_MY).navigation();
+                }
+            }
+        });
+    }
 }

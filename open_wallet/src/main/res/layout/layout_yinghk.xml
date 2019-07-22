@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_fan"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:src="@mipmap/wallet_left" />
+
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="绑定银行卡"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_k"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@id/image_fan"
+        android:layout_marginTop="40dp"
+        android:background="#F2F2F2" />
+
+    </RelativeLayout>
+    
+    <RelativeLayout
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="50dp"
+    android:layout_marginLeft="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/image_ka"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/bank_card_front"/>
+    <ImageView
+        android:id="@+id/image_xiang"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/my_icon_camera_n"/>
+
+    <TextView
+        android:textColor="#3087EA"
+        android:textSize="14sp"
+        android:text="点击拍摄/上传银行卡正面"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_xiang"/>
+
+</RelativeLayout>
+
+
+
+    <Button
+        android:id="@+id/but_xyb"
+        android:layout_marginTop="254dp"
+        android:text="下一步"
+        android:layout_below="@id/image_zfb"
+        android:layout_marginRight="20dp"
+        android:textColor="#fff"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/yuanjiao_zise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+</LinearLayout>

@@ -4,7 +4,9 @@
 
     <application>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".RegistActivity"></activity>
+        <activity android:name=".RegistActivity" />
+        <activity android:name=".ForgeActivity" />
+        <activity android:name=".CzpwdActivity"></activity>
     </application>
 
 </manifest>

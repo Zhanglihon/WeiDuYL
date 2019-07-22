@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.wd.health">
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
+
     <application
+        android:usesCleartextTraffic="true"
         android:name="zhang.bw.com.common.core.WDApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -24,5 +28,15 @@
         <activity android:name="com.bw.open_wallet.SucceedActivity"/>
         <activity android:name="com.bw.open_wallet.DepositActivity"/>
         <activity android:name="com.bw.open_wallet.RecordActivity"/>
+        <activity android:name="com.example.open_inquiry.ShouActivity"/>
+        <!-- 张利宏-->
+        <activity android:name="zhang.bw.com.open_my.MyActivity"/>
+        <!-- 张利宏-->
+        <activity android:name="com.bw.open_wallet.ShengfzActivity"/>
+        <activity android:name="com.bw.open_wallet.YinghkAcitivity"/>
+
+        <!-- 张利宏-->
+        <activity android:name="zhang.bw.com.open_my.MyActivity"/>
+        <!-- 张利宏-->
     </application>
 </manifest>

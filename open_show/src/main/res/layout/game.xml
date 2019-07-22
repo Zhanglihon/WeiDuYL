@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#000"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <adapter.MyVideoPlayer
+        android:id="@+id/mp_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+  <TextView
+      android:id="@+id/game_text1"
+      android:textColor="#fff"
+      android:layout_marginLeft="20dp"
+      android:textSize="16sp"
+      android:layout_alignBottom="@id/game_text3"
+      android:layout_marginBottom="65dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/game_text3"
+        android:textColor="#fff"
+        android:textSize="12sp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <CheckBox
+        android:button="@null"
+        android:id="@+id/game_image11"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="300dp"
+        android:layout_width="30dp"
+        android:layout_marginRight="20dp"
+        android:layout_height="30dp" />
+    <CheckBox
+        android:button="@null"
+        android:id="@+id/shou_image"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="250dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp" />
+    <CheckBox
+        android:button="@null"
+        android:id="@+id/message"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:layout_marginRight="20dp"
+        android:background="@mipmap/common_icon_open_live_commenting_n"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content" />
+  <TextView
+      android:id="@+id/ren_text"
+      android:layout_alignParentBottom="true"
+      android:layout_alignParentRight="true"
+      android:layout_marginBottom="150dp"
+      android:text="123"
+      android:layout_marginRight="20dp"
+      android:textColor="#fff"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+</RelativeLayout>

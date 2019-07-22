@@ -24,6 +24,27 @@ public class MyjikangAdapter extends RecyclerView.Adapter<MyjikangAdapter.ViewHo
     public MyjikangAdapter(Context context) {
         this.context = context;
     }
+    private MyAdapter2.OnItemClickListener onRecyclerViewItemClickListener;
+
+
+
+    public interface OnItemClickListener {
+        void onClick(int position);
+
+    }
+    //先声明一个int成员变量
+    private int thisPosition;
+
+    //再定义一个int类型的返回值方法
+    public int getthisPosition() {
+        return thisPosition;
+    }
+
+    //其次定义一个方法用来绑定当前参数值的方法
+    //此方法是在调用此适配器的地方调用的，此适配器内不会被调用到
+    public void setThisPosition(int thisPosition) {
+        this.thisPosition = thisPosition;
+    }
 
     @NonNull
     @Override
@@ -35,15 +56,16 @@ public class MyjikangAdapter extends RecyclerView.Adapter<MyjikangAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull MyjikangAdapter.ViewHolder holder, int position) {
         holder.textView1.setText(list.get(position).name);
+        if(getthisPosition() == position){
+            holder.textView1.setTextColor(Color.parseColor("#87B9F3"));
+        }else {
+            holder.textView1.setTextColor(Color.BLACK);
+        }
         holder.textView1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 jianBack.jian(position,list);
-//                   if(true){
-//                       holder.textView1.setTextColor(Color.BLUE);
-//                   }else {
-//                       holder.textView1.setTextColor(Color.BLACK);
-//                   }
+
 
             }
         });

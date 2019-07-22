@@ -41,11 +41,12 @@
         <TextView
             android:textColor="#3087EA"
             android:layout_marginTop="15dp"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="48sp"
             android:id="@+id/text_hb"
-            android:text="1500"/>
+            android:text="500"/>
 
             <TextView
                 android:textColor="#3087EA"

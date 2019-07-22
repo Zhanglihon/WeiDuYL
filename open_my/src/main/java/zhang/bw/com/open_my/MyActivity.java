@@ -38,6 +38,7 @@ public class MyActivity extends WDActivity {
 
     @BindView(R2.id.aaa)
     RelativeLayout aaa;
+
     @BindView(R2.id.image_view)
     ImageView imageView;
     @BindView(R2.id.wwww)
@@ -144,6 +145,7 @@ public class MyActivity extends WDActivity {
                     startActivity(intent);
                 } else if (index == 2) {
                     ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
+                    intentByRouter(Constant.ACTIVITY_URL_WALLET);
                 } else if (index == 3) {
                     Intent intent=new Intent(MyActivity.this,WdscActivity.class);
                     startActivity(intent);

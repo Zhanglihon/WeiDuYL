@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/we"
+    >
+
+    <ImageView
+        android:layout_marginTop="38dp"
+        android:id="@+id/hh_image1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/time" />
+    <TextView
+        android:id="@+id/texto"
+        android:text="123"
+        android:layout_marginTop="10dp"
+        android:textSize="14sp"
+        android:textColor="#f00"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/hh_image1"
+        android:layout_height="wrap_content" />
+  <RelativeLayout
+      android:id="@+id/io"
+      android:layout_below="@id/texto"
+      android:gravity="center"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content">
+      <TextView
+          android:text="123"
+          android:gravity="center"
+          android:textSize="12sp"
+          android:id="@+id/text_price"
+          android:layout_marginTop="52dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:text=" 立即充值"
+          android:textSize="12sp"
+          android:textColor="#3087ea"
+          android:layout_marginLeft="5dp"
+          android:layout_marginTop="52dp"
+          android:layout_toRightOf="@+id/text_price"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+  </RelativeLayout>
+    <Button
+        android:id="@+id/goumai"
+        android:text="立即购买"
+        android:textColor="#fff"
+        android:gravity="center"
+        android:textSize="14sp"
+        android:background="@drawable/we1"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_below="@id/io"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+<ImageView
+    android:id="@+id/guan"
+    android:background="@mipmap/common_icon_drop_down_n"
+    android:layout_width="wrap_content"
+    android:layout_marginRight="20dp"
+    android:layout_marginTop="24dp"
+    android:layout_alignParentRight="true"
+    android:layout_height="wrap_content" />
+</RelativeLayout>

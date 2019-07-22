@@ -1,8 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-    <EditText
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+
+
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+
+            android:id="@+id/image_haid_f2"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="32dp"
+            android:src="@mipmap/historical_inquiry" />
+
+        <TextView
+            android:id="@+id/text_k1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/image_haid_f2"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="5dp"
+            android:text="急诊科"
+            android:textColor="#3087ea"
+            android:textSize="16sp"
+            android:visibility="invisible" />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/image_ling"
+            android:layout_toRightOf="@id/text_k1"
+            android:background="@drawable/shurukuang"
+
+            android:hint="请输入病症名称或标题关键字"
+            android:lines="1"
+            android:paddingLeft="10dp"
+            android:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/image_ling"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginRight="12dp"
+            android:src="@mipmap/common_nav_message_black_n" />
+
+        <TextView
+            android:id="@+id/text_k"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@id/image_haid_f2"
+            android:layout_marginTop="20dp"
+            android:background="#F2F2F2" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linearlayout"
+        android:layout_width="match_parent"
+        android:layout_height="30dp">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view1"
+            android:layout_width="0dp"
+            android:layout_weight="8"
+            android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:layout_height="match_parent">
+            <TextView
+                android:textSize="20sp"
+                android:layout_marginLeft="10dp"
+                android:id="@+id/text_kk"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="|"/>
+
+            <ImageView
+                android:layout_marginTop="2dp"
+                android:src="@mipmap/common_icon_search_n"
+                android:layout_marginLeft="4dp"
+                android:layout_toRightOf="@id/text_kk"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:id="@+id/image_sou"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_marginTop="6dp"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:background="#F2F2F2" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></androidx.recyclerview.widget.RecyclerView>
+
+
 </LinearLayout>

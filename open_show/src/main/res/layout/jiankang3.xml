@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_marginTop="10dp"
-    android:layout_height="wrap_content">
+    android:layout_height="100dp">
     <ImageView
         android:id="@+id/jian3_image"
-        android:layout_width="105dp"
-        android:layout_height="100dp" />
+        android:layout_width="100dp"
+        android:layout_height="74dp" />
 <TextView
     android:id="@+id/jian3_text"
     android:layout_marginTop="12dp"
@@ -19,6 +19,7 @@
         android:id="@+id/jian3_name"
         android:textSize="10sp"
         android:layout_marginLeft="10dp"
+        android:layout_marginBottom="24dp"
         android:layout_alignParentBottom="true"
         android:layout_toEndOf="@id/jian3_image"
         android:layout_width="wrap_content"
@@ -26,8 +27,15 @@
     <TextView
         android:id="@+id/jian_item"
         android:textSize="10sp"
+        android:layout_marginBottom="24dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+    <View
+        android:layout_below="@id/jian3_image"
+        android:layout_marginTop="10dp"
+        android:background="#FAFAFA"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"/>
 </RelativeLayout>

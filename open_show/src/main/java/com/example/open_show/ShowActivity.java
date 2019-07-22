@@ -1,23 +1,31 @@
 package com.example.open_show;
 
+import adapter.BingYouAdaoter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import fragment.Fragmentfore;
 import fragment.Fragmentone;
 import fragment.Fragmentthree;
 import fragment.Fragmenttwo;
 import zhang.bw.com.common.util.Constant;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -37,10 +45,12 @@ public class ShowActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
+        EventBus.getDefault().register(this);
         ButterKnife.bind(this);
         fragments.add(new Fragmentone());
         fragments.add(new Fragmenttwo());
         fragments.add(new Fragmentthree());
+        fragments.add(new Fragmentfore());
         getSupportFragmentManager().beginTransaction().add(R.id.frameLayout,fragments.get(0)).commit();
 
     }
@@ -62,10 +72,21 @@ public class ShowActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
             btn2.setChecked(false);
             btn1.setChecked(false);
-
         }
     }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void xinjian(Fragment fragmentfore){
+        fragments.add(fragmentfore);
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(3)).commit();
+        btn3.setChecked(false);
+        btn2.setChecked(false);
+        btn1.setChecked(false);
+    }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }
+

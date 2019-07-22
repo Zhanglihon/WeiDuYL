@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
+import com.example.open_show.ChaActivity;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.open_show.R;
 import com.example.open_show.R2;
@@ -20,6 +21,7 @@ import com.stx.xhb.xbanner.XBanner;
 import java.util.List;
 
 import adapter.MyAdapter1;
+import adapter.MyAdapter2;
 import adapter.MyjiKangAdapter1;
 import adapter.MyjikangAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -64,6 +66,8 @@ public class Fragmentone extends WDFragment {
     ImageView one_image2;
     @BindView(R2.id.show_tx)
     ImageView showTx;
+    @BindView(R2.id.text_duo)
+    TextView text_duo;
     private BannerPresenter bannerPresenter;
     private FindDepartmentPresenter findDepartmentPresenter;
     private FindInformationPlateList findInformationPlateList;
@@ -73,6 +77,7 @@ public class Fragmentone extends WDFragment {
     private MyjiKangAdapter1 myjiKangAdapter1;
     private List<LoginBean> list;
     private LoginBeanDao dao;
+    private String id;
 
     @Override
     protected int getLayoutId() {
@@ -92,6 +97,7 @@ public class Fragmentone extends WDFragment {
         bannerPresenter.reqeust();
         findDepartmentPresenter = new FindDepartmentPresenter(new Back2());
         findDepartmentPresenter.reqeust();
+
         findInformationPlateList = new FindInformationPlateList(new Back3());
         findInformationPlateList.reqeust();
         myAdapter1 = new MyAdapter1(getContext());
@@ -105,8 +111,10 @@ public class Fragmentone extends WDFragment {
         myjikangAdapter.setJianBack(new MyjikangAdapter.JianBack() {
             @Override
             public void jian(int i, List<MyjiankangBean> list) {
-                String id = list.get(i).id;
+                myjikangAdapter.setThisPosition(i);
+                id = list.get(i).id;
                 findInformationList.reqeust(id, "1", "5");
+                myjikangAdapter.notifyDataSetChanged();
 
             }
         });
@@ -130,6 +138,20 @@ public class Fragmentone extends WDFragment {
                 startActivity(intent);
             }
         });
+        one_text2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_INSHOW).navigation();
+            }
+        });
+        text_duo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ChaActivity.class);
+                intent.putExtra("rr",id);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -148,6 +170,7 @@ public class Fragmentone extends WDFragment {
 
         @Override
         public void fail(ApiException data, Object... args) {
+
 
         }
     }
@@ -171,7 +194,7 @@ public class Fragmentone extends WDFragment {
 
         @Override
         public void success(List<MyjiankangBean> data, Object... args) {
-            String id = data.get(0).id;
+             id = data.get(0).id;
             findInformationList.reqeust(id, "1", "5");
             myjikangAdapter.addALL(data);
             myjikangAdapter.notifyDataSetChanged();

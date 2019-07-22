@@ -71,10 +71,12 @@ public class MainActivity extends WDActivity {
     @Override
     protected void initView() {
 
+
         sp = getSharedPreferences("logu", MODE_PRIVATE);
         boolean b = sp.getBoolean("edit", false);
         if (b){
             ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
+            finish();
         }
 
 
@@ -242,8 +244,6 @@ public class MainActivity extends WDActivity {
         edit.apply();
         //跳转到首页
     ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
-        finish();
-
-
+    finish();
     }
 }

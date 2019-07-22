@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_height="match_parent">
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <ImageView
+
+        android:id="@+id/image_haid_f4"
+        android:src="@mipmap/historical_inquiry"
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="12dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp" />
+
+
+        <TextView
+            android:id="@+id/text_titel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:layout_marginRight="0dp"
+            android:layout_toLeftOf="@id/image_ling"
+            android:layout_toRightOf="@id/image_haid_f4"
+            android:gravity="center"
+            android:text="123456"
+            android:textSize="16sp" />
+
+    <ImageView
+        android:id="@+id/image_ling"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="32dp"
+        android:layout_marginRight="12dp"
+        android:src="@mipmap/common_nav_message_black_n" />
+
+        <TextView
+            android:id="@+id/text_k"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@id/image_haid_f4"
+            android:layout_marginTop="20dp"
+            android:background="#F2F2F2" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="张三"
+            android:textColor="#3087ed"
+            android:textSize="14sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="[病症]"
+            android:textColor="#3087ed"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/text_bingzheng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="[病症]"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="[科室]"
+            android:textColor="#3087ed"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/text_keshi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="[科室]"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="[病症详情]"
+            android:textColor="#3087ed"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/text_bgxq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="[病症详情]"
+            android:textSize="12sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="[治疗经历]"
+            android:textColor="#3087ed"
+            android:textSize="12sp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp">
+
+            <TextView
+                android:id="@+id/text_yiyuan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[治疗经历]"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/text_shijian"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="[治疗时间]"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/text_jingli"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_yiyuan"
+                android:layout_marginTop="10dp"
+                android:text="[治疗经历]"
+                android:textSize="12sp" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="[图片相关]"
+            android:textColor="#3087ed"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/image_view_1"
+            android:layout_width="match_parent"
+            android:layout_height="320dp" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginRight="20dp">
+        <LinearLayout
+            android:visibility="gone"
+            android:id="@+id/linearLayout"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="用户提升悬赏额度到"/>
+            <TextView
+                android:id="@+id/text_hb"
+                android:textSize="12sp"
+                android:textColor="#d92109"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="50H"/>
+            <TextView
+                android:textSize="12sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="币"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/text_pnum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="1" />
+
+        <ImageView
+            android:id="@+id/image_pinglun"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="6dp"
+            android:layout_toLeftOf="@id/text_pnum"
+            android:src="@mipmap/pinglun" />
+
+        <TextView
+            android:id="@+id/text_snum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_toLeftOf="@id/image_pinglun"
+            android:text="1" />
+
+        <ImageView
+            android:id="@+id/image_shoucang"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginRight="6dp"
+            android:layout_toLeftOf="@id/text_snum"
+            android:src="@mipmap/shoucang" />
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="18dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+           android:background="#3087ea"
+            android:layout_width="4dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            />
+
+        <TextView
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="被采纳的建议"
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="horizontal">
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/simpleDraweeView"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            app:roundAsCircle="true" />
+
+
+        <TextView
+            android:id="@+id/text_jyname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/simpleDraweeView"
+            android:text="猪小妹"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/text_yjhbi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_jyname"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/simpleDraweeView"
+            android:text="猪小妹"
+            android:textColor="#ffab06"
+            android:textSize="10sp" />
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:id="@+id/text_yjtime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentRight="true"
+            android:text="时间"
+            android:textSize="14sp" />
+
+    </RelativeLayout>
+
+
+    <TextView
+        android:visibility="gone"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:id="@+id/text_yjcount"/>
+</LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

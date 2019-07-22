@@ -34,6 +34,8 @@ public class Constant {
 
     //-----------open_show----首页模块随便动，我看提交历史删你库-----
     public final static String ACTIVITY_URL_SHOW= "/show/ShowActivity";
+    public final static String ACTIVITY_URL_XIANGQING= "/show/XingqingAcitivity";
+    public final static String ACTIVITY_URL_SOUSUO= "/show/SousuoActivity";
 
     //-----------open_show----首页模块随便动，我看提交历史删你库-----
 

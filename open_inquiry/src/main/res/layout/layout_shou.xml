@@ -9,14 +9,14 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:src="@mipmap/my_icon_set_n"
+            android:src="@mipmap/historical_inquiry"
             android:id="@+id/image_haid"
             android:layout_marginTop="32dp"
             android:layout_marginLeft="12dp"
             android:layout_width="32dp"
             android:layout_height="32dp" />
         <ImageView
-            android:src="@mipmap/my_icon_set_n"
+            android:src="@mipmap/common_nav_message_black_n"
             android:id="@+id/image_ling"
             android:layout_alignParentRight="true"
             android:layout_marginTop="32dp"

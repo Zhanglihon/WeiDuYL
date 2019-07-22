@@ -29,6 +29,7 @@
         <activity android:name="com.bw.open_wallet.DepositActivity"/>
         <activity android:name="com.bw.open_wallet.RecordActivity"/>
         <activity android:name="com.example.open_inquiry.ShouActivity"/>
+        <activity android:name="com.example.open_show.SousuoActivity"/>
         <!-- 张利宏-->
         <activity android:name="zhang.bw.com.open_my.MyActivity"/>
         <!-- 张利宏-->

@@ -106,6 +106,7 @@ public class RegistActivity extends WDActivity {
                 if (pwd.equals(pwd1)){
                     try {
                         String s = RsaCoder.encryptByPublicKey(pwd);
+                        Log.i("eee",s+"");
                         if (email.isEmpty()||yzm.isEmpty()||pwd.isEmpty()||pwd1.isEmpty()){
                             Toast.makeText(RegistActivity.this,"有内容输入为空哦",Toast.LENGTH_SHORT).show();
                             return;

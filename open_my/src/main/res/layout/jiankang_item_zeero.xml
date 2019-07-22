@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="10dp"
+    android:background="#fff"
+    >
+
+
+   <TextView
+       android:id="@+id/name"
+       android:textSize="14sp"
+
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:textColor="#333333"
+       android:text="adsad"
+       />
+
+    <TextView
+        android:id="@+id/nick"
+        android:textSize="10sp"
+        android:text="张辽"
+        android:textColor="#333333"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/time_adapter"
+        android:textSize="10sp"
+        android:text="啦啦"
+        android:textColor="#333333"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#F8F1EDED"
+        android:layout_below="@+id/nick"
+        android:layout_marginTop="10dp"
+        ></View> 
+
+      
+     
+</RelativeLayout>

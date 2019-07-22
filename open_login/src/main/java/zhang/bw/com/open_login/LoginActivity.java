@@ -119,13 +119,11 @@ public class LoginActivity extends WDActivity {
     class dl implements DataCall<LoginBean> {
         @Override
         public void success(LoginBean data, Object... args) {
-            Toast.makeText(LoginActivity.this, "登录成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(LoginActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
             data.datas = 1;
-            Log.i("aaa", data.id + "-----" + data.sessionId);
             loginBeanDao.insertOrReplaceInTx(data);
             String sessionId = data.sessionId;
             long id = data.id;
-            Toast.makeText(LoginActivity.this, sessionId + "---------" + id, Toast.LENGTH_SHORT).show();
             ARouter.getInstance().build(Constant.ACTIVITY_URL_MY).navigation();
             finish();
         }

@@ -38,6 +38,7 @@
         android:background="#fff">
 
         <ImageView
+            android:id="@+id/wdsz_image_tx"
             android:layout_width="42dp"
             android:layout_height="42dp"
             android:layout_centerVertical="true"

@@ -3,7 +3,6 @@ package fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.TextPaint;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -30,6 +29,7 @@ import butterknife.BindView;
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
@@ -71,7 +71,6 @@ public class Fragmentone extends WDFragment {
     private MyAdapter1 myAdapter1;
     private MyjikangAdapter myjikangAdapter;
     private MyjiKangAdapter1 myjiKangAdapter1;
-    private String id11;
     private List<LoginBean> list;
     private LoginBeanDao dao;
 

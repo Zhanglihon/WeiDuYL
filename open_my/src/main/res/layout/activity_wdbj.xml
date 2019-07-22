@@ -108,12 +108,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                         <TextView
+                            android:id="@+id/wdbj_text_start"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
                             android:text="请选择治疗开始的时间"
                             android:background="@null"/>
                         <ImageView
+                            android:id="@+id/wdbj_start_time"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerVertical="true"
@@ -129,12 +131,14 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
                     <TextView
+                        android:id="@+id/wdbj_text_end"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:text="请选择治疗结束的时间"
                         android:background="@null"/>
                     <ImageView
+                        android:id="@+id/wdbj_end_time"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
@@ -186,7 +190,6 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <Button
-                        android:id="@+id/wdda_bj"
                         android:layout_width="match_parent"
                         android:layout_height="34dp"
                         android:layout_alignParentRight="true"

@@ -34,15 +34,8 @@ public class MyYaoAdapter extends RecyclerView.Adapter<MyYaoAdapter.ViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyYaoAdapter.ViewHolder holder, int position) {
-        String[] split = list.get(position).name.split("]");
-        String s = split[1];
         Glide.with(context).load(list.get(position).picture).into(holder.imageView1);
-//        if(){
-//            holder.textView.setText(s);
-//        }else {
-            holder.textView.setText(list.get(position).name);
-//        }
-
+        holder.textView.setText(list.get(position).name);
     }
 
     @Override

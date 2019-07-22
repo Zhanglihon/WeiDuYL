@@ -12,7 +12,7 @@ import com.facebook.common.util.ByteConstants;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.cache.MemoryCacheParams;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-
+import com.danikula.videocache.HttpProxyCacheServer;
 
 /**
  * @name: MyApplication
@@ -44,7 +44,18 @@ public class WDApplication extends Application {
     private static Context context;
 
     private static SharedPreferences sharedPreferences;
+    private HttpProxyCacheServer proxy;
+    public static HttpProxyCacheServer getProxy(Context context) {
+        WDApplication app = (WDApplication) context.getApplicationContext();
+        return app.proxy == null ? (app.proxy = app.newProxy()) : app.proxy;
+    }
 
+    private HttpProxyCacheServer newProxy() {
+        return new HttpProxyCacheServer.Builder(this)
+                .maxCacheSize(1024 * 1024 * 1024)       // 1 Gb for cache
+                .fileNameGenerator(new MyFileNameGenerator())
+                .build();
+    }
     @Override
     public void onCreate() {
         super.onCreate();
@@ -112,6 +123,7 @@ public class WDApplication extends Application {
         return mMainLooper;
     }
 
+
     private ImagePipelineConfig getConfigureCaches(Context context) {
         final MemoryCacheParams bitmapCacheParams = new MemoryCacheParams(
                 MAX_MEM,// 内存缓存中总图片的最大大小,以字节为单位。
@@ -130,5 +142,6 @@ public class WDApplication extends Application {
         builder.setBitmapMemoryCacheParamsSupplier(mSupplierMemoryCacheParams);
         return builder.build();
     }
+
 
 }

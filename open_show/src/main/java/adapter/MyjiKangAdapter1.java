@@ -83,13 +83,6 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
             Glide.with(context).load(split[2]).into(holder2.jian1_image3);
 
         }else if(holder instanceof ThreeImageHolder){
-//            String[] split = list.get(position).thumbnail.split(";");
-//            ThreeImageHolder holder3  = (ThreeImageHolder) holder;
-//            holder3.jian2_text1.setText(list.get(position).title);
-//            holder3.jian3_text1.setText(list.get(position).source);
-//            Glide.with(context).load(split[0]).into(holder3.jian2_image1);
-//            Glide.with(context).load(split[1]).into(holder3.jian2_image2);
-//            Glide.with(context).load(split[2]).into(holder3.jian3_image3);
         }
 
 
@@ -108,6 +101,10 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
            list.clear();
        }
         list.addAll(data);
+    }
+
+    public void clear() {
+        list.clear();
     }
 
     public class PullImageHolder  extends RecyclerView.ViewHolder{

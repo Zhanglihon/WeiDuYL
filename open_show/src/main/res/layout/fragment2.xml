@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F2F2F2"
     >
     <androidx.recyclerview.widget.RecyclerView
         android:background="#F2F2F2"
@@ -10,9 +11,11 @@
         android:layout_height="match_parent">
     </androidx.recyclerview.widget.RecyclerView>
     <androidx.recyclerview.widget.RecyclerView
+        android:background="#ffff"
         android:id="@+id/recyc4"
         android:layout_marginTop="4dp"
         android:layout_width="match_parent"
+        android:layout_marginLeft="10dp"
         android:layout_height="match_parent">
     </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

@@ -162,10 +162,11 @@
 
 <androidx.recyclerview.widget.RecyclerView
     android:background="#fff"
+    android:layout_marginRight="12dp"
     android:layout_marginTop="1dp"
     android:id="@+id/two_recyc"
     android:layout_width="match_parent"
-    android:layout_height="20dp">
+    android:layout_height="40dp">
 </androidx.recyclerview.widget.RecyclerView>
    <LinearLayout
        android:background="#fff"
@@ -173,18 +174,25 @@
        android:layout_height="wrap_content">
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/three_recyc"
-           android:layout_marginLeft="12dp"
-           android:layout_marginRight="12dp"
+           android:layout_marginLeft="20dp"
+           android:layout_marginRight="20dp"
            android:layout_width="match_parent"
            android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
    </LinearLayout>
-    <TextView
-        android:text="查看更多>>"
-        android:textColor="#4795ED"
-        android:textSize="12sp"
-        android:gravity="right"
-        android:background="#ffff"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+ <LinearLayout
+     android:background="#ffff"
+     android:layout_width="match_parent"
+     android:layout_height="wrap_content">
+     <TextView
+         android:id="@+id/text_duo"
+         android:text="查看更多>>"
+         android:textColor="#4795ED"
+         android:textSize="12sp"
+         android:layout_marginTop="12dp"
+         android:gravity="right"
+         android:layout_marginRight="13dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+ </LinearLayout>
 </LinearLayout>
 </ScrollView>

@@ -58,7 +58,6 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
     public void onBindViewHolder(@NonNull MyAdapter2.ViewHolder holder, int position) {
         holder.textView.setText(list.get(position).departmentName);
         if(getthisPosition() == position){
-
             holder.textView.setTextColor(Color.parseColor("#87B9F3"));
             holder.textView.setBackgroundColor(Color.parseColor("#FFFFFF"));
         }else {

@@ -6,12 +6,17 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
 import zhang.bw.com.common.bean.BingBean;
+import zhang.bw.com.common.bean.GameBean;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
+import zhang.bw.com.common.bean.NameBean;
+import zhang.bw.com.common.bean.PingBean;
+import zhang.bw.com.common.bean.PriceBean;
 import zhang.bw.com.common.bean.Result;
 import zhang.bw.com.common.bean.ShowBean;
 import retrofit2.http.Field;

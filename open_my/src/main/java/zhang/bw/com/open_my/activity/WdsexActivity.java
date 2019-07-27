@@ -1,4 +1,4 @@
-package zhang.bw.com.open_my;
+package zhang.bw.com.open_my.activity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +14,8 @@ import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
+import zhang.bw.com.open_my.R;
+import zhang.bw.com.open_my.R2;
 import zhang.bw.com.open_my.presenter.WdsexPresenter;
 
 public class WdsexActivity extends WDActivity {

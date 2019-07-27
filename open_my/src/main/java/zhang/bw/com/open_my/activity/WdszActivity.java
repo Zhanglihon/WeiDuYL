@@ -1,4 +1,4 @@
-package zhang.bw.com.open_my;
+package zhang.bw.com.open_my.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,6 +20,8 @@ import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
+import zhang.bw.com.open_my.R;
+import zhang.bw.com.open_my.R2;
 import zhang.bw.com.open_my.presenter.WdxxPresenter;
 
 public class WdszActivity extends WDActivity {
@@ -32,6 +34,12 @@ public class WdszActivity extends WDActivity {
     TextView wdszTcdl;
     @BindView(R2.id.wdsz_image_tx)
     ImageView wdszImageTx;
+    @BindView(R2.id.wdsz_name)
+    TextView wdszName;
+    @BindView(R2.id.wdsz_uppwd)
+    ImageView wdszUppwd;
+    @BindView(R2.id.wdsz_LED)
+    ImageView wdszLED;
     private LoginBean loginBean;
     private WdxxPresenter wdxxPresenter;
     @Override
@@ -41,6 +49,22 @@ public class WdszActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        //屏幕亮度
+        wdszLED.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(WdszActivity.this,ScreenActivity.class);
+                startActivity(intent);
+            }
+        });
+        //修改密码
+        wdszUppwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WdszActivity.this, UppwdActivity.class);
+                startActivity(intent);
+            }
+        });
         loginBean = DaoMaster.newDevSession(WdszActivity.this, LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
         wdszTcdl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +113,7 @@ public class WdszActivity extends WDActivity {
         @Override
         public void success(CXBean data, Object... args) {
             Glide.with(WdszActivity.this).load(data.headPic).apply(RequestOptions.circleCropTransform()).into(wdszImageTx);
+            wdszName.setText(data.nickName);
         }
 
         @Override

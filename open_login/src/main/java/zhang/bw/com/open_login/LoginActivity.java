@@ -18,6 +18,8 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhang.bw.com.common.DaoMaster;
@@ -92,7 +94,6 @@ public class LoginActivity extends WDActivity {
                     e.printStackTrace();
                 }
 
-
             }
         });
         loginLjzc.setOnClickListener(new View.OnClickListener() {
@@ -121,10 +122,6 @@ public class LoginActivity extends WDActivity {
         public void success(LoginBean data, Object... args) {
             Toast.makeText(LoginActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
             data.datas = 1;
-            Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
-            data.datas=1;
-            Log.i("aaa",data.id+"-----"+data.sessionId);
-            ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
             loginBeanDao.insertOrReplaceInTx(data);
             String sessionId = data.sessionId;
             long id = data.id;

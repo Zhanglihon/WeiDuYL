@@ -89,6 +89,7 @@ public class ForgeActivity extends WDActivity {
             Intent intent=new Intent(ForgeActivity.this,CzpwdActivity.class);
             intent.putExtra("yx",yx);
             startActivity(intent);
+            finish();
         }
 
         @Override

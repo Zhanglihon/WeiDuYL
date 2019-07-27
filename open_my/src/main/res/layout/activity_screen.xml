@@ -4,16 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.WdncActivity"
-    android:orientation="vertical">
-
+    tools:context=".activity.ScreenActivity"
+    android:orientation="vertical"
+    android:background="#f2f2f2">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_marginTop="30dp"
-        android:background="#fff">
+        android:layout_marginTop="30dp">
         <ImageView
-            android:id="@+id/wdnc_image_back"
+            android:id="@+id/screen_image_back"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginLeft="20dp"
@@ -28,39 +27,34 @@
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="15dp"
             android:layout_marginTop="0dp"
-            android:text="设置昵称" />
-        <Button
-            android:id="@+id/wdnc_wc"
-            android:layout_width="52dp"
-            android:layout_height="24dp"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
-            android:layout_alignParentRight="true"
-            android:text="完成"
-            android:textColor="#fff"
-            android:background="@drawable/wdnc_shape"/>
+            android:text="屏幕亮度" />
     </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginTop="4dp"
+        android:layout_height="84dp"
         android:background="#fff">
-
-        <EditText
-            android:id="@+id/wdnc_edit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:layout_marginLeft="20dp"
-            android:layout_centerVertical="true"
-            android:hint="欧若拉" />
         <ImageView
-            android:id="@+id/wdnc_clear"
-            android:layout_width="12dp"
-            android:layout_height="12dp"
-            android:layout_alignParentRight="true"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginLeft="20dp"
+
             android:layout_centerVertical="true"
+            android:background="@mipmap/setting_icon_deep_color_sun_n"/>
+            <SeekBar
+                android:id="@+id/light_seekbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:max="100"
+                android:progressDrawable="@drawable/screen_shape"/>
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_marginRight="20dp"
-            android:background="@mipmap/common_icon_close_n"/>
+            android:layout_centerVertical="true"
+            android:background="@mipmap/setting_icon_light_color_sun_n"
+            android:layout_alignParentRight="true"/>
     </RelativeLayout>
 </LinearLayout>

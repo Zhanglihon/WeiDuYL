@@ -1,4 +1,4 @@
-package zhang.bw.com.open_my;
+package zhang.bw.com.open_my.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,6 +30,8 @@ import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
+import zhang.bw.com.open_my.R;
+import zhang.bw.com.open_my.R2;
 import zhang.bw.com.open_my.presenter.WdxxPresenter;
 import zhang.bw.com.open_my.presenter.YhqdPresenter;
 
@@ -145,7 +147,6 @@ public class MyActivity extends WDActivity {
                     startActivity(intent);
                 } else if (index == 2) {
                     ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
-                    intentByRouter(Constant.ACTIVITY_URL_WALLET);
                 } else if (index == 3) {
                     Intent intent=new Intent(MyActivity.this,WdscActivity.class);
                     startActivity(intent);
@@ -203,14 +204,12 @@ public class MyActivity extends WDActivity {
 
         @Override
         public void success(CXBean data, Object... args) {
-            Toast.makeText(MyActivity.this, "查询成功", Toast.LENGTH_SHORT).show();
             Glide.with(MyActivity.this).load(data.headPic).apply(RequestOptions.circleCropTransform()).into(imageView);
             myName.setText(data.nickName);
         }
 
         @Override
         public void fail(ApiException data, Object... args) {
-            Toast.makeText(MyActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
         }
     }
 }

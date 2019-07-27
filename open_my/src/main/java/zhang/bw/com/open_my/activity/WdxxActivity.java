@@ -1,16 +1,19 @@
-package zhang.bw.com.open_my;
+package zhang.bw.com.open_my.activity;
 
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,14 +23,17 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.io.File;
+import java.io.IOException;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhang.bw.com.common.DaoMaster;
@@ -37,7 +43,11 @@ import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
+import zhang.bw.com.common.util.Constant;
 import zhang.bw.com.common.util.RealPathFromUriUtils;
+import zhang.bw.com.open_my.BuildConfig;
+import zhang.bw.com.open_my.R;
+import zhang.bw.com.open_my.R2;
 import zhang.bw.com.open_my.presenter.MyPresenter;
 import zhang.bw.com.open_my.presenter.WdxxPresenter;
 
@@ -62,16 +72,21 @@ public class WdxxActivity extends WDActivity {
     TextView wdxxEmail;
     @BindView(R2.id.wdxx_image_back)
     ImageView wdxxImageBack;
+    @BindView(R2.id.wdxx_tizheng)
+    ImageView wdxxTizheng;
+    @BindView(R2.id.wdxx_smrz)
+    ImageView wdxxSmrz;
+    @BindView(R2.id.wdxx_yhk)
+    ImageView wdxxYhk;
     private TextView my_pop_xc;
     private TextView my_pop_xj;
     private PopupWindow popupWindow;
-    private String path = Environment.getExternalStorageDirectory() + "/hh.jpg";
     private MyPresenter myPresenter;
     private LoginBean loginBean;
     private WdxxPresenter wdxxPresenter;
     private TextView my_cancle;
     private RelativeLayout my_bj;
-
+    private String path = Environment.getExternalStorageDirectory() + "/hh.jpg";
     @Override
     protected int getLayoutId() {
         return R.layout.activity_wdxx;
@@ -79,6 +94,28 @@ public class WdxxActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        //绑定银行卡
+        wdxxYhk.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_YINGHK).navigation();
+            }
+        });
+        //实名认证
+        wdxxSmrz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_SHENGZ).navigation();
+            }
+        });
+        //我的体征
+        wdxxTizheng.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WdxxActivity.this, WdtzActivity.class);
+                startActivity(intent);
+            }
+        });
         wdxxImageBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -132,34 +169,17 @@ public class WdxxActivity extends WDActivity {
         my_pop_xj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //判断版本是否6.0以上
-                if (Build.VERSION.SDK_INT >= 23) {
-                    int permission = ContextCompat.checkSelfPermission(WdxxActivity.this.getApplicationContext(), Manifest.permission.CAMERA);
-                    if (permission == PackageManager.PERMISSION_GRANTED) {
-                        //如果有了相机的权限就调用相机
-                        startCamera();
-                    } else {
-                        AlertDialog.Builder builder = new AlertDialog.Builder(WdxxActivity.this);
-                        builder.setTitle("提示");
-                        builder.setMessage("是否开启相机权限?");
-                        builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                //去请求相机权限
-                                ActivityCompat.requestPermissions(WdxxActivity.this, new String[]{Manifest.permission.CAMERA}, 0);
-                            }
-                        });
-                        builder.setNegativeButton("否", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Toast.makeText(WdxxActivity.this, "您拒绝了开启相机权限", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                        builder.show();
-                    }
-                } else {
-                    //不是6.0以上版本直接调用相机
+                //去寻找是否已经有了相机的权限
+                if (ContextCompat.checkSelfPermission(WdxxActivity.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED){
+
+                    //Toast.makeText(MainActivity.this,"您申请了动态权限",Toast.LENGTH_SHORT).show();
+                    //如果有了相机的权限有调用相机
                     startCamera();
+
+                }else{
+                    //否则去请求相机权限
+                    ActivityCompat.requestPermissions(WdxxActivity.this,new String[]{Manifest.permission.CAMERA},100);
+
                 }
 
             }
@@ -182,12 +202,14 @@ public class WdxxActivity extends WDActivity {
             }
         });
     }
-
     private void startCamera() {
         //创建拍照的隐式意图对象
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //把拍完的照片,输出到指定路径上
         intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(new File(path)));
+
+        intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         //开启页面
         startActivityForResult(intent, 100);
     }
@@ -203,38 +225,37 @@ public class WdxxActivity extends WDActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
-
+    private File tempFile = null;
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100) {
             //取出拍照的照片
             Uri uri = Uri.fromFile(new File(path));
-            File file = new File(path);
+            File file=new File(path);
             wdxxImageTx.setImageURI(uri);
-            Glide.with(WdxxActivity.this).load(uri).apply(RequestOptions.circleCropTransform()).into(wdxxImageTx);
-            myPresenter.reqeust(loginBean.getId(), loginBean.getSessionId(), file);
+            myPresenter.reqeust(loginBean.getId(),loginBean.getSessionId(),file);
         }
         if (requestCode == 200) {
-            String realPathFromUri = RealPathFromUriUtils.getRealPathFromUri(WdxxActivity.this, data.getData());
-            File filea = new File(realPathFromUri);
-            Uri uri = data.getData();
+            String realPathFromUri=RealPathFromUriUtils.getRealPathFromUri(WdxxActivity.this,data.getData());
+            File filea=new File(realPathFromUri);
+            Uri uri=data.getData();
             wdxxImageTx.setImageURI(uri);
             Glide.with(WdxxActivity.this).load(uri).apply(RequestOptions.circleCropTransform()).into(wdxxImageTx);
-            myPresenter.reqeust(loginBean.getId(), loginBean.getSessionId(), filea);
+            myPresenter.reqeust(loginBean.getId(),loginBean.getSessionId(),filea);
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        //grantResults数组与权限字符串数组对应，里面存放权限申请结果
-        if (permissions[0].equals(Manifest.permission.CAMERA)) {
-            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                Toast.makeText(WdxxActivity.this, "已授权", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(WdxxActivity.this, "授权失败", Toast.LENGTH_SHORT).show();
-            }
+    private static String[] PERMISSIONS_STORAGE = {Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE };
+    public boolean verifyStoragePermissions(WdxxActivity activity) {
+        // 检查是否有写权限
+        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        if (permission != PackageManager.PERMISSION_GRANTED) {
+            // 我们没有权限，所以提示用户
+            ActivityCompat.requestPermissions(activity, PERMISSIONS_STORAGE, 1);
+            return false;
+        }else{
+            return true;
         }
     }
 

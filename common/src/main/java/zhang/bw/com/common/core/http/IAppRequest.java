@@ -36,6 +36,7 @@ import zhang.bw.com.common.bean.ShowBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import zhang.bw.com.common.bean.WddaBean;
 import zhang.bw.com.common.bean.YaoBean;
 
 /**
@@ -167,5 +168,33 @@ public interface IAppRequest {
     Observable<Result<ByXiangqingBean>> Byxiangqing(@Header("userId") long id, @Header("sessionId") String sessionId,
                                                           @Query("sickCircleId") String sickCircleId);
 
-
+    //修改密码
+    @PUT("user/verify/v1/updateUserPwd")
+    Observable<Result> updateUserPwd(@Header("userId")long userId,
+                                     @Header("sessionId")String sessionId,
+                                     @Query("oldPwd")String oldPwd,
+                                     @Query("newPwd")String newPwd);
+    //用户查看自己的档案
+    @GET("user/verify/v1/findUserArchives")
+    Observable<Result<WddaBean>> findUserArchives(@Header("userId") long userId,
+                                                  @Header("sessionId") String sessionId);
+    //添加用户档案
+    @FormUrlEncoded
+    @POST("user/verify/v1/addUserArchives")
+    Observable<Result> addUserArchives(@Field("userId")long userId,
+                                       @Field("sessionId")String sessionId,
+                                       @Field("diseaseMain")String diseaseMain,
+                                       @Field("diseaseNow")String diseaseNow,
+                                       @Field("diseaseBefore")String diseaseBefore,
+                                       @Field("treatmentHospitalRecent")String treatmentHospitalRecent,
+                                       @Field("treatmentProcess")String treatmentProcess,
+                                       @Field("treatmentStartTime")String treatmentStartTime,
+                                       @Field("treatmentEndTime")String treatmentEndTime);
+    //完善用户信息
+    @PUT("user/verify/v1/perfectUserInfo")
+    Observable<Result> perfectUserInfo(@Header("userId") long userId,
+                                       @Header("sessionId") String sessionId,
+                                       @Query("height")String height,
+                                       @Query("weight")String weight,
+                                       @Query("age")String age);
 }

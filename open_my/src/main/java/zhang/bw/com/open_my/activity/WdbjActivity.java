@@ -1,7 +1,9 @@
-package zhang.bw.com.open_my;
+package zhang.bw.com.open_my.activity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,22 +16,48 @@ import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import zhang.bw.com.common.DaoMaster;
+import zhang.bw.com.common.LoginBeanDao;
+import zhang.bw.com.common.bean.LoginBean;
+import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
+import zhang.bw.com.common.core.exception.ApiException;
+import zhang.bw.com.open_my.R;
+import zhang.bw.com.open_my.R2;
+import zhang.bw.com.open_my.presenter.WdbjPresenter;
 
 public class WdbjActivity extends WDActivity {
 
-    @BindView(R2.id.wdbj_start_time)
-    ImageView wdbjStartTime;
-    @BindView(R2.id.wdbj_end_time)
-    ImageView wdbjEndTime;
-    @BindView(R2.id.gridView)
-    GridView gridView;
+
+    @BindView(R2.id.wdbj_zz)
+    EditText wdbjZz;
+    @BindView(R2.id.wdbj_xbs)
+    EditText wdbjXbs;
+    @BindView(R2.id.wdbj_jwbs)
+    EditText wdbjJwbs;
+    @BindView(R2.id.wdbj_yymc)
+    EditText wdbjYymc;
     @BindView(R2.id.wdbj_text_start)
     TextView wdbjTextStart;
+    @BindView(R2.id.wdbj_start_time)
+    ImageView wdbjStartTime;
     @BindView(R2.id.wdbj_text_end)
     TextView wdbjTextEnd;
+    @BindView(R2.id.wdbj_end_time)
+    ImageView wdbjEndTime;
+    @BindView(R2.id.wdbj_zlgc)
+    EditText wdbjZlgc;
+    @BindView(R2.id.gridView)
+    GridView gridView;
+    @BindView(R2.id.wdbj_button_bc)
+    Button wdbjButtonBc;
+    @BindView(R2.id.wdbj_image_back)
+    ImageView wdbjImageBack;
     private TimePickerView pvTime;
     private TimePickerView pvTime1;
+    private LoginBean loginBean;
+    private WdbjPresenter wdbjPresenter;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_wdbj;
@@ -37,6 +65,28 @@ public class WdbjActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        wdbjImageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        loginBean = DaoMaster.newDevSession(WdbjActivity.this, LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
+        wdbjPresenter = new WdbjPresenter(new wdbj());
+        wdbjButtonBc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String zz = wdbjZz.getText().toString();
+                String xbs = wdbjXbs.getText().toString();
+                String jwbs = wdbjJwbs.getText().toString();
+                String yymc = wdbjYymc.getText().toString();
+                String starttime = wdbjTextStart.getText().toString();
+                String endtime = wdbjTextEnd.getText().toString();
+                String zlgc = wdbjZlgc.getText().toString();
+                wdbjPresenter.reqeust(loginBean.getId(), loginBean.getSessionId(), zz, xbs, jwbs, yymc, starttime, endtime, zlgc);
+            }
+        });
+
         //时间选择器
         //选中事件回调
         pvTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
@@ -45,7 +95,7 @@ public class WdbjActivity extends WDActivity {
                 wdbjTextStart.setText(getTime(date));
             }
         })
-                .setType(new boolean[]{true,true,true,false,false,false})
+                .setType(new boolean[]{true, true, true, false, false, false})
                 .build();
 
         //点击选择时间
@@ -65,7 +115,7 @@ public class WdbjActivity extends WDActivity {
                 wdbjTextEnd.setText(getTime1(date));
             }
         })
-                .setType(new boolean[]{true,true,true,false,false,false})
+                .setType(new boolean[]{true, true, true, false, false, false})
                 .build();
         //点击选择时间
         wdbjEndTime.setOnClickListener(new View.OnClickListener() {
@@ -102,5 +152,18 @@ public class WdbjActivity extends WDActivity {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    class wdbj implements DataCall {
+
+        @Override
+        public void success(Object data, Object... args) {
+
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+
+        }
     }
 }

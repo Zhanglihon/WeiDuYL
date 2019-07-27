@@ -80,6 +80,8 @@ public class Fragmentone extends WDFragment {
     private List<LoginBean> list;
     private LoginBeanDao dao;
     private String id;
+    @BindView(R2.id.back)
+    ImageView back;
     @Override
     protected int getLayoutId() {
         return R.layout.fragmentone;
@@ -224,8 +226,13 @@ public class Fragmentone extends WDFragment {
 
         @Override
         public void success(List<JanBean> data, Object... args) {
-            myjiKangAdapter1.addALL(data);
-            myjiKangAdapter1.notifyDataSetChanged();
+            if(data!=null){
+                myjiKangAdapter1.addALL(data);
+                myjiKangAdapter1.notifyDataSetChanged();
+            }else{
+                back.setVisibility(View.VISIBLE);
+            }
+
 
         }
 

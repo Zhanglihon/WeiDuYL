@@ -31,7 +31,10 @@ import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
 import zhang.bw.com.common.bean.PriceBean;
+import zhang.bw.com.common.bean.QingBean;
 import zhang.bw.com.common.bean.Result;
+import zhang.bw.com.common.bean.ShoucuoBean;
+import zhang.bw.com.common.bean.ShouziBean;
 import zhang.bw.com.common.bean.ShowBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -142,9 +145,9 @@ public interface IAppRequest {
     //查询用户资讯收藏列表
     @GET("user/verify/v1/findUserInfoCollectionList")
     Observable<Result<List<ShouziBean>>> findUserInfoCollectionList(@Header("userId") long userId,
-                                                              @Header("sessionId") String sessionId,
-                                                              @Query("page")String page,
-                                                              @Query("count")String count);
+                                                                    @Header("sessionId") String sessionId,
+                                                                    @Query("page")String page,
+                                                                    @Query("count")String count);
 
     //支付
     @FormUrlEncoded

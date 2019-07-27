@@ -88,7 +88,9 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                backg.bag(position,list);
+               if(backg!=null){
+                   backg.bag(position,list);
+               }
             }
         });
 

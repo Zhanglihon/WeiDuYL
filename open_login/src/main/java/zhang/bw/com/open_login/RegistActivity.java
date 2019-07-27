@@ -149,6 +149,7 @@ public class RegistActivity extends WDActivity {
             Toast.makeText(RegistActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
             Intent intent=new Intent(RegistActivity.this,LoginActivity.class);
             startActivity(intent);
+            finish();
         }
 
         @Override

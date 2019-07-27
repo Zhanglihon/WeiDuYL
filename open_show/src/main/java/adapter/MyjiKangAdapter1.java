@@ -85,7 +85,12 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
         }else if(holder instanceof ThreeImageHolder){
         }
 
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                backg.bag(position,list);
+            }
+        });
 
     }
 
@@ -144,5 +149,13 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
 //            jian2_image2 = itemView.findViewById(R.id.jian2_image2);
 //            jian3_image3 = itemView.findViewById(R.id.jian2_image3);
         }
+    }
+    public interface Backg{
+        void bag(int i,List<JanBean> list);
+    }
+    public Backg backg;
+
+    public void setBackg(Backg backg) {
+        this.backg = backg;
     }
 }

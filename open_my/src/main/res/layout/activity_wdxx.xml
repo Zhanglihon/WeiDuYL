@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".WdxxActivity"
+    tools:context=".activity.WdxxActivity"
     android:background="#F2F2F2"
     android:orientation="vertical">
 
@@ -42,8 +42,8 @@
             android:id="@+id/wdxx_image_tx"
             android:layout_width="42dp"
             android:layout_height="42dp"
-            android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:background="@mipmap/historical_inquiry" />
         <TextView
@@ -138,6 +138,7 @@
             android:layout_centerVertical="true"
             android:text="体征"/>
         <ImageView
+            android:id="@+id/wdxx_tizheng"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_alignParentRight="true"
@@ -279,6 +280,7 @@
             android:layout_marginRight="35dp"
             android:text="去认证"/>
         <ImageView
+            android:id="@+id/wdxx_smrz"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_alignParentRight="true"
@@ -313,6 +315,7 @@
             android:layout_centerVertical="true"
             android:text="去绑定"/>
         <ImageView
+            android:id="@+id/wdxx_yhk"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_alignParentRight="true"

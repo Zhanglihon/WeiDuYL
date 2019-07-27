@@ -51,4 +51,7 @@ dependencies {
     implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-alpha-5'
     implementation 'com.kd.easybarrage:library:0.0.1'
 
+
+
+
 }

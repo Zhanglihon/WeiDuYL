@@ -124,7 +124,6 @@ public class LoginActivity extends WDActivity {
             Toast.makeText(LoginActivity.this,"登录成功",Toast.LENGTH_SHORT).show();
             data.datas=1;
             Log.i("aaa",data.id+"-----"+data.sessionId);
-            ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
             loginBeanDao.insertOrReplaceInTx(data);
             String sessionId = data.sessionId;
             long id = data.id;

@@ -29,6 +29,7 @@ import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
+import zhang.bw.com.common.bean.PingLunBean;
 import zhang.bw.com.common.bean.PriceBean;
 import zhang.bw.com.common.bean.Result;
 import zhang.bw.com.common.bean.ShouziBean;
@@ -166,6 +167,19 @@ public interface IAppRequest {
     @GET("user/sickCircle/v1/findSickCircleInfo")
     Observable<Result<ByXiangqingBean>> Byxiangqing(@Header("userId") long id, @Header("sessionId") String sessionId,
                                                           @Query("sickCircleId") String sickCircleId);
+    //病友圈评论列表
+    @GET("user/sickCircle/v1/findSickCircleCommentList")
+    Observable<Result<List<PingLunBean>>> PingLunlb(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                                    @Query("sickCircleId") String sickCircleId, @Query("page") String page,
+                                                    @Query("count") String count);
 
+    //病友圈评论列表
+    @POST("user/sickCircle/verify/v1/publishComment")
+    Observable<Result> FaBiaopl(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                                    @Query("sickCircleId") String sickCircleId, @Query("content") String content);
 
+    //查询病友圈人发表的病友圈意见
+    @GET("user/sickCircle/v1/findPatientSickCircleList")
+    Observable<Result<List<Byliebiao>>> Chabypl(@Query("patientUserId") String patientUserId, @Query("page") String page,
+                               @Query("count") String count);
 }

@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image_beijin"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/user_bg" />
+
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:id="@+id/image_view_toux"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_below="@id/image_beijin"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="-25dp"
+            app:roundAsCircle="true" />
+
+        <ImageView
+            android:id="@+id/simpleDraweeView"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_alignBottom="@id/image_view_toux"
+            android:layout_marginLeft="-10dp"
+            android:layout_marginBottom="3dp"
+            android:layout_toRightOf="@id/image_view_toux"
+            android:src="@mipmap/common_icon_boy_n" />
+
+        <TextView
+            android:id="@+id/text_k"
+            android:layout_width="match_parent"
+            android:layout_height="6dp"
+            android:layout_below="@id/image_view_toux"
+            android:layout_marginTop="20dp"
+            android:background="#F2F2F2" />
+
+        <TextView
+            android:layout_marginLeft="20dp"
+            android:id="@+id/text_kk"
+            android:layout_width="4dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/text_k"
+            android:layout_marginTop="10dp"
+            android:background="#3087EA" />
+
+        <TextView
+            android:layout_marginLeft="30dp"
+            android:id="@+id/text_kkk"
+            android:textSize="14sp"
+            android:layout_width="wrap_content"
+            android:layout_height="20dp"
+            android:layout_below="@id/text_k"
+            android:layout_marginTop="11dp"
+            android:text="他发布的病友圈"
+            android:background="#F2F2F2" />
+
+
+        <TextView
+            android:id="@+id/text_kkkk"
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_below="@id/text_kk"
+            android:layout_marginTop="10dp"
+            android:background="#F2F2F2" />
+
+        <com.jcodecraeer.xrecyclerview.XRecyclerView
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/text_kkkk"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/recyc_view4"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+    </RelativeLayout>
+
+</LinearLayout>

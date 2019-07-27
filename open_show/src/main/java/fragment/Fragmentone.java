@@ -18,6 +18,7 @@ import com.example.open_show.R2;
 import com.example.open_show.ShowActivity1;
 import com.stx.xhb.xbanner.XBanner;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import adapter.MyAdapter1;

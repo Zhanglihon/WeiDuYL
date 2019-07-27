@@ -104,11 +104,6 @@ public abstract class WDPresenter<T> {
                     }else{
                         dataCall.fail(new ApiException(result.getStatus(),result.getMessage()));
                     }
-                    if (result.getStatus().equals("8001")) {
-                        dataCall.success(result, args);
-                    }else{
-                        dataCall.fail(new ApiException(result.getStatus(),result.getMessage()));
-                    }
                 }
             };
         }

@@ -139,11 +139,12 @@ public class WddaActivity extends WDActivity {
             } else {
                 wddaWsj.setVisibility(View.GONE);
             }
+            Toast.makeText(WddaActivity.this, "用户档案查询成功", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void fail(ApiException data, Object... args) {
-
+            Toast.makeText(WddaActivity.this, "用户档案查询失败", Toast.LENGTH_SHORT).show();
         }
     }
 }

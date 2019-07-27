@@ -6,7 +6,7 @@ public class ShowBean {
     public int id;
     public String pic;
     public String departmentName;
-    public int textcolor;
+    public int textcolor=Color.BLACK;
     public boolean checked;
 
     public int getId() {

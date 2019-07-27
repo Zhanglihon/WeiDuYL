@@ -10,6 +10,6 @@ public class FindDiseaseCategory extends WDPresenter<IAppRequest> {
 
     @Override
     protected Observable getModel(Object... args) {
-        return iRequest.findDiseaseCategory((String) args[0]);
+        return iRequest.findDiseaseCategory((String)args[0]);
     }
 }

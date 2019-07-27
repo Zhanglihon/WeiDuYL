@@ -1,22 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.open_show">
-
     <uses-permission android:name="android.permission.INTERNET" />
-
     <application>
-        <activity
-            android:name=".ShowActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".ShowActivity1"
-            android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".ChaActivity" />
-        <activity android:name=".XinangActivity" />
-        <activity android:name=".BingActivity" />
-        <activity android:name=".Xiangqing" />
-        <activity android:name=".ShoucuoActivity"></activity>
+        <activity android:name=".ShowActivity"  android:configChanges="orientation|screenSize|keyboardHidden" android:screenOrientation="portrait"/>
+        <activity android:name=".ShowActivity1" android:windowSoftInputMode="adjustPan|stateHidden"/>
+        <activity android:name=".ChaActivity"></activity>
     </application>
 
 </manifest>

@@ -11,13 +11,13 @@ import zhang.bw.com.common.core.http.IAppRequest;
  * @Date：2019/7/17
  * @Description：XXXX
  */
-public class MingPresenter extends WDPresenter<IAppRequest> {
-    public MingPresenter(DataCall dataCall) {
+public class MingPresenter1 extends WDPresenter<IAppRequest> {
+    public MingPresenter1(DataCall dataCall) {
         super(dataCall);
     }
 
     @Override
     protected Observable getModel(Object... args) {
-        return iRequest.findDepartment();
+        return iRequest.mingPresenter1();
     }
 }

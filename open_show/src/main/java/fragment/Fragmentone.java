@@ -16,7 +16,9 @@ import com.example.open_show.ChaActivity;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.open_show.R;
 import com.example.open_show.R2;
+import com.example.open_show.ShoucuoActivity;
 import com.example.open_show.ShowActivity1;
+import com.example.open_show.Xiangqing;
 import com.stx.xhb.xbanner.XBanner;
 
 import java.util.List;
@@ -75,11 +77,9 @@ public class Fragmentone extends WDFragment {
     private MyAdapter1 myAdapter1;
     private MyjikangAdapter myjikangAdapter;
     private MyjiKangAdapter1 myjiKangAdapter1;
-    private String id11;
     private List<LoginBean> list;
     private LoginBeanDao dao;
     private String id;
-
     @Override
     protected int getLayoutId() {
         return R.layout.fragmentone;
@@ -107,7 +107,6 @@ public class Fragmentone extends WDFragment {
         myjikangAdapter = new MyjikangAdapter(getContext());
         two_recyc.setAdapter(myjikangAdapter);
         findInformationList = new FindInformationList(new Back4());
-
         two_recyc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         myjikangAdapter.setJianBack(new MyjikangAdapter.JianBack() {
             @Override
@@ -131,6 +130,23 @@ public class Fragmentone extends WDFragment {
 
             }
         });
+        myjiKangAdapter1.setBackg(new MyjiKangAdapter1.Backg() {
+            @Override
+            public void bag(int i, List<JanBean> list) {
+                String id = list.get(i).id;
+                Intent intent = new Intent(getContext(),Xiangqing.class);
+                intent.putExtra("rr",id);
+                startActivity(intent);
+            }
+        });
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),ShoucuoActivity.class);
+                startActivity(intent);
+
+            }
+        });
         one_image2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -139,12 +155,7 @@ public class Fragmentone extends WDFragment {
                 startActivity(intent);
             }
         });
-        one_text2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build(Constant.ACTIVITY_URL_INSHOW).navigation();
-            }
-        });
+
         text_duo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

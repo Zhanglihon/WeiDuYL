@@ -9,7 +9,11 @@ import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
 import zhang.bw.com.common.bean.BingZeng;
@@ -26,9 +30,8 @@ import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
-import zhang.bw.com.common.bean.QingBean;
+import zhang.bw.com.common.bean.PriceBean;
 import zhang.bw.com.common.bean.Result;
-import zhang.bw.com.common.bean.ShoucuoBean;
 import zhang.bw.com.common.bean.ShowBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
@@ -58,7 +61,7 @@ public interface IAppRequest {
     @GET("share/information/v1/findInformationList")
     Observable<Result<List<JanBean>>>findDrugsKnowledgeList1(@Query("plateId")String plateId, @Query("page")String page, @Query("count")String count);
     @GET("share/knowledgeBase/v1/findDiseaseCategory")
-    Observable<Result<List<BingBean>>>findDiseaseCategory(@Query("departmentId")int departmentId);
+    Observable<Result<List<BingBean>>>findDiseaseCategory(@Query("departmentId")String departmentId);
     @GET("user/video/v1/findVideoCategoryList")
     Observable<Result<List<NameBean>>>findVideoCategoryList();
     @GET("user/video/v1/findVideoVoList")
@@ -119,6 +122,29 @@ public interface IAppRequest {
     Observable<Result> resetUserPwd(@Query("email") String email,
                                     @Query("pwd1") String pwd1,
                                     @Query("pwd2")String pwd2);
+    //用户签到
+    @FormUrlEncoded
+    @POST("user/verify/v1/addSign")
+    Observable<Result> addSign(@Field("userId")long userId,
+                               @Field("sessionId")String sessionId);
+    //修改用户昵称
+    @FormUrlEncoded
+    @PUT("user/verify/v1/modifyNickName")
+    Observable<Result> modifyNickName(@Header("userId") long userId,
+                                      @Header("sessionId") String sessionId,
+                                      @Field("nickName") String nickName);
+    //修改用户性别
+    @FormUrlEncoded
+    @PUT("user/verify/v1/updateUserSex")
+    Observable<Result> updateUserSex(@Header("userId")long userId,
+                                     @Header("sessionId")String sessionId,
+                                     @Field("sex")String sex);
+    //查询用户资讯收藏列表
+    @GET("user/verify/v1/findUserInfoCollectionList")
+    Observable<Result<List<ShouziBean>>> findUserInfoCollectionList(@Header("userId") long userId,
+                                                              @Header("sessionId") String sessionId,
+                                                              @Query("page")String page,
+                                                              @Query("count")String count);
 
     //支付
     @FormUrlEncoded
@@ -155,7 +181,6 @@ public interface IAppRequest {
     @GET("user/sickCircle/v1/findSickCircleInfo")
     Observable<Result<ByXiangqingBean>> Byxiangqing(@Header("userId") long id, @Header("sessionId") String sessionId,
                                                           @Query("sickCircleId") String sickCircleId);
-
 
 
 }

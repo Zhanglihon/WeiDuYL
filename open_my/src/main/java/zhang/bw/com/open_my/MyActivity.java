@@ -1,14 +1,10 @@
 package zhang.bw.com.open_my;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -17,10 +13,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -28,13 +24,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
+import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
-import zhang.bw.com.common.util.RealPathFromUriUtils;
-import zhang.bw.com.open_my.presenter.MyPresenter;
+import zhang.bw.com.open_my.presenter.WdxxPresenter;
+import zhang.bw.com.open_my.presenter.YhqdPresenter;
 
 @Route(path = Constant.ACTIVITY_URL_MY)
 public class MyActivity extends WDActivity {
@@ -64,6 +61,12 @@ public class MyActivity extends WDActivity {
     RelativeLayout bbbbbbbbbbbbbbbbb;
     @BindView(R2.id.wd_image_back)
     ImageView wdImageBack;
+    @BindView(R2.id.my_name)
+    TextView myName;
+    @BindView(R2.id.my_qiandao)
+    Button myQiandao;
+    private LoginBean loginBean;
+    private YhqdPresenter yhqdPresenter;
 
 
     @Override
@@ -73,6 +76,14 @@ public class MyActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        loginBean = DaoMaster.newDevSession(MyActivity.this, LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
+        yhqdPresenter = new YhqdPresenter(new qd());
+        myQiandao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                yhqdPresenter.reqeust(loginBean.getId(),loginBean.getSessionId());
+            }
+        });
         wdImageBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -130,12 +141,14 @@ public class MyActivity extends WDActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 int index = i + 1;
                 if (index == 1) {
-                    Intent intent=new Intent(MyActivity.this,WddaActivity.class);
+                    Intent intent = new Intent(MyActivity.this, WddaActivity.class);
                     startActivity(intent);
                 } else if (index == 2) {
+                    ARouter.getInstance().build(Constant.ACTIVITY_URL_WALLET).navigation();
                     intentByRouter(Constant.ACTIVITY_URL_WALLET);
                 } else if (index == 3) {
-                    //intentByRouter(Constant.ACTIVITY_URL_COLLECT);
+                    Intent intent=new Intent(MyActivity.this,WdscActivity.class);
+                    startActivity(intent);
                 } else if (index == 4) {
                     //intentByRouter(Constant.ACTIVITY_URL_SUGGEST);
                 } else if (index == 5) {
@@ -147,20 +160,57 @@ public class MyActivity extends WDActivity {
                 } else if (index == 8) {
                     // intentByRouter(Constant.ACTIVITY_URL_TASK);
                 } else if (index == 9) {
-                    Intent intent=new Intent(MyActivity.this,WdszActivity.class);
+                    Intent intent = new Intent(MyActivity.this, WdszActivity.class);
                     startActivity(intent);
                 }
             }
         });
     }
+
     @Override
     protected void destoryData() {
 
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        WdxxPresenter wdxxPresenter = new WdxxPresenter(new my());
+        wdxxPresenter.reqeust(loginBean.getId(), loginBean.getSessionId());
+    }
+    class qd implements DataCall{
+
+        @Override
+        public void success(Object data, Object... args) {
+            Toast.makeText(MyActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+            Toast.makeText(MyActivity.this, "签到失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    class my implements DataCall<CXBean> {
+
+        @Override
+        public void success(CXBean data, Object... args) {
+            Toast.makeText(MyActivity.this, "查询成功", Toast.LENGTH_SHORT).show();
+            Glide.with(MyActivity.this).load(data.headPic).apply(RequestOptions.circleCropTransform()).into(imageView);
+            myName.setText(data.nickName);
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+            Toast.makeText(MyActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
+        }
     }
 }

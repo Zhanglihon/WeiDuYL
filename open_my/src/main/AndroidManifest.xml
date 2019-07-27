@@ -10,7 +10,11 @@
         <activity android:name=".MyActivity" />
         <activity android:name=".WdszActivity" />
         <activity android:name=".WdxxActivity" />
-        <activity android:name=".WddaActivity"></activity>
+        <activity android:name=".WddaActivity" />
+        <activity android:name=".WdbjActivity" />
+        <activity android:name=".WdncActivity" />
+        <activity android:name=".WdsexActivity" />
+        <activity android:name=".WdscActivity"></activity>
     </application>
 
 </manifest>

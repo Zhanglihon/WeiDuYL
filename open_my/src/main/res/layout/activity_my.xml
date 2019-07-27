@@ -13,7 +13,7 @@
 
         <RelativeLayout
             android:id="@+id/aaa"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
@@ -41,23 +41,26 @@
 
             <ImageView
                 android:id="@+id/image_view"
-                android:layout_marginLeft="20dp"
-                android:background="@mipmap/historical_inquiry"
                 android:layout_width="50dp"
-                android:layout_height="50dp" />
+                android:layout_height="50dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="0dp"
+                android:background="@mipmap/historical_inquiry" />
 
             <TextView
-                android:layout_toRightOf="@+id/image_view"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="20dp"
-                android:textSize="16dp"
-                android:textColor="@android:color/white"
+                android:id="@+id/my_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toRightOf="@+id/image_view"
                 android:text="欧欧"
-                />
+                android:textColor="@android:color/white"
+                android:textSize="16dp" />
 
             <Button
+                android:id="@+id/my_qiandao"
                 android:background="@drawable/login_shape"
                 android:layout_marginTop="10dp"
                 android:layout_marginRight="20dp"

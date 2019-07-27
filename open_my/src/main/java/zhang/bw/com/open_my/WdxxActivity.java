@@ -11,12 +11,12 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +44,24 @@ import zhang.bw.com.open_my.presenter.WdxxPresenter;
 public class WdxxActivity extends WDActivity {
     @BindView(R2.id.wdxx_image_tx)
     ImageView wdxxImageTx;
+    @BindView(R2.id.wdxx_name)
+    TextView wdxxName;
+    @BindView(R2.id.wdxx_sg)
+    TextView wdxxSg;
+    @BindView(R2.id.wdxx_tz)
+    TextView wdxxTz;
+    @BindView(R2.id.wdxx_age)
+    TextView wdxxAge;
+    @BindView(R2.id.wdxx_nickname)
+    ImageView wdxxNickname;
+    @BindView(R2.id.wdxx_sex)
+    ImageView wdxxSex;
+    @BindView(R2.id.wdxx_image_sex)
+    ImageView wdxxImageSex;
+    @BindView(R2.id.wdxx_email)
+    TextView wdxxEmail;
+    @BindView(R2.id.wdxx_image_back)
+    ImageView wdxxImageBack;
     private TextView my_pop_xc;
     private TextView my_pop_xj;
     private PopupWindow popupWindow;
@@ -51,25 +69,61 @@ public class WdxxActivity extends WDActivity {
     private MyPresenter myPresenter;
     private LoginBean loginBean;
     private WdxxPresenter wdxxPresenter;
+    private TextView my_cancle;
+    private RelativeLayout my_bj;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_wdxx;
     }
+
     @Override
     protected void initView() {
-        loginBean = DaoMaster.newDevSession(WdxxActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
+        wdxxImageBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        wdxxSex.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WdxxActivity.this, WdsexActivity.class);
+                startActivity(intent);
+            }
+        });
+        wdxxNickname.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(WdxxActivity.this, WdncActivity.class);
+                startActivity(intent);
+            }
+        });
+        loginBean = DaoMaster.newDevSession(WdxxActivity.this, LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
         myPresenter = new MyPresenter(new Txsc());
         //加载popupwindow的子布局
         View view = View.inflate(WdxxActivity.this, R.layout.my_popupwindow, null);
         my_pop_xc = view.findViewById(R.id.my_pop_xc);
         my_pop_xj = view.findViewById(R.id.my_pop_xj);
+        my_cancle = view.findViewById(R.id.my_cancle);
+        my_bj = view.findViewById(R.id.my_bj);
+        my_bj.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                my_bj.setVisibility(View.GONE);
+            }
+        });
+        my_cancle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                my_bj.setVisibility(View.GONE);
+            }
+        });
         //创建popupwindow
         //contentView, 布局   width, 宽    height 高
         popupWindow = new PopupWindow(view, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         //设置背景
-        ColorDrawable dw = new ColorDrawable(0xb0000000);
-        popupWindow.setBackgroundDrawable(dw);
+        popupWindow.setBackgroundDrawable(new ColorDrawable(0x00000000));
         //设置焦点
         popupWindow.setFocusable(true);
         //设置可触摸
@@ -123,7 +177,8 @@ public class WdxxActivity extends WDActivity {
             @Override
             public void onClick(View v) {
                 //根据父窗体X Y轴的偏移改变位置
-                popupWindow.showAtLocation(View.inflate(WdxxActivity.this, R.layout.activity_wdxx, null), Gravity.CENTER, 0, 600);
+                popupWindow.showAtLocation(View.inflate(WdxxActivity.this, R.layout.activity_wdxx, null), Gravity.BOTTOM, 0, 0);
+                my_bj.setVisibility(View.VISIBLE);
             }
         });
     }
@@ -148,24 +203,25 @@ public class WdxxActivity extends WDActivity {
         // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100) {
             //取出拍照的照片
             Uri uri = Uri.fromFile(new File(path));
-            File file=new File(path);
+            File file = new File(path);
             wdxxImageTx.setImageURI(uri);
             Glide.with(WdxxActivity.this).load(uri).apply(RequestOptions.circleCropTransform()).into(wdxxImageTx);
-            myPresenter.reqeust(loginBean.getId(),loginBean.getSessionId(),file);
+            myPresenter.reqeust(loginBean.getId(), loginBean.getSessionId(), file);
         }
-        if (requestCode==200){
-            String realPathFromUri=RealPathFromUriUtils.getRealPathFromUri(WdxxActivity.this,data.getData());
-            File filea=new File(realPathFromUri);
+        if (requestCode == 200) {
+            String realPathFromUri = RealPathFromUriUtils.getRealPathFromUri(WdxxActivity.this, data.getData());
+            File filea = new File(realPathFromUri);
             Uri uri = data.getData();
             wdxxImageTx.setImageURI(uri);
             Glide.with(WdxxActivity.this).load(uri).apply(RequestOptions.circleCropTransform()).into(wdxxImageTx);
-            myPresenter.reqeust(loginBean.getId(),loginBean.getSessionId(),filea);
+            myPresenter.reqeust(loginBean.getId(), loginBean.getSessionId(), filea);
         }
     }
 
@@ -181,30 +237,43 @@ public class WdxxActivity extends WDActivity {
             }
         }
     }
-   @Override
+
+    @Override
     protected void onStart() {
         super.onStart();
         wdxxPresenter = new WdxxPresenter(new wdxx());
-        wdxxPresenter.reqeust(loginBean.getId(),loginBean.getSessionId());
+        wdxxPresenter.reqeust(loginBean.getId(), loginBean.getSessionId());
     }
+
     class Txsc implements DataCall<String> {
 
         @Override
         public void success(String data, Object... args) {
-            Toast.makeText(WdxxActivity.this,"头像上传成功",Toast.LENGTH_SHORT).show();
+            Toast.makeText(WdxxActivity.this, "头像上传成功", Toast.LENGTH_SHORT).show();
             Glide.with(WdxxActivity.this).load(data).apply(RequestOptions.circleCropTransform()).into(wdxxImageTx);
         }
 
         @Override
         public void fail(ApiException data, Object... args) {
-            Toast.makeText(WdxxActivity.this,"头像上传失败",Toast.LENGTH_SHORT).show();
+            Toast.makeText(WdxxActivity.this, "头像上传失败", Toast.LENGTH_SHORT).show();
         }
     }
-    class wdxx implements DataCall<CXBean>{
+
+    class wdxx implements DataCall<CXBean> {
 
         @Override
         public void success(CXBean data, Object... args) {
             Glide.with(WdxxActivity.this).load(data.headPic).apply(RequestOptions.circleCropTransform()).into(wdxxImageTx);
+            wdxxName.setText(data.nickName);
+            wdxxSg.setText(data.height + "cm");
+            wdxxTz.setText(data.weight + "kg");
+            wdxxAge.setText(data.age + "");
+            wdxxEmail.setText(data.email);
+            if (data.sex == 1) {
+                Glide.with(WdxxActivity.this).load(R.mipmap.common_icon_boy_n).into(wdxxImageSex);
+            } else {
+                Glide.with(WdxxActivity.this).load(R.mipmap.common_icon_girl_n).into(wdxxImageSex);
+            }
         }
 
         @Override

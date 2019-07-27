@@ -11,14 +11,17 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="30dp"
         android:background="#fff">
+
         <ImageView
+            android:id="@+id/wdxx_image_back"
             android:layout_width="16dp"
             android:layout_height="16dp"
-            android:layout_marginLeft="20dp"
             android:layout_alignParentBottom="true"
+            android:layout_marginLeft="20dp"
             android:layout_marginBottom="15dp"
-            android:background="@mipmap/common_icon_back_black_n"/>
+            android:background="@mipmap/common_icon_back_black_n" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -70,6 +73,7 @@
             android:layout_centerVertical="true"
             android:text="昵称"/>
         <TextView
+            android:id="@+id/wdxx_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"
@@ -79,6 +83,7 @@
             android:layout_marginRight="35dp"
             android:text="欧若拉"/>
         <ImageView
+            android:id="@+id/wdxx_nickname"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_alignParentRight="true"
@@ -99,13 +104,14 @@
             android:layout_centerVertical="true"
             android:text="性别"/>
         <ImageView
+            android:id="@+id/wdxx_image_sex"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:layout_marginRight="35dp"
-            android:background="@mipmap/common_icon_boy_n" />
+            android:layout_marginRight="35dp"/>
         <ImageView
+            android:id="@+id/wdxx_sex"
             android:layout_width="12dp"
             android:layout_height="12dp"
             android:layout_alignParentRight="true"
@@ -150,6 +156,7 @@
             android:layout_marginTop="5dp"
             android:text="身高"/>
             <TextView
+                android:id="@+id/wdxx_sg"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -168,6 +175,7 @@
                 android:layout_marginTop="5dp"
                 android:text="体重"/>
             <TextView
+                android:id="@+id/wdxx_tz"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -186,6 +194,7 @@
                 android:layout_marginTop="5dp"
                 android:text="年龄"/>
             <TextView
+                android:id="@+id/wdxx_age"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -206,6 +215,7 @@
             android:layout_marginLeft="20dp"
             android:text="邮箱"/>
         <TextView
+            android:id="@+id/wdxx_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="14sp"

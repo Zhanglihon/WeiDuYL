@@ -49,9 +49,6 @@ public class ForgeActivity extends WDActivity {
                 String yzm=forgeYzm.getText().toString();
                 yx = forgeEmail.getText().toString();
                 ForgePresenter forgePresenter=new ForgePresenter(new forge());
-                if (yzm.isEmpty()||yx.isEmpty()){
-                    Toast.makeText(ForgeActivity.this, "邮箱和验证码输入不能为空哦", Toast.LENGTH_SHORT).show();
-                }
                 forgePresenter.reqeust(yx,yzm);
             }
         });
@@ -89,7 +86,6 @@ public class ForgeActivity extends WDActivity {
             Intent intent=new Intent(ForgeActivity.this,CzpwdActivity.class);
             intent.putExtra("yx",yx);
             startActivity(intent);
-            finish();
         }
 
         @Override

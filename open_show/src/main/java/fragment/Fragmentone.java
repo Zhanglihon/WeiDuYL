@@ -3,6 +3,7 @@ package fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,7 +34,6 @@ import butterknife.BindView;
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.BannerBean;
-import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
@@ -80,8 +80,6 @@ public class Fragmentone extends WDFragment {
     private List<LoginBean> list;
     private LoginBeanDao dao;
     private String id;
-    @BindView(R2.id.back)
-    ImageView back;
     @Override
     protected int getLayoutId() {
         return R.layout.fragmentone;
@@ -226,13 +224,8 @@ public class Fragmentone extends WDFragment {
 
         @Override
         public void success(List<JanBean> data, Object... args) {
-            if(data!=null){
-                myjiKangAdapter1.addALL(data);
-                myjiKangAdapter1.notifyDataSetChanged();
-            }else{
-                back.setVisibility(View.VISIBLE);
-            }
-
+            myjiKangAdapter1.addALL(data);
+            myjiKangAdapter1.notifyDataSetChanged();
 
         }
 

@@ -18,8 +18,6 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 
-import org.greenrobot.eventbus.EventBus;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhang.bw.com.common.DaoMaster;
@@ -93,6 +91,7 @@ public class LoginActivity extends WDActivity {
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+
 
             }
         });

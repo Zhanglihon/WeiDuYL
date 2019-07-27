@@ -106,7 +106,6 @@ public class CzpwdActivity extends WDActivity {
         public void success(Object data, Object... args) {
             Toast.makeText(CzpwdActivity.this, "重置密码成功", Toast.LENGTH_SHORT).show();
             ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
-            finish();
         }
 
         @Override

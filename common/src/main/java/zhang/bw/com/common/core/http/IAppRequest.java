@@ -16,7 +16,6 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
-import zhang.bw.com.common.bean.BingZeng;
 import zhang.bw.com.common.bean.ByXiangqingBean;
 import zhang.bw.com.common.bean.BingBean;
 import zhang.bw.com.common.bean.Byliebiao;
@@ -33,14 +32,12 @@ import zhang.bw.com.common.bean.PingBean;
 import zhang.bw.com.common.bean.PingLunBean;
 import zhang.bw.com.common.bean.PriceBean;
 import zhang.bw.com.common.bean.Result;
+import zhang.bw.com.common.bean.ShouziBean;
 import zhang.bw.com.common.bean.ShowBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import zhang.bw.com.common.bean.WddaBean;
-import zhang.bw.com.common.bean.XiangBean;
 import zhang.bw.com.common.bean.YaoBean;
-import zhang.bw.com.common.bean.YishengBean;
 
 /**
  * @author dingtao
@@ -52,8 +49,6 @@ public interface IAppRequest {
     Observable<Result<List<BannerBean>>>bannersShow();
     @GET("share/knowledgeBase/v1/findDepartment")
     Observable<Result<List<ShowBean>>>findDepartment();
-    @GET("share/knowledgeBase/v1/findDepartment")
-    Observable<Result<List<ShowBean>>>mingPresenter1();
     @GET("share/knowledgeBase/v1/findDrugsCategoryList")
     Observable<Result<List<MyjiankangBean>>>findInformationPlateList();
     @GET("share/knowledgeBase/v1/findDrugsKnowledgeList")
@@ -78,17 +73,6 @@ public interface IAppRequest {
     @FormUrlEncoded
     @POST("user/video/verify/v1/videoBuy")
     Observable<Result>videoBuy(@Header("userId")long userId, @Header("sessionId")String sessionId,@Field("videoId")String videoId,@Field("price")int price);
-    @FormUrlEncoded
-    @POST("user/video/verify/v1/addVideoComment")
-    Observable<Result>addVideoComment(@Header("userId")long userId, @Header("sessionId")String sessionId,@Field("videoId")String videoId,@Field("content")String content);
-   @GET("share/knowledgeBase/v1/findDrugsKnowledge")
-   Observable<Result<XiangBean>>findDrugsKnowledge(@Query("id")String id);
-   @GET("share/knowledgeBase/v1/findDiseaseKnowledge")
-   Observable<Result<BingZeng>>findDiseaseKnowledge(@Query("id")String id);
-   @GET("share/information/v1/findInformation")
-   Observable<Result<QingBean>>findInformation(@Header("userId")long userId, @Header("sessionId")String sessionId, @Query("infoId")String infoId);
-   @GET("share/v1/homePageSearch")
-   Observable<Result<ShoucuoBean>>homePageSearch(@Query("keyWord")String keyWord);
     //发送邮箱验证码
     @FormUrlEncoded
     @POST("user/v1/sendOutEmailCode")
@@ -162,9 +146,9 @@ public interface IAppRequest {
 
     //医生信息
     @GET("user/inquiry/v1/findDoctorList")
-    Observable<Result<List<YishengBean>>> Yisheng (@Header("userId") long id, @Header("sessionId") String sessionId,
-                                                   @Query("deptId") String deptId, @Query("condition") String condition, @Query("sortBy") String sortBy,
-                                                   @Query("page") String page, @Query("count") String count);
+    Observable<Result> Yisheng (@Header("userId") long id, @Header("sessionId") String sessionId,
+    @Query("deptId") String deptId, @Query("condition") String condition,@Query("sortBy") String sortBy,
+                                                   @Query("page") String page,@Query("count") String count);
 
     //病友圈列表
     @GET("user/sickCircle/v1/findSickCircleList")
@@ -189,35 +173,6 @@ public interface IAppRequest {
                                                     @Query("sickCircleId") String sickCircleId, @Query("page") String page,
                                                     @Query("count") String count);
 
-    //修改密码
-    @PUT("user/verify/v1/updateUserPwd")
-    Observable<Result> updateUserPwd(@Header("userId")long userId,
-                                     @Header("sessionId")String sessionId,
-                                     @Query("oldPwd")String oldPwd,
-                                     @Query("newPwd")String newPwd);
-    //用户查看自己的档案
-    @GET("user/verify/v1/findUserArchives")
-    Observable<Result<WddaBean>> findUserArchives(@Header("userId") long userId,
-                                                  @Header("sessionId") String sessionId);
-    //添加用户档案
-    @FormUrlEncoded
-    @POST("user/verify/v1/addUserArchives")
-    Observable<Result> addUserArchives(@Field("userId")long userId,
-                                       @Field("sessionId")String sessionId,
-                                       @Field("diseaseMain")String diseaseMain,
-                                       @Field("diseaseNow")String diseaseNow,
-                                       @Field("diseaseBefore")String diseaseBefore,
-                                       @Field("treatmentHospitalRecent")String treatmentHospitalRecent,
-                                       @Field("treatmentProcess")String treatmentProcess,
-                                       @Field("treatmentStartTime")String treatmentStartTime,
-                                       @Field("treatmentEndTime")String treatmentEndTime);
-    //完善用户信息
-    @PUT("user/verify/v1/perfectUserInfo")
-    Observable<Result> perfectUserInfo(@Header("userId") long userId,
-                                       @Header("sessionId") String sessionId,
-                                       @Query("height")String height,
-                                       @Query("weight")String weight,
-                                       @Query("age")String age);
     //病友圈评论列表
     @POST("user/sickCircle/verify/v1/publishComment")
     Observable<Result> FaBiaopl(@Header("userId") long id, @Header("sessionId") String sessionId,

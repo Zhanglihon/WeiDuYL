@@ -15,7 +15,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import zhang.bw.com.common.bean.BingBean;
 import zhang.bw.com.common.bean.YaoBean;
 
 public class MyYaoAdapter extends RecyclerView.Adapter<MyYaoAdapter.ViewHolder> {
@@ -37,12 +36,6 @@ public class MyYaoAdapter extends RecyclerView.Adapter<MyYaoAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull MyYaoAdapter.ViewHolder holder, int position) {
         Glide.with(context).load(list.get(position).picture).into(holder.imageView1);
         holder.textView.setText(list.get(position).name);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backm.backm(position,list);
-            }
-        });
     }
 
     @Override
@@ -65,13 +58,5 @@ public class MyYaoAdapter extends RecyclerView.Adapter<MyYaoAdapter.ViewHolder> 
             imageView1 = itemView.findViewById(R.id.yao_image);
             textView = itemView.findViewById(R.id.yao_text1);
         }
-    }
-    public interface Backm{
-        void backm(int i,List<YaoBean> list);
-    }
-    public Backm backm;
-
-    public void setBackm(Backm backm) {
-        this.backm = backm;
     }
 }

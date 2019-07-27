@@ -8,15 +8,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.open_inquiry.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import zhang.bw.com.common.bean.ShowBean;
+import zhang.bw.com.common.bean.ShowBeans;
+import zhang.bw.com.common.util.Constant;
+
 /**
  * @Author：郭强
  * @E-mail： 69666501@163.com
@@ -24,28 +28,35 @@ import zhang.bw.com.common.bean.ShowBean;
  * @Description：XXXX
  */
 public class MingAdapter extends RecyclerView.Adapter<MingAdapter.Holder> {
-    List<ShowBean> list = new ArrayList<>();
+    List<ShowBean> list ;
     Context context;
-    private int id;
 
-    public MingAdapter(Context context) {
+    public MingAdapter(List<ShowBean> list, Context context) {
+        this.list = list;
         this.context = context;
     }
 
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view =View.inflate(context,R.layout.layout_mingadapter,null);
+        View view = LayoutInflater.from(context).inflate(R.layout.layout_mingadapter,null);
         return new Holder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull final Holder holder, final int i) {
         holder.text_ming .setText(list.get(i).getDepartmentName());
+        holder.text_ming.setTextColor(list.get(i).textcolor);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myCallBack.oncelicks(i,list);
+                for (int i = 0; i <list.size() ; i++) {
+                    list.get(i).textcolor=Color.BLACK;
+                }
+                list.get(i).textcolor=Color.parseColor("#3087ea");
+                notifyDataSetChanged();
+                myCallBack.oncelicks(list.get(i).getId());
+
             }
         });
     }
@@ -55,9 +66,10 @@ public class MingAdapter extends RecyclerView.Adapter<MingAdapter.Holder> {
         return list.size();
     }
 
-
-    public void addAll(List<ShowBean> data) {
-        list.addAll(data);
+    public void setsssss(List<ShowBean> data) {
+        if(data!=null){
+            list.addAll(data);
+        }
     }
 
 
@@ -68,14 +80,13 @@ public class MingAdapter extends RecyclerView.Adapter<MingAdapter.Holder> {
             text_ming = itemView.findViewById(R.id.text_ming);
         }
     }
-
-
-    public interface MyCallBack{
-         void oncelicks(int i,List<ShowBean> list);
-    }
-    public MyCallBack myCallBack;
+    MyCallBack myCallBack;
 
     public void setMyCallBack(MyCallBack myCallBack) {
         this.myCallBack = myCallBack;
+    }
+
+    public interface MyCallBack{
+        public void oncelicks(int id);
     }
 }

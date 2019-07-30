@@ -85,7 +85,6 @@ public class ShowActivity extends AppCompatActivity {
 
             }
 
-
         } else if (i == R.id.btn3) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
             btn2.setChecked(false);

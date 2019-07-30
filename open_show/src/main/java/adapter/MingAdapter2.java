@@ -33,9 +33,11 @@ public class MingAdapter2 extends RecyclerView.Adapter<MingAdapter2.ViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MingAdapter2.ViewHolder holder, int i ){
         holder.text_ming.setText(list.get(i).name);
+
         holder.text_ming.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 myCallBack.oncelicks(list.get(i).name);
             }
         });

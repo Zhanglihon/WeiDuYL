@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Bundle;
+import android.os.Environment;
 import android.text.Editable;
 import android.text.Selection;
 import android.text.TextWatcher;
@@ -12,6 +13,7 @@ import android.util.Log;
 import android.view.KeyboardShortcutInfo;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -32,11 +34,14 @@ import com.luck.picture.lib.config.PictureMimeType;
 import com.luck.picture.lib.entity.LocalMedia;
 import com.suke.widget.SwitchButton;
 
+import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import adapter.GridImageAdapter;
 import adapter.MingAdapter;
@@ -45,14 +50,23 @@ import adapter.MingAdapter2;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
+import presenter.FaBiaopl;
+import presenter.FaBubyqPresenter;
 import presenter.MingPresenter;
+import presenter.PublishCirclePresenter;
+import zhang.bw.com.common.DaoMaster;
+import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.BingBean;
+import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.ShowBean;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.FindDiseaseCategory;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
+import zhang.bw.com.common.util.JsonUtil;
 
 /**
  * @Author：郭强
@@ -69,21 +83,30 @@ public class FaBiaoPingLun extends WDActivity {
     private GridImageAdapter adapter;
     private int maxSelectNum = 9;
     private int themeId;
+    List<String> path = new ArrayList<>();
     RelativeLayout relativeLayout;
     SwitchButton switchButton;
     ImageView image_ks,image_bz,image_kstime,image_endtime,image_tjtp;
     RecyclerView recyc_view5 , recyclerView;
     MingAdapter1 mingAdapter1;
-    TextView text_hong,  text_keshi_xia,text_bingzheng_xia;
-    EditText text_keshi_f,text_bingzheng_f,text_kaishitime_f,text_endtime_f;
+    TextView text_hong,  text_keshi_xia,text_bingzheng_xia,text_10,text_20,text_30;
+    EditText text_keshi_f,text_bingzheng_f,text_kaishitime_f,text_endtime_f,text_title_f,text_xiangqing_f
+            ,text_yyname_f,text_zhiliaogc_f;
      MingAdapter2 mingAdapter2;
      FindDiseaseCategory findDiseaseCategory;
     GridLayoutManager gridLayoutManager;
     TimePickerView pvTime;
     TimePickerView pvTime1;
+    Button but_fabiao;
 
+    int hbi=0;
      int ss=-1;
-//    TimePickerBuilder pvCustomTime;
+    private List<LoginBean> loginBeans;
+    private PublishCirclePresenter publishCirclePresenter;
+    private long id;
+    private String sessionId;
+
+    //    TimePickerBuilder pvCustomTime;
     @Override
     protected int getLayoutId() {
         return R.layout.layout_fabiaopinglun;
@@ -91,8 +114,14 @@ public class FaBiaoPingLun extends WDActivity {
 
     @Override
     protected void initView() {
+        LoginBeanDao dao = DaoMaster.newDevSession(this, LoginBeanDao.TABLENAME).getLoginBeanDao();
+        loginBeans = dao.loadAll();
         initfindviewByid();
         initonclicke();
+
+        publishCirclePresenter = new PublishCirclePresenter(new circle());
+        id = loginBeans.get(0).getId();
+        sessionId = loginBeans.get(0).getSessionId();
 
         //时间选择器
         pvTime = new TimePickerView.Builder(this, new TimePickerView.OnTimeSelectListener() {
@@ -181,6 +210,14 @@ public class FaBiaoPingLun extends WDActivity {
         text_kaishitime_f =findViewById(R.id.text_kaishitime_f);
         image_endtime =findViewById(R.id.image_endtime);
         recyclerView = findViewById(R.id.fa_RecyclerViewdddd);
+        but_fabiao = findViewById(R.id.but_fabiao);
+        text_title_f = findViewById(R.id.text_title_f);
+        text_xiangqing_f = findViewById(R.id.text_xiangqing_f);
+        text_yyname_f = findViewById(R.id.text_yyname_f);
+        text_zhiliaogc_f = findViewById(R.id.text_zhiliaogc_f);
+        text_30 = findViewById(R.id.text_30);
+        text_20 = findViewById(R.id.text_20);
+        text_10 = findViewById(R.id.text_10);
 
     }
 
@@ -221,9 +258,6 @@ public class FaBiaoPingLun extends WDActivity {
 
 
         image_ks.setOnClickListener(new View.OnClickListener() {
-
-
-
             @Override
             public void onClick(View v) {
                 // 显示PopupWindow，其中：
@@ -243,14 +277,14 @@ public class FaBiaoPingLun extends WDActivity {
 
 
                     @Override
-                    public void oncelicks(int id, String name) {
-                        ss=id;
+                    public void oncelicks(int ids, String name) {
+                        ss=ids;
                         text_keshi_f.setText(name);
                         text_hong.setTextColor(Color.parseColor("#3078ea"));
                         window .dismiss();
 
                         findDiseaseCategory = new FindDiseaseCategory(new Backh());
-                        findDiseaseCategory.reqeust(id+"");
+                        findDiseaseCategory.reqeust(ids+"");
 
                         window.showAsDropDown(text_bingzheng_xia);
                         recyc_view5.setLayoutManager(gridLayoutManager);
@@ -310,6 +344,75 @@ public class FaBiaoPingLun extends WDActivity {
             }
         });
 
+        text_10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hbi=10;
+            }
+        });
+        text_20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hbi=20;
+            }
+        });
+        text_30.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                hbi=30;
+            }
+        });
+
+        //点击提交发表病友圈
+        FaBubyqPresenter faBubyqPresenter = new FaBubyqPresenter(new recquest());
+        but_fabiao.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String title = text_title_f.getText().toString();
+                String keshi = text_keshi_f.getText().toString();
+                String disease = text_bingzheng_f.getText().toString();
+                String detail =text_xiangqing_f.getText().toString();
+                String treatmentHospital =text_yyname_f.getText().toString();
+                String treatmentStartTime =text_keshi_f.getText().toString();
+                String treatmentEndTime = text_endtime_f.getText().toString();
+                String treatmentProcess =text_zhiliaogc_f.getText().toString();
+
+                if(title.length()==0){
+                    Toast.makeText(FaBiaoPingLun.this, "请输入标题", Toast.LENGTH_SHORT).show();
+                }else if(keshi.length()==0){
+                    Toast.makeText(FaBiaoPingLun.this, "请选择科室", Toast.LENGTH_SHORT).show();
+                }else if(disease.length()==0){
+                    Toast.makeText(FaBiaoPingLun.this, "请选择病症", Toast.LENGTH_SHORT).show();
+                }else if(detail.length()==0){
+                    Toast.makeText(FaBiaoPingLun.this, "请输入病情详情", Toast.LENGTH_SHORT).show();
+                }else if(treatmentHospital.length()==0){
+                    Toast.makeText(FaBiaoPingLun.this, "请输入医院名", Toast.LENGTH_SHORT).show();
+                }else if(treatmentStartTime.length()==0){
+                    Toast.makeText(FaBiaoPingLun.this, "请选择开始时间", Toast.LENGTH_SHORT).show();
+                }else if(treatmentEndTime.length()==0){
+                    Toast.makeText(FaBiaoPingLun.this, "请选择结束时间", Toast.LENGTH_SHORT).show();
+                }else if(treatmentProcess.length()==0){
+                    Toast.makeText(FaBiaoPingLun.this, "请输入治疗过程", Toast.LENGTH_SHORT).show();
+                }else{
+                    Map<String,String> map = new HashMap<>();
+                    map.put("title",title);
+                    map.put("departmentId",ss+"");
+                    map.put("disease",disease);
+                    map.put("detail",detail);
+                    map.put("treatmentHospital",treatmentHospital);
+                    map.put("treatmentStartTime",treatmentStartTime);
+                    map.put("treatmentEndTime",treatmentEndTime);
+                    map.put("treatmentProcess",treatmentProcess);
+                    map.put("amount",hbi+"");
+                    String json = JsonUtil.parseMapToJson(map);
+                    Log.e("ssss",json);
+                    RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json);
+                    Log.e("ssss",body.toString());
+                    faBubyqPresenter.reqeust(id,sessionId,body);
+                }
+
+            }
+        });
     }
 
 
@@ -435,6 +538,7 @@ public class FaBiaoPingLun extends WDActivity {
                 for (LocalMedia media : selectList) {
                     if (media.isCompressed()){
                         //pathList.add(media.getCompressPath());
+                            path.add(media.getCompressPath());
                     }
                 }
                 adapter.setList(selectList);
@@ -447,49 +551,53 @@ public class FaBiaoPingLun extends WDActivity {
     private GridImageAdapter.onAddPicClickListener onAddPicClickListener = new GridImageAdapter.onAddPicClickListener() {
         @Override
         public void onAddPicClick() {
-//            if (true) {
-            // 进入相册 以下是例子：不需要的api可以不写
+
             commonAction(PictureMimeType.ofImage());
-//            }
-//            else {
-            // 单独拍照
-//                PictureSelector.create(MainActivity.this)
-//                        .openCamera(chooseMode)// 单独拍照，也可录像或也可音频 看你传入的类型是图片or视频
-//                        .theme(themeId)// 主题样式设置 具体参考 values/styles
-//                        .maxSelectNum(maxSelectNum)// 最大图片选择数量
-//                        .minSelectNum(1)// 最小选择数量
-//                        .selectionMode(cb_choose_mode.isChecked() ?
-//                                PictureConfig.MULTIPLE : PictureConfig.SINGLE)// 多选 or 单选
-//                        .previewImage(cb_preview_img.isChecked())// 是否可预览图片
-//                        .previewVideo(cb_preview_video.isChecked())// 是否可预览视频
-//                        .enablePreviewAudio(cb_preview_audio.isChecked()) // 是否可播放音频
-//                        .isCamera(cb_isCamera.isChecked())// 是否显示拍照按钮
-//                        .enableCrop(cb_crop.isChecked())// 是否裁剪
-//                        .compress(cb_compress.isChecked())// 是否压缩
-//                        .glideOverride(160, 160)// glide 加载宽高，越小图片列表越流畅，但会影响列表图片浏览的清晰度
-//                        .withAspectRatio(aspect_ratio_x, aspect_ratio_y)// 裁剪比例 如16:9 3:2 3:4 1:1 可自定义
-//                        .hideBottomControls(cb_hide.isChecked() ? false : true)// 是否显示uCrop工具栏，默认不显示
-//                        .isGif(cb_isGif.isChecked())// 是否显示gif图片
-//                        .freeStyleCropEnabled(cb_styleCrop.isChecked())// 裁剪框是否可拖拽
-//                        .circleDimmedLayer(cb_crop_circular.isChecked())// 是否圆形裁剪
-//                        .showCropFrame(cb_showCropFrame.isChecked())// 是否显示裁剪矩形边框 圆形裁剪时建议设为false
-//                        .showCropGrid(cb_showCropGrid.isChecked())// 是否显示裁剪矩形网格 圆形裁剪时建议设为false
-//                        .openClickSound(cb_voice.isChecked())// 是否开启点击声音
-//                        .selectionMedia(selectList)// 是否传入已选图片
-//                        .previewEggs(false)//预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中)
-//                        //.previewEggs(false)// 预览图片时 是否增强左右滑动图片体验(图片滑动一半即可看到上一张是否选中)
-//                        //.cropCompressQuality(90)// 裁剪压缩质量 默认为100
-//                        .minimumCompressSize(100)// 小于100kb的图片不压缩
-//                        //.cropWH()// 裁剪宽高比，设置如果大于图片本身宽高则无效
-//                        //.rotateEnabled() // 裁剪是否可旋转图片
-//                        //.scaleEnabled()// 裁剪是否可放大缩小图片
-//                        //.videoQuality()// 视频录制质量 0 or 1
-//                        //.videoSecond()////显示多少秒以内的视频or音频也可适用
-//                        .forResult(PictureConfig.CHOOSE_REQUEST);//结果回调onActivityResult code
-//            }
-//        }
+
         }
     };
 
 
+    private String getPath() {
+        String path = Environment.getExternalStorageDirectory() + "/Luban/image/";
+        File file = new File(path);
+        if (file.mkdirs()) {
+            return path;
+        }
+        return path;
+    }
+
+    private class recquest implements DataCall<Integer>{
+        @Override
+        public void success(Integer data, Object... args) {
+            Log.e("aaaa",selectList.size()+"======="+data);
+            Toast.makeText(FaBiaoPingLun.this, "发布成功", Toast.LENGTH_SHORT).show();
+
+
+            publishCirclePresenter.reqeust(id,sessionId,data+"",selectList);
+
+
+
+           finish();
+
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+            Log.e("aaaa",data+"");
+        }
+    }
+
+    private class circle implements DataCall {
+        @Override
+        public void success(Object data, Object... args) {
+            Toast.makeText(FaBiaoPingLun.this,"图片上传成功",Toast.LENGTH_SHORT).show();
+            Log.e("aaa","图片上传成功");
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+
+        }
+    }
 }

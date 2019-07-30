@@ -1,4 +1,4 @@
-package com.wd.common.util;
+package zhang.bw.com.common.util;
 
 import android.text.TextUtils;
 

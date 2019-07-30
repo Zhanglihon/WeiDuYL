@@ -6,6 +6,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -182,4 +183,14 @@ public interface IAppRequest {
     @GET("user/sickCircle/v1/findPatientSickCircleList")
     Observable<Result<List<Byliebiao>>> Chabypl(@Query("patientUserId") String patientUserId, @Query("page") String page,
                                @Query("count") String count);
+
+    //发布病友圈
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("user/sickCircle/verify/v1/publishSickCircle")
+    Observable<Result<Integer>> FaBubyq(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                        @Body RequestBody body);
+
+    //上传图片
+    @POST("user/sickCircle/verify/v1/uploadSickCirclePicture")
+    Observable<Result> releaseCircle(@Header("userId") long id, @Header("sessionId") String sessionId, @Body MultipartBody body);
 }

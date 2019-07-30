@@ -7,10 +7,17 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application>
-        <activity android:name=".MyActivity" />
-        <activity android:name=".WdszActivity" />
-        <activity android:name=".WdxxActivity" />
-        <activity android:name=".WddaActivity"></activity>
+        <activity android:name=".activity.MyActivity" />
+        <activity android:name=".activity.WdszActivity" />
+        <activity android:name=".activity.WdxxActivity" />
+        <activity android:name=".activity.WddaActivity" />
+        <activity android:name=".activity.WdbjActivity" />
+        <activity android:name=".activity.WdncActivity" />
+        <activity android:name=".activity.WdsexActivity" />
+        <activity android:name=".activity.WdscActivity" />
+        <activity android:name=".activity.UppwdActivity" />
+        <activity android:name=".activity.ScreenActivity" />
+        <activity android:name=".activity.WdtzActivity"></activity>
     </application>
 
 </manifest>

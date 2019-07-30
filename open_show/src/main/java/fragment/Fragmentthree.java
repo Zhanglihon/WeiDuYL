@@ -29,7 +29,6 @@ import zhang.bw.com.common.bean.GameBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
-import zhang.bw.com.common.bean.Result;
 import zhang.bw.com.common.core.AddUserVideoCollection;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.FindVideoCategoryList;
@@ -50,14 +49,15 @@ public class Fragmentthree extends WDFragment {
     private MyadapterGame myadapterGame;
     private PagerSnapHelper snapHelper;
     private LinearLayoutManager layoutManager;
-    @BindView(R2.id.image_three)
-    ImageView image_three;
+    @BindView(R2.id.three_image)
+    ImageView three_image;
     @BindView(R2.id.barrageView)
     BarrageView barrageView;
     private List<Barrage> mBarrages = new ArrayList<>();
     private FindVideoCommentList findVideoCommentList;
     private String id;
     public boolean aa =true;
+    public  boolean bb = true;
     private AddUserVideoCollection addUserVideoCollection;
 
     @Override
@@ -68,94 +68,85 @@ public class Fragmentthree extends WDFragment {
     @SuppressLint("WrongConstant")
     @Override
     protected void initView() {
+        loginBean = DaoMaster.newDevSession(getContext(),LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
         findVideoCategoryList = new FindVideoCategoryList(new Backj());
         findVideoCategoryList.reqeust();
-            loginBean = DaoMaster.newDevSession(getContext(),LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
-            mynameAdapter = new MynameAdapter(getContext());
-            recyc_thr.setAdapter(mynameAdapter);
-            recyc_thr.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-            findVideoVoList = new FindVideoVoList(new Backo());
-            layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
-            snapHelper = new PagerSnapHelper();
-            snapHelper.attachToRecyclerView(recyc_thr2);
-            recyc_thr2.setLayoutManager(layoutManager);
-            myadapterGame = new MyadapterGame(getActivity());
-            recyc_thr2.setAdapter(myadapterGame);
-            mynameAdapter.setBackv(new MynameAdapter.Backv() {
-                @Override
-                public void bv(int i, List<NameBean> list) {
-                    id = list.get(i).id;
-                    findVideoVoList.reqeust(loginBean.getId(),loginBean.getSessionId(),id,"1","10");
+        mynameAdapter = new MynameAdapter(getContext());
+        recyc_thr.setAdapter(mynameAdapter);
+        recyc_thr.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        findVideoVoList = new FindVideoVoList(new Backo());
+        layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        snapHelper = new PagerSnapHelper();
+        snapHelper.attachToRecyclerView(recyc_thr2);
+        recyc_thr2.setLayoutManager(layoutManager);
+        myadapterGame = new MyadapterGame(getActivity());
+        recyc_thr2.setAdapter(myadapterGame);
+        mynameAdapter.setBackv(new MynameAdapter.Backv() {
+           @Override
+           public void bv(int i, List<NameBean> list) {
+                id = list.get(i).id;
+               findVideoVoList.reqeust(loginBean.getId(),loginBean.getSessionId(),id,"1","10");
 
+           }
+       });
+       mynameAdapter.setOnRecyclerViewItemClickListener(new MyAdapter2.OnItemClickListener() {
+           @Override
+           public void onClick(int position) {
+               mynameAdapter.setThisPosition(position);
+               mynameAdapter.notifyDataSetChanged();
+           }
+       });
+        recyc_thr2.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+
+
+            }
+
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                switch (newState) {
+                    case RecyclerView.SCROLL_STATE_IDLE://停止滚动
+                        View view = snapHelper.findSnapView(layoutManager);
+                        JZVideoPlayer.releaseAllVideos();
+                        RecyclerView.ViewHolder viewHolder = recyclerView.getChildViewHolder(view);
+                        if (viewHolder != null && viewHolder instanceof MyadapterGame.VideoViewHolder) {
+                            ((MyadapterGame.VideoViewHolder) viewHolder).mp_video.startVideo();
+                        }
+
+                        break;
+                    case RecyclerView.SCROLL_STATE_DRAGGING://拖动
+                        break;
+                    case RecyclerView.SCROLL_STATE_SETTLING://惯性滑动
+                        break;
                 }
-            });
-            mynameAdapter.setOnRecyclerViewItemClickListener(new MyAdapter2.OnItemClickListener() {
-                @Override
-                public void onClick(int position) {
-                    mynameAdapter.setThisPosition(position);
-                    mynameAdapter.notifyDataSetChanged();
+
+            }
+        });
+
+        findVideoCommentList = new FindVideoCommentList(new Backg());
+        addUserVideoCollection = new AddUserVideoCollection(new Backd());
+        myadapterGame.setBach(new MyadapterGame.Bach() {
+            @Override
+            public void ba(int i, List<GameBean> list) {
+                addUserVideoCollection.reqeust(loginBean.getId(),loginBean.getSessionId(),id);
+            }
+        });
+        myadapterGame.setBacc(new MyadapterGame.Bacc() {
+            @Override
+            public void bi(int i, List<GameBean> list) {
+                id = list.get(i).id;
+                findVideoCommentList.reqeust(id);
+                if(aa){
+                    aa= false;
+                    barrageView.setVisibility(View.GONE);
+                }else {
+                    aa= true;
+                    barrageView.setVisibility(View.VISIBLE);
                 }
-            });
-            recyc_thr2.addOnScrollListener(new RecyclerView.OnScrollListener() {
-                @Override
-                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-
-
-                }
-
-                @Override
-                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                    switch (newState) {
-                        case RecyclerView.SCROLL_STATE_IDLE://停止滚动
-                            View view = snapHelper.findSnapView(layoutManager);
-                            JZVideoPlayer.releaseAllVideos();
-                            RecyclerView.ViewHolder viewHolder = recyclerView.getChildViewHolder(view);
-                            if (viewHolder != null && viewHolder instanceof MyadapterGame.VideoViewHolder) {
-                                ((MyadapterGame.VideoViewHolder) viewHolder).mp_video.startVideo();
-                            }
-
-                            break;
-                        case RecyclerView.SCROLL_STATE_DRAGGING://拖动
-                            break;
-                        case RecyclerView.SCROLL_STATE_SETTLING://惯性滑动
-                            break;
-                    }
-
-                }
-            });
-        image_three.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Toast.makeText(getActivity(),"我好帅",Toast.LENGTH_LONG).show();
-                }
-            });
-
-            findVideoCommentList = new FindVideoCommentList(new Backg());
-            addUserVideoCollection = new AddUserVideoCollection(new Backd());
-            myadapterGame.setBach(new MyadapterGame.Bach() {
-                @Override
-                public void ba(int i, List<GameBean> list) {
-                    addUserVideoCollection.reqeust(loginBean.getId(),loginBean.getSessionId(),id);
-                    myadapterGame.notifyDataSetChanged();
-                }
-            });
-            myadapterGame.setBacc(new MyadapterGame.Bacc() {
-                @Override
-                public void bi(int i, List<GameBean> list) {
-                    id = list.get(i).id;
-                    findVideoCommentList.reqeust(id);
-                    if(aa){
-                        aa= false;
-                        barrageView.setVisibility(View.GONE);
-                    }else {
-                        aa= true;
-                        barrageView.setVisibility(View.VISIBLE);
-                    }
-                }
-            });
-            barrageView.setBarrages(mBarrages);
-
-
+            }
+        });
+        barrageView.setBarrages(mBarrages);
     }
     class Backj implements DataCall<List<NameBean>>{
 
@@ -208,10 +199,10 @@ public class Fragmentthree extends WDFragment {
 
         }
     }
-    class Backd implements DataCall<Result>{
+    class Backd implements DataCall{
 
         @Override
-        public void success(Result data, Object... args) {
+        public void success(Object data, Object... args) {
 
         }
 

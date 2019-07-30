@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.bw.open_wallet.R;
 import com.bw.open_wallet.RecordActivity;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -41,8 +42,9 @@ public class HbAdapter extends RecyclerView.Adapter<HbAdapter.Holder> {
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int i) {
             holder.text_content.setText(list.get(i).getContent());
-        Log.e("aaa",list.get(i).getCreateTime());
-            holder.text_createTime.setText(list.get(i).getCreateTime());
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String dateString = formatter.format(list.get(i).getCreateTime());
+            holder.text_createTime.setText(dateString);
     }
 
     @Override
@@ -55,6 +57,7 @@ public class HbAdapter extends RecyclerView.Adapter<HbAdapter.Holder> {
         public Holder(@NonNull View itemView) {
             super(itemView);
             text_content=itemView.findViewById(R.id.text_content);
+
             text_createTime=itemView.findViewById(R.id.text_createTime);
         }
     }

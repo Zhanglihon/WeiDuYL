@@ -168,6 +168,7 @@
                         android:layout_marginTop="8dp"
                         android:background="@null"
                         android:hint="请输入治疗过程"/>
+                        android:hint="每天进行扎针和按摩，现在情况已经好转了，眼睛已经可以闭合了，说话也没那么费劲了。"/>
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="1dp"

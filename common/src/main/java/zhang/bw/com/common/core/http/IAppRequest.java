@@ -10,7 +10,11 @@ import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
+import retrofit2.http.Multipart;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
 import zhang.bw.com.common.bean.ByXiangqingBean;
@@ -24,6 +28,8 @@ import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
+import zhang.bw.com.common.bean.PingLunBean;
+import zhang.bw.com.common.bean.PriceBean;
 import zhang.bw.com.common.bean.Result;
 import zhang.bw.com.common.bean.ShouziBean;
 import zhang.bw.com.common.bean.ShowBean;
@@ -161,6 +167,11 @@ public interface IAppRequest {
     @GET("user/sickCircle/v1/findSickCircleInfo")
     Observable<Result<ByXiangqingBean>> Byxiangqing(@Header("userId") long id, @Header("sessionId") String sessionId,
                                                           @Query("sickCircleId") String sickCircleId);
+    //病友圈评论列表
+    @GET("user/sickCircle/v1/findSickCircleCommentList")
+    Observable<Result<List<PingLunBean>>> PingLunlb(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                                    @Query("sickCircleId") String sickCircleId, @Query("page") String page,
+                                                    @Query("count") String count);
 
     //修改密码
     @PUT("user/verify/v1/updateUserPwd")
@@ -194,4 +205,23 @@ public interface IAppRequest {
                                                               @Header("sessionId")String sessionId,
                                                               @Query("page")int page,
                                                               @Query("count")int count);
+    //病友圈评论列表
+    @POST("user/sickCircle/verify/v1/publishComment")
+    Observable<Result> FaBiaopl(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                                    @Query("sickCircleId") String sickCircleId, @Query("content") String content);
+
+    //查询病友圈人发表的病友圈意见
+    @GET("user/sickCircle/v1/findPatientSickCircleList")
+    Observable<Result<List<Byliebiao>>> Chabypl(@Query("patientUserId") String patientUserId, @Query("page") String page,
+                               @Query("count") String count);
+
+    //发布病友圈
+    @Headers({"Content-Type: application/json","Accept: application/json"})
+    @POST("user/sickCircle/verify/v1/publishSickCircle")
+    Observable<Result<Integer>> FaBubyq(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                        @Body RequestBody body);
+
+    //上传图片
+    @POST("user/sickCircle/verify/v1/uploadSickCirclePicture")
+    Observable<Result> releaseCircle(@Header("userId") long id, @Header("sessionId") String sessionId, @Body MultipartBody body);
 }

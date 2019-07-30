@@ -6,6 +6,7 @@ import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -16,26 +17,21 @@ import zhang.bw.com.common.bean.ByXiangqingBean;
 import zhang.bw.com.common.bean.BingBean;
 import zhang.bw.com.common.bean.Byliebiao;
 import zhang.bw.com.common.bean.HbchaXun;
-import zhang.bw.com.common.bean.BingBean;
 import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.GameBean;
-import zhang.bw.com.common.bean.HbchaXun;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
-import zhang.bw.com.common.bean.PriceBean;
-import zhang.bw.com.common.bean.QingBean;
 import zhang.bw.com.common.bean.Result;
 import zhang.bw.com.common.bean.ShouziBean;
-import zhang.bw.com.common.bean.ShoucuoBean;
 import zhang.bw.com.common.bean.ShowBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
-import zhang.bw.com.common.bean.XiangBean;
 import zhang.bw.com.common.bean.WddaBean;
+import zhang.bw.com.common.bean.WdscVideoBean;
 import zhang.bw.com.common.bean.YaoBean;
 
 /**
@@ -57,7 +53,7 @@ public interface IAppRequest {
     @GET("share/information/v1/findInformationList")
     Observable<Result<List<JanBean>>>findDrugsKnowledgeList1(@Query("plateId")String plateId, @Query("page")String page, @Query("count")String count);
     @GET("share/knowledgeBase/v1/findDiseaseCategory")
-    Observable<Result<List<BingBean>>>findDiseaseCategory(@Query("departmentId")int departmentId);
+    Observable<Result<List<BingBean>>>findDiseaseCategory(@Query("departmentId")String departmentId);
     @GET("user/video/v1/findVideoCategoryList")
     Observable<Result<List<NameBean>>>findVideoCategoryList();
     @GET("user/video/v1/findVideoVoList")
@@ -108,10 +104,9 @@ public interface IAppRequest {
                                     @Query("pwd1") String pwd1,
                                     @Query("pwd2")String pwd2);
     //用户签到
-    @FormUrlEncoded
     @POST("user/verify/v1/addSign")
-    Observable<Result> addSign(@Field("userId")long userId,
-                               @Field("sessionId")String sessionId);
+    Observable<Result> addSign(@Header("userId") long userId,
+                               @Header("sessionId") String sessionId);
     //修改用户昵称
     @FormUrlEncoded
     @PUT("user/verify/v1/modifyNickName")
@@ -167,6 +162,36 @@ public interface IAppRequest {
     Observable<Result<ByXiangqingBean>> Byxiangqing(@Header("userId") long id, @Header("sessionId") String sessionId,
                                                           @Query("sickCircleId") String sickCircleId);
 
-
-
+    //修改密码
+    @PUT("user/verify/v1/updateUserPwd")
+    Observable<Result> updateUserPwd(@Header("userId")long userId,
+                                     @Header("sessionId")String sessionId,
+                                     @Query("oldPwd")String oldPwd,
+                                     @Query("newPwd")String newPwd);
+    //用户查看自己的档案
+    @GET("user/verify/v1/findUserArchives")
+    Observable<Result<WddaBean>> findUserArchives(@Header("userId") long userId,
+                                                  @Header("sessionId") String sessionId);
+    //添加用户档案
+    @POST("user/verify/v1/addUserArchives")
+    Observable<Result> addUserArchives(@Header("userId") long userId,
+                                       @Header("sessionId") String sessionId,
+                                       @Body RequestBody body);
+    //完善用户信息
+    @PUT("user/verify/v1/perfectUserInfo")
+    Observable<Result> perfectUserInfo(@Header("userId") long userId,
+                                       @Header("sessionId") String sessionId,
+                                       @Query("height")String height,
+                                       @Query("weight")String weight,
+                                       @Query("age")String age);
+    //查询用户当天是否签到
+    @GET("user/verify/v1/whetherSignToday")
+    Observable<Result<Integer>> whetherSignToday(@Header("userId")long userId,
+                                                      @Header("sessionId")String sessionId);
+    //用户收藏健康课堂视频列表
+    @GET("user/verify/v1/findVideoCollectionList")
+    Observable<Result<List<WdscVideoBean>>> findVideoCollectionList(@Header("userId")long userId,
+                                                              @Header("sessionId")String sessionId,
+                                                              @Query("page")int page,
+                                                              @Query("count")int count);
 }

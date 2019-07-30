@@ -3,6 +3,7 @@ package zhang.bw.com.open_my.activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,18 +31,31 @@ import zhang.bw.com.open_my.presenter.WddaPresenter;
 
 public class WddaActivity extends WDActivity {
 
-    @BindView(R2.id.wdda_bj)
-    Button wddaBj;
-    @BindView(R2.id.wdda_sc)
-    Button wddaSc;
-    @BindView(R2.id.wdda_tj)
-    Button wddaTj;
-    @BindView(R2.id.Nested_ysj)
-    NestedScrollView NestedYsj;
-    @BindView(R2.id.wdda_wsj)
-    RelativeLayout wddaWsj;
+
     @BindView(R2.id.wdda_image_back)
     ImageView wddaImageBack;
+    @BindView(R2.id.wdda_zz)
+    TextView wddaZz;
+    @BindView(R2.id.wdda_xbs)
+    TextView wddaXbs;
+    @BindView(R2.id.wdda_jwbs)
+    TextView wddaJwbs;
+    @BindView(R2.id.wdda_yy)
+    TextView wddaYy;
+    @BindView(R2.id.wdda_fbsj)
+    TextView wddaFbsj;
+    @BindView(R2.id.wdda_zljl)
+    TextView wddaZljl;
+    @BindView(R2.id.wdda_sc)
+    Button wddaSc;
+    @BindView(R2.id.wdda_bj)
+    Button wddaBj;
+    @BindView(R2.id.Nested_ysj)
+    NestedScrollView NestedYsj;
+    @BindView(R2.id.wdda_tj)
+    Button wddaTj;
+    @BindView(R2.id.wdda_wsj)
+    RelativeLayout wddaWsj;
     private PopupWindow window;
     private View inflate;
     private TextView wdda_qu;
@@ -139,6 +153,12 @@ public class WddaActivity extends WDActivity {
             } else {
                 wddaWsj.setVisibility(View.GONE);
             }
+            String name=data.diseaseMain;
+            wddaZz.setText(name);
+            wddaXbs.setText(data.diseaseNow);
+            wddaJwbs.setText(data.diseaseBefore);
+            wddaYy.setText(data.treatmentHospitalRecent);
+            wddaZljl.setText(data.treatmentProcess);
             Toast.makeText(WddaActivity.this, "用户档案查询成功", Toast.LENGTH_SHORT).show();
         }
 

@@ -1,8 +1,11 @@
 package com.example.open_inquiry;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.text.TextPaint;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -11,9 +14,13 @@ import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bumptech.glide.Glide;
 import com.example.open_inquiry.adapter.MingAdapter;
+import com.example.open_inquiry.adapter.MyDialog;
 import com.example.open_inquiry.adapter.YishengAdaoter;
 import com.example.open_inquiry.presenter.MingPresenter1;
+import com.example.open_inquiry.presenter.XiangActivity;
 import com.example.open_inquiry.presenter.YishengPresenter;
+import com.facebook.drawee.view.SimpleDraweeView;
+
 import java.util.List;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -27,7 +34,6 @@ import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
-
 /**
  * @Author：郭强
  * @E-mail： 69666501@163.com
@@ -47,7 +53,7 @@ public class ShouActivity extends WDActivity {
     private YishengAdaoter yishengAdaoter;
     private LoginBean loginBean;
     @BindView(R2.id.image_ren)
-    ImageView image_ren;
+    SimpleDraweeView image_ren;
     @BindView(R2.id.text_name)
     TextView text_name;
     @BindView(R2.id.text_zhiwu)
@@ -60,6 +66,13 @@ public class ShouActivity extends WDActivity {
     TextView text_num;
     @BindView(R2.id.text_cishu)
     TextView text_cishu;
+    @BindView(R2.id.xiaoxi)
+    ImageView xiaoxi;
+    private String doctorId;
+    @BindView(R2.id.but_zixun)
+    Button but_zixun;
+    private int servicePrice;
+    private MyDialog dialog;
 
     @Override
     protected int getLayoutId() {
@@ -68,14 +81,11 @@ public class ShouActivity extends WDActivity {
 
     @Override
     protected void initView() {
-        Toast.makeText(ShouActivity.this,list+"",Toast.LENGTH_LONG).show();
         loginBean = DaoMaster.newDevSession(ShouActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
         recycler_view = findViewById(R.id.recyc_view);
         recyc_view_1 = findViewById(R.id.recyc_view_1);
         TextPaint paint2 = text_name.getPaint();
         paint2.setFakeBoldText(true);
-        Toast.makeText(ShouActivity.this,ide+"",Toast.LENGTH_LONG).show();
-
         //请求科目
                MingPresenter1 mingPresenter= new MingPresenter1(new Backm());
                 mingPresenter.reqeust();
@@ -97,17 +107,56 @@ public class ShouActivity extends WDActivity {
 
         yishengAdaoter = new YishengAdaoter(ShouActivity.this);
         recyc_view_1.setAdapter(yishengAdaoter);
+
         recyc_view_1.setLayoutManager(new LinearLayoutManager(ShouActivity.this,LinearLayoutManager.HORIZONTAL,false));
         yishengAdaoter.setBaop(new YishengAdaoter.Baop() {
             @Override
             public void bop(int i, List<YishengBean> list) {
+                servicePrice = list.get(i).servicePrice;
+                doctorId = list.get(i).doctorId;
                 text_num.setText("服务患者数 "+list.get(i).serverNum);
                 text_haopin.setText("好评率 "+list.get(i).praise);
                 text_name.setText(list.get(i).doctorName);
                 text_zhiwu.setText(list.get(i).jobTitle);
                 text_adrss.setText(list.get(i).inauguralHospital);
                 text_cishu.setText(list.get(i).servicePrice+"H币/次");
-                Glide.with(ShouActivity.this).load(list.get(i).imagePic).into(image_ren);
+                image_ren.setImageURI(list.get(i).imagePic);
+            }
+        });
+        xiaoxi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              if(doctorId!=null){
+                  Intent intent = new Intent(ShouActivity.this,XiangActivity.class);
+                  intent.putExtra("oo",doctorId);
+                  startActivity(intent);
+              }
+            }
+        });
+        but_zixun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                View view1 =View.inflate(ShouActivity.this,R.layout.popw,null);
+                TextView  textprice=  view1.findViewById(R.id.textView11);
+                textprice.setText("本次咨询将扣除"+servicePrice+"H币!");
+                dialog = new MyDialog(ShouActivity.this, 200, 100, view1, R.style.dialog);
+                dialog.show();
+                final TextView cancel1 =
+                        (TextView) view1.findViewById(R.id.cancel1);
+                final TextView confirm1 =
+                        (TextView)view1.findViewById(R.id.confirm1);
+                cancel1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                confirm1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                    }
+                });
             }
         });
         yishengAdaoter.setOnRecyclerViewItemClickListener(new YishengAdaoter.OnItemClickListener() {
@@ -117,6 +166,7 @@ public class ShouActivity extends WDActivity {
                 yishengAdaoter.notifyDataSetChanged();
             }
         });
+
 
     }
 
@@ -142,8 +192,20 @@ public class ShouActivity extends WDActivity {
      class Bckp implements DataCall<List<YishengBean>>{
         @Override
             public void success(List<YishengBean> data, Object... args) {
-                    yishengAdaoter.adALL(data);
-                    yishengAdaoter.notifyDataSetChanged();
+
+               if(data!=null){
+                   servicePrice = data.get(0).servicePrice;
+                   doctorId = data.get(0).doctorId;
+                   text_num.setText("服务患者数 "+data.get(0).serverNum);
+                   text_haopin.setText("好评率 "+data.get(0).praise);
+                   text_name.setText(data.get(0).doctorName);
+                   text_zhiwu.setText(data.get(0).jobTitle);
+                   text_adrss.setText(data.get(0).inauguralHospital);
+                   text_cishu.setText(data.get(0).servicePrice+"H币/次");
+                   image_ren.setImageURI(data.get(0).imagePic);
+               }
+                yishengAdaoter.adALL(data);
+               yishengAdaoter.notifyDataSetChanged();
             }
 
         @Override

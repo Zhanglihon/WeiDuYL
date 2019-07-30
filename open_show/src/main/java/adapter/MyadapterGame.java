@@ -26,6 +26,7 @@ import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.GameBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.Result;
+import zhang.bw.com.common.core.AddUserVideoCollection;
 import zhang.bw.com.common.core.AddVideoComment;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.FindUserWallet1;
@@ -86,28 +87,6 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
               bacc.bi(position,list);
             }
         });
-
-        holder.shou_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if(bb){
-                    bb = true;
-                    holder.shou_image.setBackgroundResource(R.mipmap.common_button_collection_large_s);
-                }else {
-                    bb = false;
-                    holder.shou_image.setBackgroundResource(R.mipmap.common_button_collection_small_n);
-                }
-
-                bach.ba(position,list);
-                list.get(position).whetherCollection =1;
-                notifyDataSetChanged();
-            }
-        });
-        if(list.get(position).whetherBuy == 2){
-            holder.miao_text.setBackgroundResource(R.drawable.aa);
-            holder.miao_text.getBackground().setAlpha(30);
-            holder.miao_text.setText("试看15s,购买看完整视频");
-        }
         if(list.get(position).whetherCollection == 1)
         {
             holder.shou_image.setBackgroundResource(R.mipmap.common_button_collection_large_s);
@@ -116,11 +95,27 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
         {
             holder.shou_image.setBackgroundResource(R.mipmap.common_button_collection_small_n);
         }
+        AddUserVideoCollection  addUserVideoCollection= new AddUserVideoCollection(new Backh());
+        holder.shou_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                String id = list.get(position).id;
+                bach.ba(position,list);
+                list.get(position).whetherCollection =1;
+                notifyDataSetChanged();
+                addUserVideoCollection.reqeust(loginBean.getId(),loginBean.getSessionId(),id);
+            }
+        });
+
+
         if(list.get(position).whetherBuy == 1){
             holder.game_image1.setBackgroundResource(R.mipmap.common_icon_comment_samll_s);
-
+            holder.miao_text.setVisibility(View.GONE);
         }
         if(list.get(position).whetherBuy == 2){
+            holder.miao_text.setBackgroundResource(R.drawable.aa);
+            holder.miao_text.getBackground().setAlpha(30);
+            holder.miao_text.setText("试看15s,购买看完整视频");
             holder.game_image1.setBackgroundResource(R.mipmap.common_icon_toll_n);
         }
         holder.game_image1.setOnClickListener(new View.OnClickListener() {
@@ -214,14 +209,25 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
 
         });
     }
+class Backh implements DataCall{
 
+    @Override
+    public void success(Object data, Object... args) {
+
+    }
+
+    @Override
+    public void fail(ApiException data, Object... args) {
+
+    }
+}
 
     class Backg implements DataCall<Result>{
 
         @Override
         public void success(Result data, Object... args) {
-            Toast.makeText(context,data.getMessage()+"",Toast.LENGTH_LONG).show();
             findUserWallet1.reqeust(loginBean.getId(),loginBean.getSessionId());
+
         }
 
         @Override
@@ -233,7 +239,6 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
 
         @Override
         public void success(Object data, Object... args) {
-
                     mPopWindow1.dismiss();
         }
 

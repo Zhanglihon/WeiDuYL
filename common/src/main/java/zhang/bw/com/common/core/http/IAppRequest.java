@@ -5,8 +5,10 @@ package zhang.bw.com.common.core.http;
 import java.util.List;
 
 import io.reactivex.Observable;
+import io.reactivex.Observer;
 import okhttp3.MultipartBody;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.PUT;
@@ -36,6 +38,7 @@ import retrofit2.http.POST;
 import zhang.bw.com.common.bean.XiangBean;
 import zhang.bw.com.common.bean.YaoBean;
 import zhang.bw.com.common.bean.YishengBean;
+import zhang.bw.com.common.bean.ZixunBean;
 
 /**
  * @author dingtao
@@ -80,6 +83,8 @@ public interface IAppRequest {
    Observable<Result<XiangBean>>findDrugsKnowledge(@Query("id")String id);
    @GET("share/knowledgeBase/v1/findDiseaseKnowledge")
    Observable<Result<BingZeng>>findDiseaseKnowledge(@Query("id")String id);
+   @GET("user/inquiry/v1/findDoctorInfo")
+   Observable<Result<ZixunBean>>findDoctorInfo(@Header("userId")long userId, @Header("sessionId")String sessionId, @Query("doctorId")String doctorId );
    @GET("share/information/v1/findInformation")
    Observable<Result<QingBean>>findInformation(@Header("userId")long userId, @Header("sessionId")String sessionId, @Query("infoId")String infoId);
    @GET("share/v1/homePageSearch")
@@ -88,6 +93,12 @@ public interface IAppRequest {
     @FormUrlEncoded
     @POST("user/v1/sendOutEmailCode")
     Observable<Result> sendOutEmailCode(@Field("email")String email);
+    @FormUrlEncoded
+    @POST("user/inquiry/verify/v1/followDoctor")
+    Observable<Result>followDoctor(@Header("userId")long userId,@Header("sessionId")String sessionId,@Field("doctorId")String doctorId);
+
+    @DELETE("user/inquiry/verify/v1/cancelFollow")
+    Observable<Result>cancelFollow(@Header("userId")long userId,@Header("sessionId")String sessionId,@Query("doctorId") String doctorId);
     //注册
     @FormUrlEncoded
     @POST("user/v1/register")

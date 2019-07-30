@@ -2,6 +2,7 @@ package zhang.bw.com.open_my.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -17,6 +18,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -26,12 +28,14 @@ import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.LoginBean;
+import zhang.bw.com.common.bean.Result;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
 import zhang.bw.com.open_my.R;
 import zhang.bw.com.open_my.R2;
+import zhang.bw.com.open_my.presenter.UserSignPresenter;
 import zhang.bw.com.open_my.presenter.WdxxPresenter;
 import zhang.bw.com.open_my.presenter.YhqdPresenter;
 
@@ -79,6 +83,10 @@ public class MyActivity extends WDActivity {
     @Override
     protected void initView() {
         loginBean = DaoMaster.newDevSession(MyActivity.this, LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
+        //查询签到
+        UserSignPresenter userSignPresenter=new UserSignPresenter(new usersign());
+        userSignPresenter.reqeust(loginBean.getId(),loginBean.sessionId);
+        //签到
         yhqdPresenter = new YhqdPresenter(new qd());
         myQiandao.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -191,12 +199,11 @@ public class MyActivity extends WDActivity {
         @Override
         public void success(Object data, Object... args) {
             Toast.makeText(MyActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
-
         }
 
         @Override
         public void fail(ApiException data, Object... args) {
-            Toast.makeText(MyActivity.this, "签到失败", Toast.LENGTH_SHORT).show();
+
         }
     }
 
@@ -210,6 +217,24 @@ public class MyActivity extends WDActivity {
 
         @Override
         public void fail(ApiException data, Object... args) {
+            Toast.makeText(MyActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
+        }
+    }
+    class usersign implements DataCall<Integer>{
+
+        @Override
+        public void success(Integer data, Object... args) {
+            Log.i("qq",data+"");
+            if (data==1){
+                myQiandao.setText("已签到");
+            }else{
+                myQiandao.setText("未签到");
+            }
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+
         }
     }
 }

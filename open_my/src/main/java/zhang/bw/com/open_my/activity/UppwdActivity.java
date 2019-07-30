@@ -70,6 +70,7 @@ public class UppwdActivity extends WDActivity {
         @Override
         public void success(Object data, Object... args) {
             Toast.makeText(UppwdActivity.this, "密码修改成功", Toast.LENGTH_SHORT).show();
+            finish();
         }
 
         @Override

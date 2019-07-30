@@ -13,15 +13,20 @@ import com.bigkoo.pickerview.TimePickerView;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
+import zhang.bw.com.common.util.JsonUtil;
 import zhang.bw.com.open_my.R;
 import zhang.bw.com.open_my.R2;
 import zhang.bw.com.open_my.presenter.WdbjPresenter;
@@ -83,7 +88,17 @@ public class WdbjActivity extends WDActivity {
                 String starttime = wdbjTextStart.getText().toString();
                 String endtime = wdbjTextEnd.getText().toString();
                 String zlgc = wdbjZlgc.getText().toString();
-                wdbjPresenter.reqeust(loginBean.getId(), loginBean.getSessionId(), zz, xbs, jwbs, yymc, starttime, endtime, zlgc);
+                Map<String,String> hasMap=new HashMap<>();
+                hasMap.put("zz",zz);
+                hasMap.put("xbs",xbs);
+                hasMap.put("jwbs",jwbs);
+                hasMap.put("yymc",yymc);
+                hasMap.put("starttime",starttime);
+                hasMap.put("endtime",endtime);
+                hasMap.put("zlgc",zlgc);
+                String s=JsonUtil.parseMapToJson(hasMap);
+                RequestBody body = RequestBody.create(MediaType.parse("application/json;charset=UTF-8"), s);
+                wdbjPresenter.reqeust(loginBean.getId(), loginBean.getSessionId(),body);
             }
         });
 

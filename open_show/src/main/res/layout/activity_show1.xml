@@ -21,8 +21,8 @@
             android:background="@mipmap/historical_inquiry" />
 
         <ImageView
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_marginTop="20dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="12dp"
@@ -61,11 +61,11 @@
         </RelativeLayout>
 
     </LinearLayout>
-
     <FrameLayout
         android:id="@+id/show1_frame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"></FrameLayout>
+        android:layout_weight="1"
+        ></FrameLayout>
 
 </LinearLayout>

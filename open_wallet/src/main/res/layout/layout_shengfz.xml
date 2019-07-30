@@ -2,122 +2,122 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent"
-    android:background="#f2f2f2">
+    android:layout_height="match_parent">
     <RelativeLayout
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="#fff"
-        android:gravity="clip_horizontal">
-        <ImageView
-            android:id="@+id/wdda_image_back"
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginLeft="20dp"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"
-            android:background="@mipmap/common_icon_back_black_n"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="15dp"
-            android:layout_marginTop="0dp"
-            android:text="实名认证" />
-    </RelativeLayout>
+        android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/image_fan"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="40dp"
+        android:src="@mipmap/wallet_left" />
+
+
+    <TextView
+        android:id="@+id/text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:text="绑定身份证"
+        android:textStyle="bold"
+        android:textColor="#333333"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/text_k"
+        android:layout_width="match_parent"
+        android:layout_height="6dp"
+        android:layout_below="@id/image_fan"
+        android:layout_marginTop="40dp"
+        android:background="#F2F2F2" />
+
+    </RelativeLayout>
+    
     <RelativeLayout
+    android:layout_marginTop="40dp"
+    android:layout_marginRight="50dp"
+    android:layout_marginLeft="50dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:scaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="#fff">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="50dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/id_card_front" />
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginRight="22dp"
-                    android:layout_marginTop="50dp"
-                    android:background="@mipmap/common_icon_close_n"
-                    android:layout_alignParentRight="true"
-                    android:visibility="gone"/>
-                <ImageView
-                    android:id="@+id/image_xiang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/my_icon_camera_n" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/image_xiang"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="50dp"
-                    android:text="点击拍摄/上传人像面"
-                    android:textColor="#3087EA"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-    </RelativeLayout>
+        android:src="@mipmap/id_card_front"/>
+    <ImageView
+        android:id="@+id/image_xiang"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/my_icon_camera_n"/>
+
+    <TextView
+        android:textColor="#3087EA"
+        android:textSize="14sp"
+        android:text="点击拍摄/上传人像面"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/image_xiang"/>
+
+</RelativeLayout>
+
     <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginLeft="50dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#fff">
+        android:layout_height="wrap_content">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
             android:scaleType="fitXY"
             android:src="@mipmap/id_card_back" />
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginRight="22dp"
-            android:layout_marginTop="50dp"
-            android:background="@mipmap/common_icon_close_n"
-            android:layout_alignParentRight="true"
-            android:visibility="gone"/>
-        <ImageView
             android:id="@+id/image_xiangj"
+            android:layout_marginTop="30dp"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:src="@mipmap/my_icon_camera_n" />
+            android:src="@mipmap/my_icon_camera_n"/>
 
         <TextView
+            android:textColor="#3087EA"
+            android:textSize="14sp"
+            android:text="点击拍摄/上传国徽面"
+            android:layout_marginTop="20dp"
+            android:layout_centerHorizontal="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/image_xiangj"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="20dp"
-            android:text="点击拍摄/上传国徽面"
-            android:textColor="#3087EA"
-            android:textSize="14sp" />
-        <Button
-            android:id="@+id/but_xyb"
-            android:text="确定"
-            android:layout_below="@id/image_zfb"
-            android:layout_marginRight="20dp"
-            android:textColor="#fff"
-            android:layout_marginLeft="20dp"
-            android:background="@drawable/yuanjiao_zise"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="60dp"/>
+            android:layout_below="@id/image_xiangj"/>
+
+
     </RelativeLayout>
+
+    <Button
+        android:id="@+id/but_xyb"
+        android:layout_marginTop="84dp"
+        android:text="下一步"
+        android:layout_below="@id/image_zfb"
+        android:layout_marginRight="20dp"
+        android:textColor="#fff"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/yuanjiao_zise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
 </LinearLayout>

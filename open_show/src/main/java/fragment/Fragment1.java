@@ -1,7 +1,9 @@
 package fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 
+import com.example.open_show.BingActivity;
 import com.example.open_show.R;
 import com.example.open_show.R2;
 
@@ -20,7 +22,6 @@ import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.FindDepartmentPresenter;
 import zhang.bw.com.common.core.FindDiseaseCategory;
 import zhang.bw.com.common.core.WDFragment;
-import zhang.bw.com.common.core.WDPresenter;
 import zhang.bw.com.common.core.exception.ApiException;
 ;
 public class Fragment1 extends WDFragment {
@@ -47,7 +48,6 @@ public class Fragment1 extends WDFragment {
         myBingAdapter = new MyBingAdapter(getActivity());
         recyc2.setAdapter(myBingAdapter);
         findDiseaseCategory = new FindDiseaseCategory(new Backh());
-
         recyc2.setLayoutManager(new GridLayoutManager(getActivity(),2));
         recyc1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         myAdapter1.setBackf(new MyAdapter2.Backf() {
@@ -55,7 +55,7 @@ public class Fragment1 extends WDFragment {
             public void baf(int i, List<ShowBean> list) {
                 int id = list.get(i).id;
                 findDiseaseCategory = new FindDiseaseCategory(new Backh());
-                findDiseaseCategory.reqeust(id+"");
+                findDiseaseCategory.reqeust(id);
                //嫑忘记刷新适配器
                 myAdapter1.notifyDataSetChanged();
 
@@ -67,7 +67,17 @@ public class Fragment1 extends WDFragment {
                 myAdapter1.setThisPosition(position);
                 myAdapter1.notifyDataSetChanged();
             }
-            
+        });
+        myBingAdapter.setBacky(new MyBingAdapter.Backy() {
+            @Override
+            public void bay(int i, List<BingBean> list) {
+                String id = list.get(i).id;
+                String name = list.get(i).name;
+                Intent intent = new Intent(getContext(),BingActivity.class);
+                intent.putExtra("ll",id);
+                intent.putExtra("gg",name);
+                startActivity(intent);
+            }
         });
 
     }
@@ -76,7 +86,7 @@ public class Fragment1 extends WDFragment {
         @Override
         public void success(List<ShowBean> data, Object... args) {
             int id = data.get(0).id;
-            findDiseaseCategory.reqeust(id+"");
+            findDiseaseCategory.reqeust(id);
             myAdapter1.addAll(data);
             myAdapter1.notifyDataSetChanged();
 

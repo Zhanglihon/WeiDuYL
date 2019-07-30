@@ -55,7 +55,7 @@ public class BingYouAdaoter extends RecyclerView.Adapter<BingYouAdaoter.Holder> 
 
         holder.text_titel.setText(list.get(i).getTitle());
         long releaseTime = list.get(i).getReleaseTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String dateString = formatter.format(releaseTime);
         holder.text_shijian.setText(dateString);
         holder.text_count.setText(list.get(i).getDetail());
@@ -95,14 +95,6 @@ public class BingYouAdaoter extends RecyclerView.Adapter<BingYouAdaoter.Holder> 
     }
 
     public void addalter(List<Byliebiao> data) {
-        if(!data.isEmpty()){
-            list.clear();
-        }
-        list.addAll(data);
-    }
-
-    public void addalte(List<Byliebiao> data) {
-
         if(!data.isEmpty()){
             list.clear();
         }

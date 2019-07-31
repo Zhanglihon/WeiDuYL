@@ -17,16 +17,16 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     >
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/jian1_image1"
         android:layout_width="100dp"
         android:layout_height="74dp" />
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/jian1_image2"
         android:layout_width="100dp"
         android:layout_marginHorizontal="10dp"
         android:layout_height="74dp" />
-    <ImageView
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/jian1_image3"
         android:layout_width="100dp"
         android:layout_height="74dp" />

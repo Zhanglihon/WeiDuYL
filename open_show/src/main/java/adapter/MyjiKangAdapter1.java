@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.open_show.R;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -78,19 +79,23 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
             long releaseTime = list.get(position).releaseTime;
             SimpleDateFormat formatter = new SimpleDateFormat(format);
             holder2.jian1_item.setText(formatter.format(new Date(releaseTime)));
-            Glide.with(context).load(split[0]).into(holder2.jian1_image1);
-            Glide.with(context).load(split[1]).into(holder2.jian1_image2);
-            Glide.with(context).load(split[2]).into(holder2.jian1_image3);
+            ((RightImageHolder) holder).jian1_image1.setImageURI(split[0]);
+            ((RightImageHolder) holder).jian1_image2.setImageURI(split[1]);
+            ((RightImageHolder) holder).jian1_image3.setImageURI(split[2]);
 
         }else if(holder instanceof ThreeImageHolder){
         }
 
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               if(backg!=null){
+                   backg.bag(position,list);
+               }
+            }
+        });
 
     }
-
-
-
     @Override
     public int getItemCount() {
         return list.size();
@@ -109,7 +114,7 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     public class PullImageHolder  extends RecyclerView.ViewHolder{
         private TextView textView1,name2,item1;
-        private ImageView imageView1;
+        private SimpleDraweeView imageView1;
         public PullImageHolder(@NonNull View itemView) {
             super(itemView);
             textView1 = itemView.findViewById(R.id.jian3_text);
@@ -120,7 +125,7 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
         }
     }
     private class RightImageHolder extends RecyclerView.ViewHolder {
-        private ImageView jian1_image1,jian1_image2,jian1_image3;
+        private SimpleDraweeView jian1_image1,jian1_image2,jian1_image3;
         private TextView jian1_text1,jian1_text2,jian1_item;
         public RightImageHolder(View itemView) {
             super(itemView);
@@ -144,5 +149,13 @@ public class MyjiKangAdapter1 extends RecyclerView.Adapter<RecyclerView.ViewHold
 //            jian2_image2 = itemView.findViewById(R.id.jian2_image2);
 //            jian3_image3 = itemView.findViewById(R.id.jian2_image3);
         }
+    }
+    public interface Backg{
+        void bag(int i,List<JanBean> list);
+    }
+    public Backg backg;
+
+    public void setBackg(Backg backg) {
+        this.backg = backg;
     }
 }

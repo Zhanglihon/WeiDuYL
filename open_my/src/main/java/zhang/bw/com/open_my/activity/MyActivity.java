@@ -165,7 +165,7 @@ public class MyActivity extends WDActivity {
                     Intent intent=new Intent(MyActivity.this,BuyVideoActivity.class);
                     startActivity(intent);
                 } else if (index == 6) {
-                    //intentByRouter(Constant.ACTIVITY_URL_CIRCLE);
+                    Intent intent=new Intent(MyActivity.this,BingYouActivity.class);
                 } else if (index == 7) {
                     // intentByRouter(Constant.ACTIVITY_URL_ATTENTION);
                 } else if (index == 8) {

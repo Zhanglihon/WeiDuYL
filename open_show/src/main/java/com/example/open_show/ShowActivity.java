@@ -15,15 +15,14 @@ import zhang.bw.com.common.util.Constant;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -43,9 +42,10 @@ public class ShowActivity extends AppCompatActivity {
     @BindView(R2.id.frameLayout)
     FrameLayout frameLayout;
     private List<Fragment> fragments = new ArrayList<>();
-    boolean falg=true;
+    private int position = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
         EventBus.getDefault().register(this);
@@ -56,12 +56,6 @@ public class ShowActivity extends AppCompatActivity {
         fragments.add(new Fragmentfore());
         getSupportFragmentManager().beginTransaction().add(R.id.frameLayout,fragments.get(0)).commit();
 
-
-
-
-
-
-
     }
 
     @OnClick({R2.id.btn1, R2.id.btn2, R2.id.btn3})
@@ -71,25 +65,16 @@ public class ShowActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(0)).commit();
             btn2.setChecked(false);
             btn3.setChecked(false);
-            falg=true;
 
         } else if (i == R.id.btn2) {
-            if(falg){
-                falg=false;
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(1)).commit();
-                btn3.setChecked(false);
-                btn1.setChecked(false);
-            }else{
-                falg=true;
-               ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUN).navigation();
-
-            }
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(1)).commit();
+            btn3.setChecked(false);
+            btn1.setChecked(false);
 
         } else if (i == R.id.btn3) {
             getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
             btn2.setChecked(false);
             btn1.setChecked(false);
-            falg=true;
         }
     }
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -97,14 +82,9 @@ public class ShowActivity extends AppCompatActivity {
         fragments.add(fragmentfore);
         getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(3)).commit();
         btn3.setChecked(false);
-        btn2.setChecked(true);
+        btn2.setChecked(false);
         btn1.setChecked(false);
-        falg=false;
-
-
     }
-
-
 
     @Override
     protected void onDestroy() {

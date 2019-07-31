@@ -33,11 +33,13 @@ import zhang.bw.com.common.util.Constant;
  */
 @Route(path = Constant.ACTIVITY_URL_SOUSUO)
 public class SousuoActivity extends WDActivity {
+
+
     private EditText searchEdit;//搜索EditText
-    private TextView searchTv,text_no;//搜索按钮，不过是以TextView形式
+    private TextView searchTv;//搜索按钮，不过是以TextView形式
     private RecyclerView histotyRecycler,recyc_view2;//历史纪录列表
     private TextView historyEmptyTv;//清空历史纪录按钮
-    private LinearLayout histotySearchLayout,linearLayout,linearLayout_1;//历史记录整个布局
+    private LinearLayout histotySearchLayout;//历史记录整个布局
     private HistorySearchAdapter adapter;//适配器
     private ArrayList<String> histotyList = new ArrayList<String>();//历史纪录数组
     private BingYouAdaoter bingYouAdaoter;
@@ -95,9 +97,6 @@ public class SousuoActivity extends WDActivity {
         histotySearchLayout = findViewById(R.id.history_search_layout);
         recyc_view2 = findViewById(R.id.recyc_view2);
         image_haid_sou = findViewById(R.id.image_haid_sou);
-        text_no = findViewById(R.id.text_no);
-        linearLayout = findViewById(R.id.linearLayout);
-        linearLayout_1 = findViewById(R.id.linearLayout_1);
     }
     private void setHistoryEmptyTvListener() {
         historyEmptyTv.setOnClickListener(new View.OnClickListener() {
@@ -122,9 +121,8 @@ public class SousuoActivity extends WDActivity {
                             .putNewSearch(ss);//保存记录到数据库
                     getHistoryList();
                     adapter.notifyDataSetChanged();
-                    guanjianzi.reqeust(ss);
-                    text_no.setText("抱歉！没有找到“"+ss+"”相关的病友圈");
                     showViews();
+                    guanjianzi.reqeust(ss);
                 }else{
                     Toast.makeText(SousuoActivity.this, "请输入内容",
                             Toast.LENGTH_SHORT).show();
@@ -148,9 +146,9 @@ public class SousuoActivity extends WDActivity {
                 public void onFocusChange(View v, boolean hasFocus) {
                     if (hasFocus) {
                         // 此处为得到焦点时的处理内容
+
                         histotySearchLayout.setVisibility(View.VISIBLE);
                         recyc_view2.setVisibility(View.GONE);
-
                     } else {
                         // 此处为失去焦点时的处理内容
                         histotySearchLayout.setVisibility(View.GONE);
@@ -209,15 +207,10 @@ public class SousuoActivity extends WDActivity {
         @Override
         public void success(List<Byliebiao> data, Object... args) {
             if (data.size() == 0) {
-                linearLayout_1.setVisibility(View.VISIBLE);
-                linearLayout.setVisibility(View.GONE);
-
+                Toast.makeText(SousuoActivity.this, "没有搜索到病症", Toast.LENGTH_SHORT).show();
             } else {
                 bingYouAdaoter.addalter(data);
                 bingYouAdaoter.notifyDataSetChanged();
-                linearLayout.setVisibility(View.VISIBLE);
-                linearLayout_1.setVisibility(View.GONE);
-
             }
         }
 

@@ -59,6 +59,7 @@ public class WDApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        Fresco.initialize(this);
         context = this;
         mMainThreadId = android.os.Process.myTid();
         mMainThread = Thread.currentThread();

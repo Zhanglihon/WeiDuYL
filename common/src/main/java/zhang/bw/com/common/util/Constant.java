@@ -36,8 +36,6 @@ public class Constant {
     public final static String ACTIVITY_URL_SHOW= "/show/ShowActivity";
     public final static String ACTIVITY_URL_XIANGQING= "/show/XingqingAcitivity";
     public final static String ACTIVITY_URL_SOUSUO= "/show/SousuoActivity";
-    public final static String ACTIVITY_URL_CHAFABIAO= "/show/Chafabiao";
-    public final static String ACTIVITY_URL_FABIAOPINGLUN= "/show/FaBiaoPingLun";
 
     //-----------open_show----首页模块随便动，我看提交历史删你库-----
 

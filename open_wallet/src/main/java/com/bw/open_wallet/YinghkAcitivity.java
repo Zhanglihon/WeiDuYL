@@ -40,7 +40,7 @@ public class YinghkAcitivity extends WDActivity {
 
     @Override
     protected void initView() {
-        image_fan=findViewById(R.id.Yinghk_image_back);
+        image_fan=findViewById(R.id.image_fan);
         image_xiang=findViewById(R.id.image_xiang);
         but_xyb=findViewById(R.id.but_xyb);
         image_ka=findViewById(R.id.image_ka);

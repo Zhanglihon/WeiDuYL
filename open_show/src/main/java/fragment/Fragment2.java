@@ -1,9 +1,11 @@
 package fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 
 import com.example.open_show.R;
 import com.example.open_show.R2;
+import com.example.open_show.XinangActivity;
 
 import java.util.List;
 
@@ -18,6 +20,7 @@ import butterknife.BindView;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.YaoBean;
 import zhang.bw.com.common.core.DataCall;
+import zhang.bw.com.common.core.FindDrugsKnowledge;
 import zhang.bw.com.common.core.FindDrugsKnowledgeList;
 import zhang.bw.com.common.core.FindInformationPlateList;
 import zhang.bw.com.common.core.WDFragment;
@@ -64,8 +67,18 @@ public class Fragment2 extends WDFragment {
                 findDrugsKnowledgeList.reqeust(id,"1","10");
             }
         });
+        myYaoAdapter.setBackm(new MyYaoAdapter.Backm() {
+            @Override
+            public void backm(int i, List<YaoBean> list) {
+                String id = list.get(i).id;
+                Intent intent = new Intent(getContext(),XinangActivity.class);
+                intent.putExtra("rr",id);
+                startActivity(intent);
+            }
+        });
 
     }
+
     class Backr implements DataCall<List<MyjiankangBean>>{
 
         @Override

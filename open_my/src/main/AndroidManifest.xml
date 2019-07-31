@@ -17,7 +17,9 @@
         <activity android:name=".activity.WdscActivity" />
         <activity android:name=".activity.UppwdActivity" />
         <activity android:name=".activity.ScreenActivity" />
-        <activity android:name=".activity.WdtzActivity"></activity>
+        <activity android:name=".activity.WdtzActivity" />
+        <activity android:name=".activity.SuggestActivity" />
+        <activity android:name=".activity.BuyVideoActivity"></activity>
     </application>
 
 </manifest>

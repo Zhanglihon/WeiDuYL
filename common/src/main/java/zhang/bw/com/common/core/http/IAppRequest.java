@@ -17,6 +17,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.BuyVideoBean;
 import zhang.bw.com.common.bean.ByXiangqingBean;
 import zhang.bw.com.common.bean.BingBean;
 import zhang.bw.com.common.bean.Byliebiao;
@@ -36,6 +37,7 @@ import zhang.bw.com.common.bean.ShowBean;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
+import zhang.bw.com.common.bean.SuggestBean;
 import zhang.bw.com.common.bean.WddaBean;
 import zhang.bw.com.common.bean.WdscVideoBean;
 import zhang.bw.com.common.bean.YaoBean;
@@ -224,4 +226,17 @@ public interface IAppRequest {
     //上传图片
     @POST("user/sickCircle/verify/v1/uploadSickCirclePicture")
     Observable<Result> releaseCircle(@Header("userId") long id, @Header("sessionId") String sessionId, @Body MultipartBody body);
+
+    //查询我的被采纳的建议
+    @GET("user/verify/v1/findMyAdoptedCommentList")
+    Observable<Result<List<SuggestBean>>> findMyAdoptedCommentList(@Header("userId")long userId,
+                                                             @Header("sessionId")String sessionId,
+                                                             @Query("page")int page,
+                                                             @Query("count")int count);
+    //查询用户购买视频列表
+    @GET("user/verify/v1/findUserVideoBuyList")
+    Observable<Result<List<BuyVideoBean>>> findUserVideoBuyList(@Header("userId")long userId,
+                                                          @Header("sessionId")String sessionId,
+                                                          @Query("page")int page,
+                                                          @Query("count")int count);
 }

@@ -159,9 +159,11 @@ public class MyActivity extends WDActivity {
                     Intent intent=new Intent(MyActivity.this,WdscActivity.class);
                     startActivity(intent);
                 } else if (index == 4) {
-                    //intentByRouter(Constant.ACTIVITY_URL_SUGGEST);
+                    Intent intent=new Intent(MyActivity.this,SuggestActivity.class);
+                    startActivity(intent);
                 } else if (index == 5) {
-                    //intentByRouter(Constant.ACTIVITY_URL_VIDEO);
+                    Intent intent=new Intent(MyActivity.this,BuyVideoActivity.class);
+                    startActivity(intent);
                 } else if (index == 6) {
                     //intentByRouter(Constant.ACTIVITY_URL_CIRCLE);
                 } else if (index == 7) {

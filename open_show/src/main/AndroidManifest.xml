@@ -10,6 +10,12 @@
         <activity android:name=".ShowActivity1"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
         <activity android:name=".ChaActivity"></activity>
+        <activity android:name=".XinangActivity" />
+        <activity android:name=".BingActivity" />
+        <activity android:name=".Xiangqing" />
+        <activity android:name=".ShoucuoActivity" />
+        <activity android:name=".ShouBanner" />
+        <activity android:name=".PingActivity"></activity>
     </application>
 
 </manifest>

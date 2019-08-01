@@ -11,7 +11,7 @@ import zhang.bw.com.common.core.http.IAppRequest;
  * @Date：2019/7/17
  * @Description：XXXX
  */
-public class YishengPresenter extends WDPresenter<IAppRequest>{
+public class YishengPresenter extends WDPresenter<IAppRequest> {
     public YishengPresenter(DataCall dataCall) {
         super(dataCall);
     }

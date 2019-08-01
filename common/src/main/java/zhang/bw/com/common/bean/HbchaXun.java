@@ -11,7 +11,7 @@ import org.greenrobot.greendao.annotation.Id;
 public class HbchaXun {
      int id;
      String content;
-     String createTime;
+     long createTime;
 
 
     public int getId() {
@@ -30,11 +30,11 @@ public class HbchaXun {
         this.content = content;
     }
 
-    public String getCreateTime() {
+    public long getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(String createTime) {
+    public void setCreateTime(long createTime) {
         this.createTime = createTime;
     }
 }

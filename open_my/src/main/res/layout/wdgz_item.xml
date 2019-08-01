@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="320dp"
+        android:layout_height="98dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/button_qq">
+
+        <ImageView
+            android:id="@+id/guanzhu_iamgeview"
+            android:layout_width="65dp"
+            android:layout_height="78dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="9dp"
+            android:background="@mipmap/common_button_ascending_s" />
+
+        <TextView
+            android:id="@+id/guangzhu_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_toRightOf="@+id/guanzhu_iamgeview"
+            android:text="小小妹"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/guanzhu_zhuren"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@+id/guangzhu_name"
+            android:text="副主任" />
+
+        <TextView
+            android:id="@+id/guanzhu_dizhi"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/guangzhu_name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_toRightOf="@+id/guanzhu_iamgeview"
+            android:text="地址" />
+
+        <TextView
+            android:id="@+id/guanzhu_ks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/haoping_shuliang"
+            android:layout_alignTop="@+id/guanzhu_dizhi"
+            android:text="儿科" />
+
+        <TextView
+            android:id="@+id/guanzhu_haoping"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/guanzhu_dizhi"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_toRightOf="@+id/guanzhu_iamgeview"
+            android:text="好评" />
+
+        <TextView
+            android:id="@+id/haoping_shuliang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/guanzhu_dizhi"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_toRightOf="@+id/guanzhu_haoping"
+            android:text="99" />
+
+        <TextView
+            android:id="@+id/qqqq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/guanzhu_dizhi"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_toRightOf="@+id/haoping_shuliang"
+            android:text="患者数" />
+
+        <TextView
+            android:id="@+id/guanzhu_hznum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/guanzhu_dizhi"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_toRightOf="@+id/qqqq"
+            android:text="11" />
+
+        <TextView
+            android:visibility="gone"
+            android:background="@android:color/holo_red_dark"
+            android:textColor="@android:color/white"
+            android:id="@+id/guanzhu_image_view_view"
+            android:layout_width="30dp"
+            android:layout_height="98dp"
+            android:layout_alignParentRight="true"
+            android:text="取消关注"
+            android:textSize="18dp" />
+    </RelativeLayout>
+
+</LinearLayout>

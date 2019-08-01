@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".XinangActivity">
+ <LinearLayout
+     android:orientation="vertical"
+     android:layout_width="match_parent"
+     android:layout_height="match_parent">
+     <RelativeLayout
+     android:layout_marginTop="15dp"
+     android:layout_width="match_parent"
+     android:layout_height="60dp"
+     android:orientation="horizontal">
+
+     <ImageView
+         android:layout_width="32dp"
+         android:layout_height="32dp"
+         android:layout_marginLeft="12dp"
+         android:layout_marginTop="20dp"
+         android:background="@mipmap/historical_inquiry" />
+
+     <ImageView
+         android:layout_width="30dp"
+         android:layout_height="30dp"
+         android:layout_marginTop="20dp"
+         android:layout_alignParentRight="true"
+         android:layout_marginRight="12dp"
+         android:background="@mipmap/common_nav_message_black_n"
+         />
+ </RelativeLayout>
+     <LinearLayout
+         android:background="#F2F2F2"
+         android:layout_width="match_parent"
+         android:layout_height="6dp">
+     </LinearLayout>
+     <LinearLayout
+         android:layout_marginTop="6dp"
+         android:layout_width="match_parent"
+         android:layout_height="24dp"
+         android:background="#DB2F19"
+         >
+         <TextView
+             android:textSize="10sp"
+             android:textColor="#fff"
+             android:text="本模块知识仅参考, 如有需要,请在医生指导下使用"
+             android:gravity="center"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" />
+     </LinearLayout>
+     <TextView
+         android:text="孟文凯"
+        android:id="@+id/xiang_name1"
+         android:textSize="16sp"
+         android:layout_marginLeft="20dp"
+         android:layout_marginTop="10dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[药品成分]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_cheng"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="板蓝根、连翘、薄荷、荆芥穗、桑叶、芦根、牛蒡子、菊花、苦杏仁、桑枝、六神曲。辅料为蔗糖、糊精"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[同药禁忌]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_ji"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="详见说明书"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[功能主治]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_zhu"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="疏风清热，利咽解毒。用于风热感冒，发热，有汗，鼻塞，头痛，咽痛，咳嗽，多痰"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[用法用量]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_fa1"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="口服。一次1袋，一日3次"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_fa2"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="口服。一次1袋，一日3次"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_fa3"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="口服。一次1袋，一日3次"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[药品性状]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_yao"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text=" 本品为棕褐色颗粒；气芳香，味甘、微苦。"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[包装规格]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_bao"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="10gx9袋"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[不良反应]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_liang"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text=" 详见说明书"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[贮藏条件]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_cang"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="密闭，防潮。"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[注意事项]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_yi"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="详见说明书"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="[批准文号]"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:textColor="#3087ea"
+         android:layout_marginTop="20dp"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:id="@+id/xiang_pi"
+         android:textColor="#333333"
+         android:layout_marginRight="20dp"
+         android:layout_marginTop="10dp"
+         android:text="国药准字H10950026"
+         android:textSize="14sp"
+         android:layout_marginLeft="20dp"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+ </LinearLayout>
+</ScrollView>

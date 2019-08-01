@@ -8,6 +8,7 @@ import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
@@ -17,6 +18,7 @@ import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.BingZeng;
 import zhang.bw.com.common.bean.BuyVideoBean;
 import zhang.bw.com.common.bean.ByXiangqingBean;
 import zhang.bw.com.common.bean.BingBean;
@@ -31,7 +33,10 @@ import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
 import zhang.bw.com.common.bean.PingLunBean;
 import zhang.bw.com.common.bean.PriceBean;
+import zhang.bw.com.common.bean.QingBean;
+import zhang.bw.com.common.bean.ReBean;
 import zhang.bw.com.common.bean.Result;
+import zhang.bw.com.common.bean.ShoucuoBean;
 import zhang.bw.com.common.bean.ShouziBean;
 import zhang.bw.com.common.bean.ShowBean;
 import retrofit2.http.Field;
@@ -41,7 +46,10 @@ import zhang.bw.com.common.bean.SuggestBean;
 import zhang.bw.com.common.bean.WddaBean;
 import zhang.bw.com.common.bean.WdgzBean;
 import zhang.bw.com.common.bean.WdscVideoBean;
+import zhang.bw.com.common.bean.XiangBean;
 import zhang.bw.com.common.bean.YaoBean;
+import zhang.bw.com.common.bean.YishengBean;
+import zhang.bw.com.common.bean.ZixunBean;
 
 /**
  * @author dingtao
@@ -53,6 +61,8 @@ public interface IAppRequest {
     Observable<Result<List<BannerBean>>>bannersShow();
     @GET("share/knowledgeBase/v1/findDepartment")
     Observable<Result<List<ShowBean>>>findDepartment();
+    @GET("share/knowledgeBase/v1/findDepartment")
+    Observable<Result<List<ShowBean>>>mingPresenter1();
     @GET("share/knowledgeBase/v1/findDrugsCategoryList")
     Observable<Result<List<MyjiankangBean>>>findInformationPlateList();
     @GET("share/knowledgeBase/v1/findDrugsKnowledgeList")
@@ -77,6 +87,39 @@ public interface IAppRequest {
     @FormUrlEncoded
     @POST("user/video/verify/v1/videoBuy")
     Observable<Result>videoBuy(@Header("userId")long userId, @Header("sessionId")String sessionId,@Field("videoId")String videoId,@Field("price")int price);
+    @FormUrlEncoded
+    @POST("user/video/verify/v1/addVideoComment")
+    Observable<Result>addVideoComment(@Header("userId")long userId, @Header("sessionId")String sessionId,@Field("videoId")String videoId,@Field("content")String content);
+    @GET("share/knowledgeBase/v1/findDrugsKnowledge")
+    Observable<Result<XiangBean>>findDrugsKnowledge(@Query("id")String id);
+    @GET("share/knowledgeBase/v1/findDiseaseKnowledge")
+    Observable<Result<BingZeng>>findDiseaseKnowledge(@Query("id")String id);
+    @GET("user/inquiry/v1/findDoctorInfo")
+    Observable<Result<ZixunBean>>findDoctorInfo(@Header("userId")long userId, @Header("sessionId")String sessionId, @Query("doctorId")String doctorId );
+    @GET("share/information/v1/findInformation")
+    Observable<Result<QingBean>>findInformation(@Header("userId")long userId, @Header("sessionId")String sessionId, @Query("infoId")String infoId);
+    @GET("share/v1/homePageSearch")
+    Observable<Result<ShoucuoBean>>homePageSearch(@Query("keyWord")String keyWord);
+    @GET("share/v1/popularSearch")
+    Observable<Result<List<ReBean>>>popularSearch();
+    @FormUrlEncoded
+    @POST("user/inquiry/verify/v1/followDoctor")
+    Observable<Result>followDoctor(@Header("userId")long userId,@Header("sessionId")String sessionId,@Field("doctorId")String doctorId);
+
+    @DELETE("user/inquiry/verify/v1/cancelFollow")
+    Observable<Result>cancelFollow(@Header("userId")long userId,@Header("sessionId")String sessionId,@Query("doctorId") String doctorId);
+    @GET("user/inquiry/v1/findDoctorList")
+    Observable<Result<List<YishengBean>>>findDoctorList(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                                        @Query("deptId") String deptId, @Query("condition") String condition, @Query("sortBy") String sortBy,
+                                                        @Query("page") String page, @Query("count") String count);
+    @GET("user/inquiry/v1/findDoctorList")
+    Observable<Result<List<YishengBean>>>findDoctorList1(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                                         @Query("deptId") String deptId, @Query("condition") String condition, @Query("sortBy") String sortBy,
+                                                         @Query("page") String page, @Query("count") String count);
+    @GET("user/inquiry/v1/findDoctorList")
+    Observable<Result<List<YishengBean>>>findDoctorList2(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                                         @Query("deptId") String deptId, @Query("condition") String condition, @Query("sortBy") String sortBy,
+                                                         @Query("page") String page, @Query("count") String count);
     //发送邮箱验证码
     @FormUrlEncoded
     @POST("user/v1/sendOutEmailCode")
@@ -149,7 +192,7 @@ public interface IAppRequest {
 
     //医生信息
     @GET("user/inquiry/v1/findDoctorList")
-    Observable<Result> Yisheng (@Header("userId") long id, @Header("sessionId") String sessionId,
+    Observable<Result<List<YishengBean>>> Yisheng (@Header("userId") long id, @Header("sessionId") String sessionId,
     @Query("deptId") String deptId, @Query("condition") String condition,@Query("sortBy") String sortBy,
                                                    @Query("page") String page,@Query("count") String count);
 

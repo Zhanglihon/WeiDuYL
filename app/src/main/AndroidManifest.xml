@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.wd.health">
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
@@ -24,7 +25,12 @@
             </intent-filter>
         </activity>
 
+        <service android:name="cn.jpush.android.service.PushService"
+            android:process=":multiprocess"
+            tools:node="replace" >
 
+            ……
+        </service>
         <activity android:name="com.bw.open_wallet.WalletActivity"/>
         <activity android:name="com.bw.open_wallet.RechargeActivity"/>
         <activity android:name="com.bw.open_wallet.EmbodyActivity"/>
@@ -40,7 +46,9 @@
         <!-- 张利宏-->
         <activity android:name="com.bw.open_wallet.ShengfzActivity"/>
         <activity android:name="com.bw.open_wallet.YinghkAcitivity"/>
-
+        <activity android:name="com.example.open_inquiry.ShouActivity"/>
+        <activity android:name="com.example.open_inquiry.ZixunAcitivty"/>
+        <activity android:name="com.example.open_inquiry.presenter.XiangActivity"/>
         <!-- 张利宏-->
         <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>
         <!-- 张利宏-->

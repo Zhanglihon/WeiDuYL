@@ -3,6 +3,10 @@ package com.example.open_inquiry.adapter;
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
+import com.example.open_inquiry.R;
+import com.facebook.drawee.view.SimpleDraweeView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,26 +28,56 @@ public class YishengAdaoter extends RecyclerView.Adapter<YishengAdaoter.Holder> 
     public YishengAdaoter(Context context) {
         this.context = context;
     }
-
     @NonNull
     @Override
     public Holder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
-    }
+                View view =View.inflate(context,R.layout.gg,null);
+                return new Holder(view);
+            }
 
-    @Override
-    public void onBindViewHolder(@NonNull Holder holder, int position) {
+            @Override
+            public void onBindViewHolder(@NonNull Holder holder, final int position) {
+
+                holder.imageView.setImageURI(list.get(position).imagePic);
+                holder.textView.setText(list.get(position).doctorName);
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                baop.bop(position,list);
+            }
+        });
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return list.size();
+    }
+
+    public void adALL(List<YishengBean> data) {
+       if(!data.isEmpty()){
+           list.clear();
+       }
+           list.addAll(data);
+
+
     }
 
     public class  Holder extends RecyclerView.ViewHolder{
+        private SimpleDraweeView imageView;
+        private TextView textView;
         public Holder(@NonNull View itemView) {
             super(itemView);
+            imageView = itemView.findViewById(R.id.q1);
+            textView = itemView.findViewById(R.id.qqt);
         }
+    }
+    public interface Baop{
+        void bop(int i, List<YishengBean> list);
+    }
+    public Baop baop;
+
+    public void setBaop(Baop baop) {
+        this.baop = baop;
     }
 }

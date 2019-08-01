@@ -153,8 +153,7 @@ public class WddaActivity extends WDActivity {
             } else {
                 wddaWsj.setVisibility(View.GONE);
             }
-            String name=data.diseaseMain;
-            wddaZz.setText(name);
+            wddaZz.setText(data.diseaseMain);
             wddaXbs.setText(data.diseaseNow);
             wddaJwbs.setText(data.diseaseBefore);
             wddaYy.setText(data.treatmentHospitalRecent);

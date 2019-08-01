@@ -95,9 +95,9 @@ public class SousuoActivity extends WDActivity {
         histotySearchLayout = findViewById(R.id.history_search_layout);
         recyc_view2 = findViewById(R.id.recyc_view2);
         image_haid_sou = findViewById(R.id.image_haid_sou);
-        text_no = findViewById(R.id.text_no);
-        linearLayout = findViewById(R.id.linearLayout);
-        linearLayout_1 = findViewById(R.id.linearLayout_1);
+//        text_no = findViewById(R.id.text_no);
+//        linearLayout = findViewById(R.id.linearLayout);
+//        linearLayout_1 = findViewById(R.id.linearLayout_1);
     }
     private void setHistoryEmptyTvListener() {
         historyEmptyTv.setOnClickListener(new View.OnClickListener() {

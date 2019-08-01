@@ -2,7 +2,6 @@ package com.example.open_show;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
-import retrofit2.http.GET;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.util.Constant;
 

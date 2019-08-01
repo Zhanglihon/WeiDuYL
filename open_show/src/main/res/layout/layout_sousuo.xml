@@ -56,8 +56,6 @@
     </RelativeLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout"
-        android:visibility="visible"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="match_parent">
@@ -106,29 +104,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"></androidx.recyclerview.widget.RecyclerView>
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:visibility="gone"
-        android:id="@+id/linearLayout_1"
-        android:gravity="center"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/no_search_message"/>
-        <TextView
-            android:id="@+id/text_no"
-            android:layout_marginTop="30dp"
-            android:gravity="center"
-            android:textSize="20sp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="123"
-            />
 
     </LinearLayout>
 

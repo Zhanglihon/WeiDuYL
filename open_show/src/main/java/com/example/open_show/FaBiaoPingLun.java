@@ -90,7 +90,7 @@ public class FaBiaoPingLun extends WDActivity {
     ImageView image_ks,image_bz,image_kstime,image_endtime,image_tjtp;
     RecyclerView recyc_view5 , recyclerView;
     MingAdapter1 mingAdapter1;
-    TextView text_hong,  text_keshi_xia,text_bingzheng_xia,text_10,text_20,text_30;
+    TextView text_hong,  text_keshi_xia,text_bingzheng_xia,text_10,text_20,text_30,text_chongzhi;
     EditText text_keshi_f,text_bingzheng_f,text_kaishitime_f,text_endtime_f,text_title_f,text_xiangqing_f
             ,text_yyname_f,text_zhiliaogc_f;
      MingAdapter2 mingAdapter2;
@@ -190,7 +190,7 @@ public class FaBiaoPingLun extends WDActivity {
                         case 1:
                             // 预览图片 可自定长按保存路径
                             // PictureSelector.create(Feles_Ada_Activity.this).themeStyle(themeId).externalPicturePreview(position, "/custom_file", selectList);
-                            PictureSelector.create(FaBiaoPingLun.this).themeStyle(themeId).openExternalPreview(position, selectList);
+                           //PictureSelector.create(FaBiaoPingLun.this).themeStyle(themeId).openExternalPreview(position, selectList);
                             break;
                     }
                 }
@@ -225,10 +225,23 @@ public class FaBiaoPingLun extends WDActivity {
         text_30 = findViewById(R.id.text_30);
         text_20 = findViewById(R.id.text_20);
         text_10 = findViewById(R.id.text_10);
+        text_chongzhi = findViewById(R.id.text_chongzhi);
 
     }
 
     private void initonclicke() {
+        //点击跳转页面
+        text_chongzhi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            //跳转到充值页面
+
+            }
+        });
+
+
+
+
         //开关按钮事件
         switchButton.setChecked(false);
         switchButton.isChecked();
@@ -588,7 +601,7 @@ public class FaBiaoPingLun extends WDActivity {
             Log.e("aaa",id+"===="+sessionId+"===="+i+"===="+ FaBiaoPingLun.this.path.size());
 
             publishCirclePresenter.reqeust(id,sessionId,i+"", FaBiaoPingLun.this.path);
-           // finish();
+            finish();
 
 
         }

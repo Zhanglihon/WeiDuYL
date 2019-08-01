@@ -57,12 +57,12 @@ public class WdscVideoAdapter extends RecyclerView.Adapter<WdscVideoAdapter.hold
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        holder.wdsc_video_jzsp.setUp(url,JZVideoPlayerStandard.CURRENT_STATE_NORMAL,"无聊");
+        holder.wdsc_video_jzsp.setUp(url,JZVideoPlayerStandard.CURRENT_STATE_NORMAL);
         if(position==0){
             holder.wdsc_video_jzsp.startVideo();
         }
         Glide.with(context).load(list.get(position).shearUrl).into(holder.wdsc_video_jzsp.thumbImageView);
-        holder.wdsc_video_jzsp.setUp(url,JZVideoPlayerStandard.CURRENT_STATE_NORMAL,"无聊");
+        holder.wdsc_video_jzsp.setUp(url,JZVideoPlayerStandard.CURRENT_STATE_NORMAL);
         holder.wdsc_video_jzsp.thumbImageView.setScaleType(ImageView.ScaleType.FIT_XY);
         // 7播放比例,可以设置为16:9,4:3
         holder.wdsc_video_jzsp.widthRatio = 4;

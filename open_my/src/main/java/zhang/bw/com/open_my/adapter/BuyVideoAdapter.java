@@ -58,7 +58,7 @@ public class BuyVideoAdapter extends RecyclerView.Adapter<BuyVideoAdapter.holder
             holder.buyitem_video_jzsp.startVideo();
         }
         Glide.with(context).load(list.get(position).original).into(holder.buyitem_video_jzsp.thumbImageView);
-        holder.buyitem_video_jzsp.setUp(url,JZVideoPlayerStandard.CURRENT_STATE_NORMAL);
+        holder.buyitem_video_jzsp.setUp(url,JZVideoPlayerStandard.CURRENT_STATE_NORMAL,list.get(position).title);
         holder.buyitem_video_jzsp.thumbImageView.setScaleType(ImageView.ScaleType.FIT_XY);
         // 7播放比例,可以设置为16:9,4:3
         holder.buyitem_video_jzsp.widthRatio = 4;

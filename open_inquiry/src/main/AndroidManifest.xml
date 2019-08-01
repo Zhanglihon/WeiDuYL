@@ -1,9 +1,2 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.open_inquiry">
-
-    <application>
-        <activity android:name=".presenter.XiangActivity"></activity>
-    </application>
-
-</manifest>
+    package="com.example.open_inquiry" />

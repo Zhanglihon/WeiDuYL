@@ -33,12 +33,6 @@ public class MyBingAdapter extends RecyclerView.Adapter<MyBingAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull MyBingAdapter.ViewHolder holder, int position) {
         holder.textView1.setText(list.get(position).name);
-        holder.textView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                backy.bay(position,list);
-            }
-        });
     }
 
     @Override
@@ -59,13 +53,5 @@ public class MyBingAdapter extends RecyclerView.Adapter<MyBingAdapter.ViewHolder
             super(itemView);
             textView1 = itemView.findViewById(R.id.bing_text1);
         }
-    }
-    public interface Backy{
-        void bay(int i,List<BingBean> list);
-    }
-    public Backy backy;
-
-    public void setBacky(Backy backy) {
-        this.backy = backy;
     }
 }

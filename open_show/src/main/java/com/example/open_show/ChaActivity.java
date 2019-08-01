@@ -14,8 +14,6 @@ import zhang.bw.com.common.core.exception.ApiException;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.text.TextPaint;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -32,9 +30,6 @@ public class ChaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cha);
-        TextView yy = findViewById(R.id.yy);
-        TextPaint paint = yy.getPaint();
-        paint.setFakeBoldText(true);
         ButterKnife.bind(this);
         String id = getIntent().getStringExtra("rr");
         findInformationList1 = new FindInformationList1(new Backo());

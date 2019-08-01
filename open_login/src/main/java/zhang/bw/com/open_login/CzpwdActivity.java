@@ -2,9 +2,13 @@ package zhang.bw.com.open_login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -25,11 +29,11 @@ public class CzpwdActivity extends WDActivity {
     @BindView(R2.id.czpwd_pwd)
     EditText czpwdPwd;
     @BindView(R2.id.czpwd_radiobutton_eyes)
-    RadioButton czpwdRadiobuttonEyes;
+    CheckBox czpwdRadiobuttonEyes;
     @BindView(R2.id.czpwd_yzm)
     EditText czpwdYzm;
     @BindView(R2.id.czpwd_radiobutton_eyes2)
-    RadioButton czpwdRadiobuttonEyes2;
+    CheckBox czpwdRadiobuttonEyes2;
     @BindView(R2.id.czpwd_wc)
     Button czpwdWc;
 
@@ -40,6 +44,28 @@ public class CzpwdActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        czpwdPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        czpwdRadiobuttonEyes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (czpwdRadiobuttonEyes.isChecked()){
+                    czpwdPwd.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    czpwdPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
+        czpwdYzm.setTransformationMethod(PasswordTransformationMethod.getInstance());
+        czpwdRadiobuttonEyes2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (czpwdRadiobuttonEyes2.isChecked()){
+                    czpwdYzm.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }else {
+                    czpwdYzm.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
+            }
+        });
         czpwdWc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +76,9 @@ public class CzpwdActivity extends WDActivity {
                     String s = RsaCoder.encryptByPublicKey(pwd);
                     Intent intent=getIntent();
                     String yx = intent.getStringExtra("yx");
+                    if (s.isEmpty()||s.isEmpty()){
+                        Toast.makeText(CzpwdActivity.this, "输入内容不能为空哦", Toast.LENGTH_SHORT).show();
+                    }
                     czPwdPresenter.reqeust(yx,s,s);
                     Log.i("ccc",yx+"----"+s);
                 } catch (Exception e) {
@@ -77,6 +106,7 @@ public class CzpwdActivity extends WDActivity {
         public void success(Object data, Object... args) {
             Toast.makeText(CzpwdActivity.this, "重置密码成功", Toast.LENGTH_SHORT).show();
             ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
+            finish();
         }
 
         @Override

@@ -48,6 +48,7 @@ import presenter.ByXqPresenter;
 import presenter.FaBiaopl;
 import presenter.Guanjianzi;
 import presenter.PingLunlbPresenter;
+import presenter.ShouCangByq;
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.ByXiangqingBean;
@@ -63,7 +64,7 @@ public class Fragmentfore extends Fragment {
 
     TextView textTite, textName, text_bingzheng, text_keshi, text_bgxq, text_shijian, text_yiyuan, text_jingli, text_pnum, text_snum, text_hb, text_yjcount, text_yjtime, text_yjhbi, text_jyname;
     RelativeLayout relativeLayout;
-    ImageView image_view, image_haid_f4, image_pinglun, image_viewx,image_view_meiyou;
+    ImageView image_view, image_haid_f4, image_pinglun, image_viewx,image_view_meiyou,image_shoucang;
     SimpleDraweeView simpleDraweeView;
     LinearLayout linearLayout, linear_layout;
     List<ByXiangqingBean> list = new ArrayList<>();
@@ -109,6 +110,8 @@ public class Fragmentfore extends Fragment {
         image_viewx = view.findViewById(R.id.image_viewx);
         edit_shuru = view.findViewById(R.id.edit_shuru);
         text_yjtime = view.findViewById(R.id.text_yjtime);
+        image_shoucang = view.findViewById(R.id.image_shoucang);
+
 
         Fresco.initialize(getActivity());
         return view;
@@ -229,6 +232,16 @@ public class Fragmentfore extends Fragment {
                 }
 
         });
+        Log.e("aaa",sickCircleId+"++++++++"+id+"======"+sessionId);
+        ShouCangByq shouCangByq = new ShouCangByq(new redsafe());
+        image_shoucang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.e("aaa",sickCircleId+"++++++++"+id+"======"+sessionId);
+                Glide.with(getActivity()).load(R.mipmap.common_button_collection_large_s).into(image_shoucang);
+                shouCangByq.reqeust(id,sessionId,sickCircleId+"");
+            }
+        });
 
     }
 
@@ -257,7 +270,7 @@ public class Fragmentfore extends Fragment {
             //赋值
             lidsfe = data.getSickCircleId();
             textTite.setText(data.getTitle());
-            textName.setText(data.getAuthorUserId() + "");
+            textName.setText(data.getAuthorUserId()+"");
             text_bgxq.setText(data.getDetail());
             text_bingzheng.setText("");
             text_keshi.setText(data.getDepartment());
@@ -282,7 +295,14 @@ public class Fragmentfore extends Fragment {
                 image_view.setVisibility(View.GONE);
             }
 
-                String adoptTim = formatter.format(k);
+            int adoptFlag = data.getAdoptFlag();
+            Log.e("aaa",adoptFlag+"");
+            if(adoptFlag==1){
+                Glide.with(getActivity()).load(R.mipmap.common_button_collection_large_s).into(image_shoucang);
+            }else{
+                Glide.with(getActivity()).load(R.mipmap.common_button_collection_small_n).into(image_shoucang);
+            }
+            String adoptTim = formatter.format(k);
                 Log.e("aaa",adoptTim+"");
                 simpleDraweeView.setImageURI(data.getAdoptHeadPic());
                 text_yjcount.setText(data.getAdoptComment());
@@ -335,6 +355,21 @@ public class Fragmentfore extends Fragment {
         @Override
         public void success(Result data, Object... args) {
            Toast.makeText(getActivity(), "发表成功", Toast.LENGTH_SHORT).show();
+
+        }
+
+        @Override
+        public void fail(ApiException data, Object... args) {
+
+        }
+    }
+
+    private class redsafe implements DataCall {
+        @Override
+        public void success(Object data, Object... args) {
+            //
+            Log.e("aaa","收藏成功");
+            Toast.makeText(getActivity(), "收藏成功", Toast.LENGTH_SHORT).show();
         }
 
         @Override

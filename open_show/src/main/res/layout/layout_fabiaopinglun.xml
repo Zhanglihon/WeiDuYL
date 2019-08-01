@@ -434,7 +434,6 @@
                     android:id="@+id/text_10"
                     android:layout_width="104dp"
                     android:layout_height="52dp"
-
                     android:text="10H币" />
 
                 <TextView

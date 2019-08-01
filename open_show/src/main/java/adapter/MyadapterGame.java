@@ -58,13 +58,13 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
 
     @NonNull
     @Override
-    public MyadapterGame.VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public VideoViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.game,parent,false);
        return new VideoViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyadapterGame.VideoViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull VideoViewHolder holder, int position) {
         loginBean = DaoMaster.newDevSession(context,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
         findUserWallet1 = new FindUserWallet1(new Backv());
         findUserWallet1.reqeust(loginBean.getId(),loginBean.getSessionId());
@@ -211,7 +211,7 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
         }
     }
     public interface Bach{
-        void ba(int i,List<GameBean> list);
+        void ba(int i, List<GameBean> list);
     }
     public Bach bach;
 
@@ -219,7 +219,7 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
         this.bach = bach;
     }
     public interface Bacc{
-        void bi(int i,List<GameBean> list);
+        void bi(int i, List<GameBean> list);
     }
     public Bacc bacc;
 

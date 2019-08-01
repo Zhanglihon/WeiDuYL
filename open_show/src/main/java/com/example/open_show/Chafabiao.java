@@ -58,7 +58,7 @@ public class Chafabiao extends WDActivity {
         ARouter.getInstance().inject(this);
         imageViewToux.setImageURI(headPic);
        ChaFabiaoPresenter chaFabiaoPresenter = new ChaFabiaoPresenter(new request());
-       chaFabiaoPresenter.reqeust(1+"", 1+"", 5+"");
+       chaFabiaoPresenter.reqeust(commentUserId+"", 1+"", 10+"");
         Log.e("aaa",commentUserId+"=======");
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);

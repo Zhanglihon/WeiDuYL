@@ -28,6 +28,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
 
+import com.google.gson.Gson;
 import com.luck.picture.lib.PictureSelector;
 import com.luck.picture.lib.config.PictureConfig;
 import com.luck.picture.lib.config.PictureMimeType;
@@ -52,6 +53,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
+import okhttp3.logging.LoggingEventListener;
 import presenter.FaBiaopl;
 import presenter.FaBubyqPresenter;
 import presenter.MingPresenter;
@@ -79,11 +81,10 @@ public class FaBiaoPingLun extends WDActivity {
 
    // private final static String TAG = FaBiaoPingLun.class.getSimpleName();
     private List<LocalMedia> selectList = new ArrayList<>();
-
+    List<String>  path = new ArrayList<>();
     private GridImageAdapter adapter;
     private int maxSelectNum = 9;
     private int themeId;
-    List<String> path = new ArrayList<>();
     RelativeLayout relativeLayout;
     SwitchButton switchButton;
     ImageView image_ks,image_bz,image_kstime,image_endtime,image_tjtp;
@@ -114,10 +115,16 @@ public class FaBiaoPingLun extends WDActivity {
 
     @Override
     protected void initView() {
+
         LoginBeanDao dao = DaoMaster.newDevSession(this, LoginBeanDao.TABLENAME).getLoginBeanDao();
         loginBeans = dao.loadAll();
         initfindviewByid();
         initonclicke();
+
+        text_keshi_f.setFocusable(false);
+        text_bingzheng_f.setFocusable(false);
+        text_kaishitime_f.setFocusable(false);
+        text_endtime_f.setFocusable(false);
 
         publishCirclePresenter = new PublishCirclePresenter(new circle());
         id = loginBeans.get(0).getId();
@@ -348,6 +355,8 @@ public class FaBiaoPingLun extends WDActivity {
             @Override
             public void onClick(View v) {
                 hbi=10;
+                //text_10.setBackground(android.graphics.Color.parseColor("#87CEFA"));
+
             }
         });
         text_20.setOnClickListener(new View.OnClickListener() {
@@ -364,7 +373,7 @@ public class FaBiaoPingLun extends WDActivity {
         });
 
         //点击提交发表病友圈
-        FaBubyqPresenter faBubyqPresenter = new FaBubyqPresenter(new recquest());
+
         but_fabiao.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -373,7 +382,7 @@ public class FaBiaoPingLun extends WDActivity {
                 String disease = text_bingzheng_f.getText().toString();
                 String detail =text_xiangqing_f.getText().toString();
                 String treatmentHospital =text_yyname_f.getText().toString();
-                String treatmentStartTime =text_keshi_f.getText().toString();
+                String treatmentStartTime =text_kaishitime_f.getText().toString();
                 String treatmentEndTime = text_endtime_f.getText().toString();
                 String treatmentProcess =text_zhiliaogc_f.getText().toString();
 
@@ -394,6 +403,7 @@ public class FaBiaoPingLun extends WDActivity {
                 }else if(treatmentProcess.length()==0){
                     Toast.makeText(FaBiaoPingLun.this, "请输入治疗过程", Toast.LENGTH_SHORT).show();
                 }else{
+                    Log.e("aaa",ss+"");
                     Map<String,String> map = new HashMap<>();
                     map.put("title",title);
                     map.put("departmentId",ss+"");
@@ -404,10 +414,11 @@ public class FaBiaoPingLun extends WDActivity {
                     map.put("treatmentEndTime",treatmentEndTime);
                     map.put("treatmentProcess",treatmentProcess);
                     map.put("amount",hbi+"");
-                    String json = JsonUtil.parseMapToJson(map);
-                    Log.e("ssss",json);
-                    RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"),json);
-                    Log.e("ssss",body.toString());
+
+                    Gson gson = new Gson();
+                    String json = gson.toJson(map);
+                    RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf=8"),json);
+                    FaBubyqPresenter faBubyqPresenter = new FaBubyqPresenter(new recquest());
                     faBubyqPresenter.reqeust(id,sessionId,body);
                 }
 
@@ -538,7 +549,8 @@ public class FaBiaoPingLun extends WDActivity {
                 for (LocalMedia media : selectList) {
                     if (media.isCompressed()){
                         //pathList.add(media.getCompressPath());
-                            path.add(media.getCompressPath());
+                        path.add(media.getCompressPath());
+
                     }
                 }
                 adapter.setList(selectList);
@@ -567,21 +579,19 @@ public class FaBiaoPingLun extends WDActivity {
         return path;
     }
 
-    private class recquest implements DataCall<Integer>{
+    private class recquest implements DataCall{
         @Override
-        public void success(Integer data, Object... args) {
-            Log.e("aaaa",selectList.size()+"======="+data);
-            Toast.makeText(FaBiaoPingLun.this, "发布成功", Toast.LENGTH_SHORT).show();
+        public void success(Object data, Object... args) {
+//            Toast.makeText(FaBiaoPingLun.this, "发布成功", Toast.LENGTH_SHORT).show();
+            int i = (new Double((Double) data)).intValue();
 
+            Log.e("aaa",id+"===="+sessionId+"===="+i+"===="+ FaBiaoPingLun.this.path.size());
 
-            publishCirclePresenter.reqeust(id,sessionId,data+"",selectList);
+            publishCirclePresenter.reqeust(id,sessionId,i+"", FaBiaoPingLun.this.path);
+           // finish();
 
-
-
-           finish();
 
         }
-
         @Override
         public void fail(ApiException data, Object... args) {
             Log.e("aaaa",data+"");
@@ -591,6 +601,7 @@ public class FaBiaoPingLun extends WDActivity {
     private class circle implements DataCall {
         @Override
         public void success(Object data, Object... args) {
+
             Toast.makeText(FaBiaoPingLun.this,"图片上传成功",Toast.LENGTH_SHORT).show();
             Log.e("aaa","图片上传成功");
         }

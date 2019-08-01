@@ -49,13 +49,13 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
 
     @NonNull
     @Override
-    public MyAdapter2.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View view =View.inflate(context,R.layout.adapter2,null);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyAdapter2.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textView.setText(list.get(position).departmentName);
         if(getthisPosition() == position){
             holder.textView.setTextColor(Color.parseColor("#87B9F3"));
@@ -92,7 +92,7 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
         }
     }
     public interface Backf {
-        void baf(int i,List<ShowBean> list);
+        void baf(int i, List<ShowBean> list);
     }
     public Backf backf;
 

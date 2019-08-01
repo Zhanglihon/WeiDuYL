@@ -82,6 +82,6 @@ public class MingAdapter extends RecyclerView.Adapter<MingAdapter.Holder> {
     }
 
     public interface MyCallBack{
-        public void oncelicks(int id,String name);
+        public void oncelicks(int id, String name);
     }
 }

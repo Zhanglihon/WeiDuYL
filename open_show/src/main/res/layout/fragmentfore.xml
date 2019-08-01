@@ -233,6 +233,8 @@
             android:id="@+id/image_shoucang"
             android:layout_width="24dp"
             android:layout_height="24dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="0dp"
             android:layout_marginRight="6dp"
             android:layout_toLeftOf="@id/text_snum"
             android:src="@mipmap/shoucang" />

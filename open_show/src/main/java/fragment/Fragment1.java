@@ -1,7 +1,9 @@
 package fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 
+import com.example.open_show.BingActivity;
 import com.example.open_show.R;
 import com.example.open_show.R2;
 
@@ -68,6 +70,17 @@ public class Fragment1 extends WDFragment {
                 myAdapter1.notifyDataSetChanged();
             }
             
+        });
+        myBingAdapter.setBacky(new MyBingAdapter.Backy() {
+            @Override
+            public void bay(int i, List<BingBean> list) {
+                String id = list.get(i).id;
+                String name = list.get(i).name;
+                Intent intent = new Intent(getContext(),BingActivity.class);
+                intent.putExtra("ll",id);
+                intent.putExtra("gg",name);
+                startActivity(intent);
+            }
         });
 
     }

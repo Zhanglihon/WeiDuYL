@@ -597,9 +597,7 @@ public class FaBiaoPingLun extends WDActivity {
         public void success(Object data, Object... args) {
 //            Toast.makeText(FaBiaoPingLun.this, "发布成功", Toast.LENGTH_SHORT).show();
             int i = (new Double((Double) data)).intValue();
-
             Log.e("aaa",id+"===="+sessionId+"===="+i+"===="+ FaBiaoPingLun.this.path.size());
-
             publishCirclePresenter.reqeust(id,sessionId,i+"", FaBiaoPingLun.this.path);
             finish();
 

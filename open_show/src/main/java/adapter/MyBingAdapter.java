@@ -25,13 +25,13 @@ public class MyBingAdapter extends RecyclerView.Adapter<MyBingAdapter.ViewHolder
 
     @NonNull
     @Override
-    public MyBingAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view =LayoutInflater.from(context).inflate(R.layout.bing,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyBingAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textView1.setText(list.get(position).name);
     }
 

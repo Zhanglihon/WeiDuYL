@@ -217,15 +217,6 @@ public interface IAppRequest {
     Observable<Result<List<Byliebiao>>> Chabypl(@Query("patientUserId") String patientUserId, @Query("page") String page,
                                @Query("count") String count);
 
-    //发布病友圈
-    @Headers({"Content-Type: application/json","Accept: application/json"})
-    @POST("user/sickCircle/verify/v1/publishSickCircle")
-    Observable<Result<Integer>> FaBubyq(@Header("userId") long id, @Header("sessionId") String sessionId,
-                                        @Body RequestBody body);
-
-    //上传图片
-    @POST("user/sickCircle/verify/v1/uploadSickCirclePicture")
-    Observable<Result> releaseCircle(@Header("userId") long id, @Header("sessionId") String sessionId, @Body MultipartBody body);
 
     //查询我的被采纳的建议
     @GET("user/verify/v1/findMyAdoptedCommentList")
@@ -239,4 +230,23 @@ public interface IAppRequest {
                                                           @Header("sessionId")String sessionId,
                                                           @Query("page")int page,
                                                           @Query("count")int count);
+
+
+    //收藏病友圈
+    @FormUrlEncoded
+    @POST("user/verify/v1/addUserSickCollection")
+    Observable<Result> Shoucangbyq(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                   @Field("sickCircleId") String sickCircleId);
+
+
+    //上传图片
+    @POST("user/sickCircle/verify/v1/uploadSickCirclePicture")
+    Observable<Result> releaseCircle(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                     @Body MultipartBody body);
+
+    //发布病友圈
+    @Headers({"Content-Type: application/json;charset=UTF-8"})
+    @POST("user/sickCircle/verify/v1/publishSickCircle")
+    Observable<Result> FaBubyq(@Header("userId") long id, @Header("sessionId") String sessionId,
+                               @Body RequestBody body);
 }

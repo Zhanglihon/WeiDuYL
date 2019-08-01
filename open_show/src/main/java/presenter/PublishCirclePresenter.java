@@ -32,11 +32,12 @@ public class PublishCirclePresenter extends WDPresenter<IAppRequest>{
 
         MultipartBody.Builder builder = new MultipartBody.Builder().setType(MultipartBody.FORM);
         builder.addFormDataPart("sickCircleId", (String) args[2]);
-        List<LocalMedia> list = (List<LocalMedia>) args[3];
+        List<String> list = (List<String>) args[3];
+        Log.e("aaa",list.size()+"");
         if (list.size()>1) {
-            for (int i = 1; i < list.size(); i++) {
-                Log.e("aaa",String.valueOf(list.get(i)));
-                File file = new File(String.valueOf(list.get(i)));
+            for (int i = 0; i < list.size(); i++) {
+                Log.e("aaa",list.get(i));
+                File file = new File(list.get(i));
                 builder.addFormDataPart("picture", file.getName(),
                         RequestBody.create(MediaType.parse("multipart/octet-stream"),
                                 file));

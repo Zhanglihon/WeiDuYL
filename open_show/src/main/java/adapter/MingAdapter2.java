@@ -25,13 +25,13 @@ public class MingAdapter2 extends RecyclerView.Adapter<MingAdapter2.ViewHolder> 
 
     @NonNull
     @Override
-    public MingAdapter2.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view =LayoutInflater.from(context).inflate(R.layout.layout_mingadapter,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MingAdapter2.ViewHolder holder, int i ){
+    public void onBindViewHolder(@NonNull ViewHolder holder, int i ){
         holder.text_ming.setText(list.get(i).name);
 
         holder.text_ming.setOnClickListener(new View.OnClickListener() {

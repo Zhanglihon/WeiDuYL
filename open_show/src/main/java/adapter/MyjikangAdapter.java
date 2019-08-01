@@ -48,13 +48,13 @@ public class MyjikangAdapter extends RecyclerView.Adapter<MyjikangAdapter.ViewHo
 
     @NonNull
     @Override
-    public MyjikangAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view =LayoutInflater.from(context).inflate(R.layout.jiankang,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyjikangAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textView1.setText(list.get(position).name);
         if(getthisPosition() == position){
             holder.textView1.setTextColor(Color.parseColor("#87B9F3"));
@@ -90,7 +90,7 @@ public class MyjikangAdapter extends RecyclerView.Adapter<MyjikangAdapter.ViewHo
         }
     }
     public interface JianBack{
-        void jian(int i,List<MyjiankangBean> list);
+        void jian(int i, List<MyjiankangBean> list);
     }
   public JianBack jianBack;
 

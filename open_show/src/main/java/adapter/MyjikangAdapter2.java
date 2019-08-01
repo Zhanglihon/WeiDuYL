@@ -49,13 +49,13 @@ public class MyjikangAdapter2 extends RecyclerView.Adapter<MyjikangAdapter2.View
 
     @NonNull
     @Override
-    public MyjikangAdapter2.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view =LayoutInflater.from(context).inflate(R.layout.jiankangq,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyjikangAdapter2.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.textView1.setText(list.get(position).name);
         if(getthisPosition() == position){
             holder.textView1.setTextColor(Color.parseColor("#87B9F3"));
@@ -92,7 +92,7 @@ public class MyjikangAdapter2 extends RecyclerView.Adapter<MyjikangAdapter2.View
         }
     }
     public interface Backl{
-        void bal(int i,List<MyjiankangBean> list);
+        void bal(int i, List<MyjiankangBean> list);
     }
     public Backl backl;
 

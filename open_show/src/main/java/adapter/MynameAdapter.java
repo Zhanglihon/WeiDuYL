@@ -55,13 +55,13 @@ public class MynameAdapter extends RecyclerView.Adapter<MynameAdapter.ViewHolder
 
     @NonNull
     @Override
-    public MynameAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View view =LayoutInflater.from(context).inflate(R.layout.uu,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MynameAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.uu_text1.setText(list.get(position).name);
         if(getthisPosition() == position){
             holder.uu_text1.setTextColor(Color.parseColor("#87B9F3"));
@@ -112,7 +112,7 @@ public class MynameAdapter extends RecyclerView.Adapter<MynameAdapter.ViewHolder
         }
     }
     public interface Backv{
-        void bv(int i,List<NameBean> list);
+        void bv(int i, List<NameBean> list);
     }
     public Backv backv;
 

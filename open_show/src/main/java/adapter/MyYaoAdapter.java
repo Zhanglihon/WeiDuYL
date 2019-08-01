@@ -27,13 +27,13 @@ public class MyYaoAdapter extends RecyclerView.Adapter<MyYaoAdapter.ViewHolder> 
 
     @NonNull
     @Override
-    public MyYaoAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
        View view = LayoutInflater.from(context).inflate(R.layout.yao,parent,false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyYaoAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(context).load(list.get(position).picture).into(holder.imageView1);
         holder.textView.setText(list.get(position).name);
     }

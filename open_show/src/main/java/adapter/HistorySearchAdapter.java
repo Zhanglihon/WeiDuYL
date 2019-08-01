@@ -49,7 +49,7 @@ public class HistorySearchAdapter extends RecyclerView.Adapter<HistorySearchAdap
     }
 
     @Override
-    public HistorySearchAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         View view = LayoutInflater.from(mContext)
                 .inflate(R.layout.layout_jiluadapter, null);
@@ -58,7 +58,7 @@ public class HistorySearchAdapter extends RecyclerView.Adapter<HistorySearchAdap
     }
 
     @Override
-    public void onBindViewHolder(HistorySearchAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, int position) {
         holder.nameTv.setText(histotyList.get(position));
         holder.nameTv.setTag(histotyList.get(position));
         holder.deleteImg.setTag(histotyList.get(position));

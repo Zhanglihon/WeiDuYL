@@ -39,6 +39,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 import zhang.bw.com.common.bean.SuggestBean;
 import zhang.bw.com.common.bean.WddaBean;
+import zhang.bw.com.common.bean.WdgzBean;
 import zhang.bw.com.common.bean.WdscVideoBean;
 import zhang.bw.com.common.bean.YaoBean;
 
@@ -236,6 +237,12 @@ public interface IAppRequest {
     //查询用户购买视频列表
     @GET("user/verify/v1/findUserVideoBuyList")
     Observable<Result<List<BuyVideoBean>>> findUserVideoBuyList(@Header("userId")long userId,
+                                                          @Header("sessionId")String sessionId,
+                                                          @Query("page")int page,
+                                                          @Query("count")int count);
+    //查询用户关注医生列表
+    @GET("user/verify/v1/findUserDoctorFollowList")
+    Observable<Result<WdgzBean>> findUserDoctorFollowList(@Header("userId")long userId,
                                                           @Header("sessionId")String sessionId,
                                                           @Query("page")int page,
                                                           @Query("count")int count);

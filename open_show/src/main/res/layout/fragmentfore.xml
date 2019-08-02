@@ -167,11 +167,15 @@
             android:textColor="#3087ed"
             android:textSize="12sp" />
 
-        <ImageView
-            android:layout_marginTop="10dp"
-            android:id="@+id/image_view_1"
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_post_list"
             android:layout_width="match_parent"
-            android:layout_height="320dp" />
+            android:layout_height="320dp"
+            android:layout_marginTop="10dp"
+            android:background="#e4e4e4"
+            android:visibility="gone" />
+
 
     </LinearLayout>
 

@@ -25,6 +25,7 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bigkoo.pickerview.TimePickerView;
 import com.bigkoo.pickerview.listener.CustomListener;
 
@@ -235,7 +236,7 @@ public class FaBiaoPingLun extends WDActivity {
             @Override
             public void onClick(View v) {
             //跳转到充值页面
-
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_EMBODY).navigation();
             }
         });
 

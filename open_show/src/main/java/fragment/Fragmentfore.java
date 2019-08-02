@@ -27,6 +27,7 @@ import com.example.open_show.R;
 import com.example.open_show.R2;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.jaeger.ninegridimageview.NineGridImageView;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import org.greenrobot.eventbus.EventBus;
@@ -35,12 +36,16 @@ import org.greenrobot.eventbus.ThreadMode;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import adapter.Image2Adapter;
+import adapter.ImageAdapter;
 import adapter.PingLunlpAdapter;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
@@ -62,6 +67,7 @@ import zhang.bw.com.common.core.exception.ApiException;
 public class Fragmentfore extends Fragment {
 
 
+
     TextView textTite, textName, text_bingzheng, text_keshi, text_bgxq, text_shijian, text_yiyuan, text_jingli, text_pnum, text_snum, text_hb, text_yjcount, text_yjtime, text_yjhbi, text_jyname;
     RelativeLayout relativeLayout;
     ImageView image_view, image_haid_f4, image_pinglun, image_viewx,image_view_meiyou,image_shoucang;
@@ -69,6 +75,7 @@ public class Fragmentfore extends Fragment {
     LinearLayout linearLayout, linear_layout;
     List<ByXiangqingBean> list = new ArrayList<>();
     XRecyclerView recyc_view3;
+    RecyclerView rv_post_list;
     EditText edit_shuru;
     private int sickCircleId;
     private int commentNum;
@@ -79,12 +86,18 @@ public class Fragmentfore extends Fragment {
     int page =1;
     private FaBiaopl faBiaopl;
     private String sessionId;
+
+
+
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragmentfore, container, false);
 
         EventBus.getDefault().register(this);
+
+
         textName = view.findViewById(R.id.text_name);
         textTite = view.findViewById(R.id.text_titel);
         text_bingzheng = view.findViewById(R.id.text_bingzheng);
@@ -97,7 +110,6 @@ public class Fragmentfore extends Fragment {
         text_pnum = view.findViewById(R.id.text_pnum);
         text_snum = view.findViewById(R.id.text_snum);
         linearLayout = view.findViewById(R.id.linearLayout);
-        image_view = view.findViewById(R.id.image_view_1);
         text_hb = view.findViewById(R.id.text_hb);
         relativeLayout = view.findViewById(R.id.relativeLayout);
         text_yjcount = view.findViewById(R.id.text_yjcount);
@@ -111,6 +123,7 @@ public class Fragmentfore extends Fragment {
         edit_shuru = view.findViewById(R.id.edit_shuru);
         text_yjtime = view.findViewById(R.id.text_yjtime);
         image_shoucang = view.findViewById(R.id.image_shoucang);
+        rv_post_list = view.findViewById(R.id.rv_post_list);
 
 
         Fresco.initialize(getActivity());
@@ -265,12 +278,13 @@ public class Fragmentfore extends Fragment {
 
 
 
+        @SuppressLint("WrongConstant")
         @Override
         public void success(ByXiangqingBean data, Object... args) {
             //赋值
             lidsfe = data.getSickCircleId();
             textTite.setText(data.getTitle());
-            textName.setText(data.getAuthorUserId()+"");
+            textName.setText(data.getAuthorUserId() + "");
             text_bgxq.setText(data.getDetail());
             text_bingzheng.setText("");
             text_keshi.setText(data.getDepartment());
@@ -288,21 +302,57 @@ public class Fragmentfore extends Fragment {
             text_snum.setText(data.getCollectionNum() + "");
             text_pnum.setText(data.getCommentNum() + "");
             String picture = data.getPicture();
+            Log.e("aaa", picture);
+
+
+
             if (picture.length() != 0) {
-                image_view.setVisibility(View.VISIBLE);
-                Glide.with(getActivity()).load(picture).into(image_view);
+                String[] split = picture.split(",");
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < split.length; i++) {
+                    list.add(split[i]);
+                    Log.e("aaa",split[i]);
+                }
+
+
+                if (split.length == 1){
+                    LinearLayoutManager linearLayoutManager  = new LinearLayoutManager(getActivity());
+                    linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    rv_post_list.setLayoutManager(linearLayoutManager);
+                    ImageAdapter adapter = new ImageAdapter(R.layout.image_item,list);
+                    rv_post_list.setAdapter(adapter);
+                }else if (split.length == 2|| split.length == 4){
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),2);
+                    rv_post_list.setLayoutManager(gridLayoutManager);
+                    Image2Adapter adapter = new Image2Adapter(R.layout.image_item2,list);
+                    rv_post_list.setAdapter(adapter);
+                }else if (split.length == 3||split.length == 6||split.length == 5) {
+                    GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity(),3);
+                    rv_post_list.setLayoutManager(gridLayoutManager);
+                    Image2Adapter adapter = new Image2Adapter(R.layout.image_item3, list);
+                    rv_post_list.setAdapter(adapter);
+                }
+                rv_post_list.setVisibility(View.VISIBLE);
             } else {
-                image_view.setVisibility(View.GONE);
+               rv_post_list.setVisibility(View.GONE);
             }
 
-            int adoptFlag = data.getAdoptFlag();
-            Log.e("aaa",adoptFlag+"");
-            if(adoptFlag==1){
+
+            int collectionFlg = data.getCollectionFlg();
+            Log.e("aaa",collectionFlg+"");
+            if(collectionFlg==0){
                 Glide.with(getActivity()).load(R.mipmap.common_button_collection_large_s).into(image_shoucang);
             }else{
                 Glide.with(getActivity()).load(R.mipmap.common_button_collection_small_n).into(image_shoucang);
             }
-            String adoptTim = formatter.format(k);
+
+            int adoptFlag = data.getAdoptFlag();
+
+            Log.e("aaa",adoptFlag+"");
+
+            if(adoptFlag==1){
+                relativeLayout.setVisibility(View.VISIBLE);
+                String adoptTim = formatter.format(k);
                 Log.e("aaa",adoptTim+"");
                 simpleDraweeView.setImageURI(data.getAdoptHeadPic());
                 text_yjcount.setText(data.getAdoptComment());
@@ -310,6 +360,11 @@ public class Fragmentfore extends Fragment {
                 int i = commentNum / 2;
                 text_yjhbi.setText("获得" + i + "币");
                 text_jyname.setText(data.getAdoptNickName());
+            }else{
+                relativeLayout.setVisibility(View.GONE);
+            }
+
+
 
 
 
@@ -377,4 +432,7 @@ public class Fragmentfore extends Fragment {
 
         }
     }
+
+
+
 }

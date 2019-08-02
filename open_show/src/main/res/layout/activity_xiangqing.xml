@@ -32,14 +32,15 @@
             android:background="@mipmap/common_nav_message_black_n"
             />
     </RelativeLayout>
-<WebView
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
-    android:layout_marginTop="10dp"
-    android:layout_below="@+id/jj"
-    android:id="@+id/qing_text1"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" />
+
+    <WebView
+        android:id="@+id/qing_text1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/jj"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp" />
     <ImageView
         android:background="@mipmap/common_button_collection_large_n"
         android:layout_alignParentRight="true"

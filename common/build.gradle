@@ -103,5 +103,6 @@ dependencies {
     api 'com.android.support.test.espresso:espresso-core:3.0.2'
     api 'cn.jiguang.sdk:jmessage:2.9.0'  // 此处以JMessage 2.9.0 版本为例。
     api 'cn.jiguang.sdk:jcore:2.0.0'  // 此处以JCore 2.0.0 版本为例。
-
+    api 'com.jaeger.ninegridimageview:library:1.1.1'
+    api 'com.squareup.picasso:picasso:2.5.2'
 }

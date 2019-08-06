@@ -95,9 +95,9 @@ public class SousuoActivity extends WDActivity {
         histotySearchLayout = findViewById(R.id.history_search_layout);
         recyc_view2 = findViewById(R.id.recyc_view2);
         image_haid_sou = findViewById(R.id.image_haid_sou);
-//        text_no = findViewById(R.id.text_no);
-//        linearLayout = findViewById(R.id.linearLayout);
-//        linearLayout_1 = findViewById(R.id.linearLayout_1);
+        text_no = findViewById(R.id.text_no);
+        linearLayout = findViewById(R.id.linearLayout);
+        linearLayout_1 = findViewById(R.id.linearLayout_1);
     }
     private void setHistoryEmptyTvListener() {
         historyEmptyTv.setOnClickListener(new View.OnClickListener() {
@@ -150,12 +150,11 @@ public class SousuoActivity extends WDActivity {
                         // 此处为得到焦点时的处理内容
                         histotySearchLayout.setVisibility(View.VISIBLE);
                         recyc_view2.setVisibility(View.GONE);
-
+                        linearLayout.setVisibility(View.VISIBLE);
                     } else {
                         // 此处为失去焦点时的处理内容
                         histotySearchLayout.setVisibility(View.GONE);
                         recyc_view2.setVisibility(View.VISIBLE);
-
                     }
                 }
             });
@@ -205,7 +204,7 @@ public class SousuoActivity extends WDActivity {
 
     }
 
-    private class request implements DataCall<List<Byliebiao>>{
+    private class request implements DataCall<List<Byliebiao>> {
         @Override
         public void success(List<Byliebiao> data, Object... args) {
             if (data.size() == 0) {

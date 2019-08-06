@@ -14,7 +14,6 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-
         ndk {
             //选择要添加的对应cpu类型的.so库。
             abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
@@ -26,6 +25,7 @@ android {
                 JPUSH_APPKEY : "c7f6a1d56cb8da740fd18bfa", //JPush上注册的包名对应的appkey.
                 JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
         ]
+
 
     }
     buildTypes {
@@ -50,5 +50,6 @@ dependencies {
     implementation project(path: ':open_my')
     implementation 'com.android.support:multidex:1.0.3'
     implementation project(':open_inquiry')
+    implementation project(':open_im')
 
 }

@@ -73,7 +73,10 @@ public class MyActivity extends WDActivity {
     Button myQiandao;
     private LoginBean loginBean;
     private YhqdPresenter yhqdPresenter;
-
+    @BindView(R2.id.chakan)
+    ImageView chakan;
+    @BindView(R2.id.lishi)
+    ImageView lishi;
 
     @Override
     protected int getLayoutId() {
@@ -98,6 +101,18 @@ public class MyActivity extends WDActivity {
             @Override
             public void onClick(View v) {
                 finish();
+            }
+        });
+        chakan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUN1).navigation();
+            }
+        });
+        lishi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUN2).navigation();
             }
         });
         ArrayList<HashMap<String, Object>> lstImageItem = new ArrayList<HashMap<String, Object>>();

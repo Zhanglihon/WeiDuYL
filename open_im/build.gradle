@@ -1,4 +1,12 @@
 apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 29
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 29
 apply plugin: 'com.jakewharton.butterknife'
 android {
     compileSdkVersion 28
@@ -12,6 +20,7 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
+
     }
 
     buildTypes {
@@ -21,15 +30,10 @@ android {
         }
     }
 
-
-
-
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.0-alpha1'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.1'
     api project(path: ':common')

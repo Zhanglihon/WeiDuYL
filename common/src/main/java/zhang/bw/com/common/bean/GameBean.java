@@ -10,4 +10,5 @@ public class GameBean {
     public int  whetherBuy;
     public int buyNum;
     public String id;
+    public String originalUrl;
 }

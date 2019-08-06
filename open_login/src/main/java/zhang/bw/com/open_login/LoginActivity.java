@@ -22,6 +22,10 @@ import org.greenrobot.eventbus.EventBus;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.api.BasicCallback;
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.LoginBean;
@@ -29,6 +33,7 @@ import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
+import zhang.bw.com.common.util.MD5Utils;
 import zhang.bw.com.common.util.RsaCoder;
 import zhang.bw.com.open_login.presenter.LoginPresenter;
 
@@ -50,6 +55,8 @@ public class LoginActivity extends WDActivity {
     @BindView(R2.id.login_radiobutton_eyes)
     CheckBox loginRadiobuttonEyes;
     private LoginBeanDao loginBeanDao;
+    private String s;
+    private String s1;
 
     @Override
     protected int getLayoutId() {
@@ -88,7 +95,7 @@ public class LoginActivity extends WDActivity {
                 }
                 LoginPresenter loginPresenter = new LoginPresenter(new dl());
                 try {
-                    String s = RsaCoder.encryptByPublicKey(pwd);
+                    s = RsaCoder.encryptByPublicKey(pwd);
                     loginPresenter.reqeust(email, s);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -119,13 +126,10 @@ public class LoginActivity extends WDActivity {
 
     class dl implements DataCall<LoginBean> {
         @Override
-        public void success(LoginBean data, Object... args) {
+        public void success(final LoginBean data, Object... args) {
             Toast.makeText(LoginActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
             data.datas = 1;
-            Log.i("aaa",data.id+"-----"+data.sessionId);
             loginBeanDao.insertOrReplaceInTx(data);
-            String sessionId = data.sessionId;
-            long id = data.id;
             ARouter.getInstance().build(Constant.ACTIVITY_URL_MY).navigation();
             finish();
         }

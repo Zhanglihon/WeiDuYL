@@ -15,5 +15,7 @@ public class YishengBean {
     public String serverNum;
     public int servicePrice;
     public String doctorId;
+    public String recordId;
+    public String jiGuangPwd;
 
 }

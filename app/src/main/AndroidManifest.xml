@@ -24,31 +24,23 @@
                 <category android:name="android.intent.category.LAUNCHER" /><!--种类。类别-->
             </intent-filter>
         </activity>
-
-        <service android:name="cn.jpush.android.service.PushService"
-            android:process=":multiprocess"
-            tools:node="replace" >
-
-            ……
-        </service>
         <activity android:name="com.bw.open_wallet.WalletActivity"/>
         <activity android:name="com.bw.open_wallet.RechargeActivity"/>
         <activity android:name="com.bw.open_wallet.EmbodyActivity"/>
         <activity android:name="com.bw.open_wallet.SucceedActivity"/>
         <activity android:name="com.bw.open_wallet.DepositActivity"/>
         <activity android:name="com.bw.open_wallet.RecordActivity"/>
-        <activity android:name="com.example.open_inquiry.ShouActivity"/>
         <activity android:name="com.example.open_show.SousuoActivity"/>
         <activity android:name="com.example.open_show.Chafabiao"/>
         <activity android:name="com.example.open_show.FaBiaoPingLun"/>
+        <activity android:name=".ZiXunActivity"/>
         <!-- 张利宏-->
         <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>
         <!-- 张利宏-->
         <activity android:name="com.bw.open_wallet.ShengfzActivity"/>
         <activity android:name="com.bw.open_wallet.YinghkAcitivity"/>
-        <activity android:name="com.example.open_inquiry.ShouActivity"/>
-        <activity android:name="com.example.open_inquiry.ZixunAcitivty"/>
-        <activity android:name="com.example.open_inquiry.presenter.XiangActivity"/>
+        <activity android:name="com.example.health.ShouActivity"/>
+        <activity android:name="com.example.health.presenter.XiangActivity"/>
         <!-- 张利宏-->
         <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>
         <!-- 张利宏-->

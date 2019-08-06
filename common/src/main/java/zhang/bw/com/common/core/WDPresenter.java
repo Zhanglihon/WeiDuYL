@@ -95,14 +95,18 @@ public abstract class WDPresenter<T> {
                     }
                 }
             };
-        }else{
+        }
+        else{
             return new Consumer<Result>() {
                 @Override
                 public void accept(Result result) throws Exception {
                     running = false;
                     if (result.getStatus().equals("0000")) {
                         dataCall.success(result.getResult(), args);
-                    }else{
+                    } else if(result.getStatus().equals("8001")){
+                        dataCall.success(result.getMessage(),args);
+                    }
+                    else{
                         dataCall.fail(new ApiException(result.getStatus(),result.getMessage()));
                     }
                 }

@@ -14,6 +14,8 @@ import com.facebook.imagepipeline.cache.MemoryCacheParams;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
 import com.danikula.videocache.HttpProxyCacheServer;
 
+import cn.jpush.im.android.api.JMessageClient;
+
 /**
  * @name: MyApplication
  * @remark:
@@ -65,7 +67,8 @@ public class WDApplication extends Application {
         mMainThreadHandler = new Handler();
         mMainLooper = getMainLooper();
         sharedPreferences = getSharedPreferences("share.xml", MODE_PRIVATE);
-
+        JMessageClient.init(this);
+        JMessageClient.init(this, true);
         ARouter.openLog();     // Print log
         ARouter.openDebug();
         ARouter.init(this);//阿里路由初始化

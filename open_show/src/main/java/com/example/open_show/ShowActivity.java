@@ -3,6 +3,7 @@ package com.example.open_show;
 import adapter.BingYouAdaoter;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -76,7 +77,7 @@ public class ShowActivity extends AppCompatActivity {
         } else if (i == R.id.btn2) {
             if(falg){
                 falg=false;
-                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(1)).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(1)).addToBackStack(null).commit();
                 btn3.setChecked(false);
                 btn1.setChecked(false);
             }else{
@@ -95,12 +96,18 @@ public class ShowActivity extends AppCompatActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void xinjian(Fragment fragmentfore){
         fragments.add(fragmentfore);
-        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(3)).commit();
+        FragmentManager fg = getSupportFragmentManager();
+        fg.beginTransaction().replace(R.id.frameLayout, fragments.get(3)).commit();
         btn3.setChecked(false);
         btn2.setChecked(true);
         btn1.setChecked(false);
         falg=false;
 
+
+
+
+
+       // fg.popBackStack();
 
     }
 

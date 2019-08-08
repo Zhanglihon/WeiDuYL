@@ -11,16 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <ImageView
             android:layout_width="67dp"
             android:layout_height="64dp"
+            android:layout_gravity="center"
             android:layout_marginTop="46dp"
-            android:background="@mipmap/login1"
-            android:layout_gravity="center"/>
+            android:background="@mipmap/login1" />
+
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="60dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="60dp"
             android:gravity="center">
 
             <LinearLayout
@@ -32,15 +34,16 @@
                 android:background="@drawable/login_shape">
 
             </LinearLayout>
-        <LinearLayout
-            android:layout_width="260dp"
-            android:layout_height="218dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="10dp"
-            android:alpha="0.6"
-            android:background="@drawable/login_shape">
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="260dp"
+                android:layout_height="218dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:alpha="0.6"
+                android:background="@drawable/login_shape">
+
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="280dp"
@@ -132,36 +135,41 @@
                 </RelativeLayout>
             </LinearLayout>
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <TextView
                 android:id="@+id/login_forgetpwd"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#fff"
-                android:layout_marginTop="10dp"
                 android:layout_marginLeft="60dp"
-                android:text="忘记密码"/>
+                android:layout_marginTop="10dp"
+                android:text="忘记密码"
+                android:textColor="#fff" />
+
             <TextView
                 android:id="@+id/login_ljzc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="暂无账号？立即注册"
                 android:layout_alignParentRight="true"
                 android:layout_marginTop="10dp"
-                android:textColor="#fff"
-                android:layout_marginRight="60dp"/>
+                android:layout_marginRight="60dp"
+                android:text="暂无账号？立即注册"
+                android:textColor="#fff" />
         </RelativeLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <View
                 android:layout_width="90dp"
                 android:layout_height="2dp"
-                android:layout_marginTop="250dp"
                 android:layout_marginLeft="45dp"
-                android:background="#fff"/>
+                android:layout_marginTop="250dp"
+                android:background="#fff" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -169,22 +177,24 @@
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="240dp"
                 android:text="其它登录方式" />
+
             <View
                 android:layout_width="90dp"
                 android:layout_height="2dp"
-                android:background="#fff"
                 android:layout_alignParentRight="true"
+                android:layout_marginTop="250dp"
                 android:layout_marginRight="45dp"
-                android:layout_marginTop="250dp"/>
+                android:background="#fff" />
         </RelativeLayout>
+
         <ImageView
             android:id="@+id/login_wxdl"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@mipmap/login_wx"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="30dp"
-            android:layout_gravity="center"/>
+            android:background="@mipmap/login_wx" />
     </LinearLayout>
 
 </LinearLayout>

@@ -12,10 +12,7 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
-import retrofit2.http.Multipart;
 import retrofit2.http.PUT;
-import retrofit2.http.Part;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
 import zhang.bw.com.common.bean.BingZeng;
@@ -28,12 +25,10 @@ import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.GameBean;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
-import zhang.bw.com.common.bean.MyLishiBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
 import zhang.bw.com.common.bean.PingLunBean;
-import zhang.bw.com.common.bean.PriceBean;
 import zhang.bw.com.common.bean.QingBean;
 import zhang.bw.com.common.bean.ReBean;
 import zhang.bw.com.common.bean.Result;
@@ -50,8 +45,6 @@ import zhang.bw.com.common.bean.WdscVideoBean;
 import zhang.bw.com.common.bean.XiangBean;
 import zhang.bw.com.common.bean.YaoBean;
 import zhang.bw.com.common.bean.YishengBean;
-import zhang.bw.com.common.bean.ZhangBean;
-import zhang.bw.com.common.bean.ZhengBean;
 import zhang.bw.com.common.bean.ZixunBean;
 
 /**
@@ -123,23 +116,10 @@ public interface IAppRequest {
     Observable<Result<List<YishengBean>>>findDoctorList2(@Header("userId") long id, @Header("sessionId") String sessionId,
                                                          @Query("deptId") String deptId, @Query("condition") String condition, @Query("sortBy") String sortBy,
                                                          @Query("page") String page, @Query("count") String count);
-    @PUT("user/inquiry/verify/v1/consultDoctor")
-    Observable<Result>consultDoctor(@Header("userId")long userId, @Header("sessionId")String sessionId, @Query("doctorId") String doctorId);
-    @PUT("user/inquiry/verify/v1/endInquiry")
-    Observable<Result>endInquiry(@Header("userId")long userId,@Header("sessionId")String sessionId,@Query("recordId") String recordId);
-    @GET("user/inquiry/verify/v1/findHistoryInquiryRecord")
-    Observable<Result<List<MyLishiBean>>>findHistoryInquiryRecord(@Header("userId")long userId, @Header("sessionId")String sessionId, @Query("page")String page, @Query("count")String count);
-    @PUT("user/inquiry/verify/v1/evaluationInquiry")
-    Observable<Result>evaluationInquiry(@Header("userId")long userId, @Header("sessionId")String sessionId,@Query("inquiryRecordId")String inquiryRecordId,@Query("doctorId")String doctorId,@Query("evaluate")String evaluate,@Query("majorDegree")String majorDegree,@Query("satisfactionDegree")String satisfactionDegree);
-    @FormUrlEncoded
-    @POST("user/inquiry/verify/v1/pushMessage")
-    Observable<Result>pushMessage(@Header("userId")long userId, @Header("sessionId")String sessionId,@Field("recordId")String inquiryId,@Field("msgContent")String msgContent,@Field("content")String content,@Field("type")String type,@Field("doctorId")String doctorId);
     //发送邮箱验证码
     @FormUrlEncoded
     @POST("user/v1/sendOutEmailCode")
     Observable<Result> sendOutEmailCode(@Field("email")String email);
-    @GET("user/inquiry/verify/v1/findCurrentInquiryRecord")
-    Observable<Result<ZhengBean>>findCurrentInquiryRecord(@Header("userId")long userId, @Header("sessionId")String sessionId);
     //注册
     @FormUrlEncoded
     @POST("user/v1/register")
@@ -197,8 +177,8 @@ public interface IAppRequest {
     //支付
     @FormUrlEncoded
     @POST("user/verify/v1/recharge")
-    Observable<Result> zhifujiekou(@Header("userId") long id, @Header("sessionId") String sessionId,
-                                   @Field("money") String money, @Field("payType") String payType);
+    Observable<Result<String>> zhifujiekou(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                    @Field("money") String money, @Field("payType") String payType);
 
     //我的钱包
     @GET("user/verify/v1/findUserWallet")

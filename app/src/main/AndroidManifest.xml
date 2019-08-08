@@ -7,6 +7,14 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
 
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+
+
+
     <application
         android:supportsRtl="true"
         android:largeHeap="true"
@@ -24,25 +32,35 @@
                 <category android:name="android.intent.category.LAUNCHER" /><!--种类。类别-->
             </intent-filter>
         </activity>
+
+        <service android:name="cn.jpush.android.service.PushService"
+            android:process=":multiprocess"
+            tools:node="replace" >
+
+            ……
+        </service>
         <activity android:name="com.bw.open_wallet.WalletActivity"/>
         <activity android:name="com.bw.open_wallet.RechargeActivity"/>
         <activity android:name="com.bw.open_wallet.EmbodyActivity"/>
         <activity android:name="com.bw.open_wallet.SucceedActivity"/>
         <activity android:name="com.bw.open_wallet.DepositActivity"/>
         <activity android:name="com.bw.open_wallet.RecordActivity"/>
+        <activity android:name="com.example.open_inquiry.ShouActivity"/>
         <activity android:name="com.example.open_show.SousuoActivity"/>
         <activity android:name="com.example.open_show.Chafabiao"/>
         <activity android:name="com.example.open_show.FaBiaoPingLun"/>
-        <activity android:name=".ZiXunActivity"/>
+        <activity android:name="com.wd.health.wxapi.WXEntryActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true"
+            android:theme="@style/Base.Theme.AppCompat"
+            android:screenOrientation="portrait"
+            />
+
         <!-- 张利宏-->
         <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>
         <!-- 张利宏-->
         <activity android:name="com.bw.open_wallet.ShengfzActivity"/>
         <activity android:name="com.bw.open_wallet.YinghkAcitivity"/>
-        <activity android:name="com.example.health.ShouActivity"/>
-        <activity android:name="com.example.health.presenter.XiangActivity"/>
-        <!-- 张利宏-->
-        <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>
         <activity android:name="com.example.open_inquiry.ZixunAcitivty"/>
         <activity android:name="com.example.open_inquiry.presenter.XiangActivity"/>
 

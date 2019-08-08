@@ -1,17 +1,11 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 28
 
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 29
-apply plugin: 'com.jakewharton.butterknife'
-android {
-    compileSdkVersion 28
-    defaultConfig {
-        minSdkVersion 18
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"

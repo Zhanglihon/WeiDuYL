@@ -17,7 +17,6 @@ import com.bw.open_wallet.prensenter.ZhiFuPresenter;
 
 import java.util.List;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhang.bw.com.common.DaoMaster;
@@ -141,12 +140,12 @@ public class RechargeActivity extends WDActivity {
                 String s = editText.getText().toString();
                 if(tyep==2){
                    //支付宝支付
-                    Log.e("aaa",id+"==="+sessionId+"==="+s+"===="+tyep);
-                    zhiFuPresenter.reqeust(id,sessionId,s,tyep+"");
+                    Log.i("aaa",id+"==="+sessionId+"==="+s+"===="+tyep);
+//                    zhiFuPresenter.reqeust(id,sessionId,s,tyep+"");
                 }else{
                     //微信支付
-                    Log.e("aaa",id+"==="+sessionId+"==="+s+"===="+tyep);
-                    zhiFuPresenter.reqeust(id,sessionId,s,tyep+"");
+                    Log.i("aaa",id+"==="+sessionId+"==="+s+"===="+tyep);
+//                    zhiFuPresenter.reqeust(id,sessionId,s,tyep+"");
                 }
             }
         });
@@ -164,16 +163,16 @@ public class RechargeActivity extends WDActivity {
         ButterKnife.bind(this);
     }
 
-    private class request implements DataCall<Result> {
+    private class request implements DataCall<Result<String>> {
 
         @Override
-        public void success(Result data, Object... args) {
-           Log.e("aaa",data.getMessage());
+        public void success(Result<String> data, Object... args) {
+            Log.i("message", "success: "+data.getResult());
         }
 
         @Override
         public void fail(ApiException data, Object... args) {
-
+            Log.i("message", "success: "+data.getDisplayMessage());
         }
     }
 }

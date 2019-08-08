@@ -87,7 +87,9 @@ public class ShowActivity extends AppCompatActivity {
             }
 
         } else if (i == R.id.btn3) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
+            FragmentManager fg = getSupportFragmentManager();
+            fg.popBackStack();
+            fg.beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
             btn2.setChecked(false);
             btn1.setChecked(false);
             falg=true;
@@ -96,18 +98,12 @@ public class ShowActivity extends AppCompatActivity {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void xinjian(Fragment fragmentfore){
         fragments.add(fragmentfore);
-        FragmentManager fg = getSupportFragmentManager();
-        fg.beginTransaction().replace(R.id.frameLayout, fragments.get(3)).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(3)).commit();
         btn3.setChecked(false);
         btn2.setChecked(true);
         btn1.setChecked(false);
         falg=false;
 
-
-
-
-
-       // fg.popBackStack();
 
     }
 

@@ -70,7 +70,7 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
         findUserWallet1.reqeust(loginBean.getId(),loginBean.getSessionId());
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT;
-        holder.mp_video.setUp(list.get(position).originalUrl, JZVideoPlayerStandard.CURRENT_STATE_NORMAL);
+        holder.mp_video.setUp(list.get(position).shearUrl, JZVideoPlayerStandard.CURRENT_STATE_NORMAL);
         holder.textView1.setText(list.get(position).title);
         holder.textView2.setText(list.get(position).abstracts);
         holder.ren_text.setText(list.get(position).buyNum+"万人已购买");

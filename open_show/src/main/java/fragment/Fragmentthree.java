@@ -2,7 +2,6 @@ package fragment;
 
 import android.annotation.SuppressLint;
 
-import android.os.Handler;
 import android.view.View;
 
 import android.widget.ImageView;
@@ -59,7 +58,6 @@ public class Fragmentthree extends WDFragment {
     private String id;
     public boolean aa =true;
     public  boolean bb = true;
-    public boolean gg=true;
     private AddUserVideoCollection addUserVideoCollection;
 
     @Override
@@ -83,19 +81,6 @@ public class Fragmentthree extends WDFragment {
         recyc_thr2.setLayoutManager(layoutManager);
         myadapterGame = new MyadapterGame(getActivity());
         recyc_thr2.setAdapter(myadapterGame);
-        three_image.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(gg){
-                    recyc_thr.setVisibility(View.GONE);
-                    gg = false;
-                }else {
-                    recyc_thr.setVisibility(View.INVISIBLE);
-                    gg = true;
-
-                }
-            }
-        });
         mynameAdapter.setBackv(new MynameAdapter.Backv() {
            @Override
            public void bv(int i, List<NameBean> list) {

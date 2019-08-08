@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <RelativeLayout
-        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -129,7 +127,7 @@
             android:textColor="#333333"
             android:id="@+id/text_kkk"
             android:text="选择充值方式"/>
-        
+
         <ImageView
             android:id="@+id/image_wx"
             android:layout_marginTop="20dp"

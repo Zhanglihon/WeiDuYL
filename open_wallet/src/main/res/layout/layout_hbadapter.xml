@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="我觉得是开发"
+        android:text="问诊咨询"
         android:textColor="#333333"
         android:textSize="14sp" />
 
@@ -21,7 +21,15 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_content"
         android:layout_marginTop="4dp"
-        android:text="我觉得是开发"
+        android:text="2018.11.10"
         android:textColor="#999999"
-        android:textSize="14sp" />
+        android:textSize="10sp" />
+    <TextView
+        android:id="@+id/text_money"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="28dp"
+        android:text="-500H币"/>
 </RelativeLayout>

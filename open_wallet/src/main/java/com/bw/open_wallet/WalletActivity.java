@@ -14,7 +14,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bw.open_wallet.adapter.HbAdapter;
 import com.bw.open_wallet.prensenter.MemoneyPresenter;
-import com.bw.open_wallet.prensenter.WalletPresenter;
+import com.bw.open_wallet.prensenter.XfjlPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,8 +26,8 @@ import butterknife.ButterKnife;
 
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
-import zhang.bw.com.common.bean.HbchaXun;
 import zhang.bw.com.common.bean.LoginBean;
+import zhang.bw.com.common.bean.XfjlBean;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
@@ -57,10 +57,11 @@ public class WalletActivity extends WDActivity {
     Button butCz;
     @BindView(R2.id.recyc_view)
     RecyclerView recycView;
-   private WalletPresenter walletPresenter;
-    List<HbchaXun> list = new ArrayList<>();
+    List<XfjlBean> list = new ArrayList<>();
     private HbAdapter adapter;
     private MemoneyPresenter memoneyPresenter;
+    private LoginBean loginBean;
+    private XfjlPresenter xfjlPresenter;
 
     @Override
     protected int getLayoutId() {
@@ -71,19 +72,16 @@ public class WalletActivity extends WDActivity {
     @Override
     protected void initView() {
         //生成数据库
-        LoginBeanDao dao = DaoMaster.newDevSession(WalletActivity.this, LoginBeanDao.TABLENAME).getLoginBeanDao();
-        List<LoginBean> loginBeans = dao.loadAll();
-        String sessionId = loginBeans.get(0).getSessionId();
-        long id = loginBeans.get(0).getId();
+        loginBean = DaoMaster.newDevSession(WalletActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
         //点击事件
         initoncilik();
-        //请求列表
-         walletPresenter = new WalletPresenter(new request());
-         walletPresenter.reqeust(id,sessionId,2+"",5+"");
+        //消费记录
+        xfjlPresenter = new XfjlPresenter(new request());
+        xfjlPresenter.reqeust(loginBean.getId(),loginBean.getSessionId(),1,10);
 
         //请求H币
         memoneyPresenter = new MemoneyPresenter(new money());
-        memoneyPresenter.reqeust(id,sessionId);
+        memoneyPresenter.reqeust(loginBean.getId(),loginBean.getSessionId());
 
 
         //适配器
@@ -127,7 +125,7 @@ public class WalletActivity extends WDActivity {
     class request implements DataCall{
         @Override
         public void success(Object data, Object... args) {
-          List<HbchaXun> listResult = (List<HbchaXun>) data;
+            List<XfjlBean> listResult = (List<XfjlBean>) data;
             list.addAll(listResult);
             adapter.setData(listResult);
             adapter.notifyDataSetChanged();
@@ -136,7 +134,7 @@ public class WalletActivity extends WDActivity {
 
         @Override
         public void fail(ApiException data, Object... args) {
-            Log.e("aaaa",data.getDisplayMessage());
+
         }
     }
     @Override

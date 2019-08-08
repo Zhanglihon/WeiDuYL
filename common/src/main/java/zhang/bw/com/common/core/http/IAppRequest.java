@@ -12,18 +12,15 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
-import retrofit2.http.Multipart;
 import retrofit2.http.PUT;
-import retrofit2.http.Part;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 import zhang.bw.com.common.bean.BannerBean;
 import zhang.bw.com.common.bean.BingZeng;
+import zhang.bw.com.common.bean.BingyouBean;
 import zhang.bw.com.common.bean.BuyVideoBean;
 import zhang.bw.com.common.bean.ByXiangqingBean;
 import zhang.bw.com.common.bean.BingBean;
 import zhang.bw.com.common.bean.Byliebiao;
-import zhang.bw.com.common.bean.HbchaXun;
 import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.GameBean;
 import zhang.bw.com.common.bean.JanBean;
@@ -33,10 +30,10 @@ import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
 import zhang.bw.com.common.bean.PingLunBean;
-import zhang.bw.com.common.bean.PriceBean;
 import zhang.bw.com.common.bean.QingBean;
 import zhang.bw.com.common.bean.ReBean;
 import zhang.bw.com.common.bean.Result;
+import zhang.bw.com.common.bean.SBingBean;
 import zhang.bw.com.common.bean.ShoucuoBean;
 import zhang.bw.com.common.bean.ShouziBean;
 import zhang.bw.com.common.bean.ShowBean;
@@ -47,10 +44,11 @@ import zhang.bw.com.common.bean.SuggestBean;
 import zhang.bw.com.common.bean.WddaBean;
 import zhang.bw.com.common.bean.WdgzBean;
 import zhang.bw.com.common.bean.WdscVideoBean;
+import zhang.bw.com.common.bean.WoDeplBean;
+import zhang.bw.com.common.bean.XfjlBean;
 import zhang.bw.com.common.bean.XiangBean;
 import zhang.bw.com.common.bean.YaoBean;
 import zhang.bw.com.common.bean.YishengBean;
-import zhang.bw.com.common.bean.ZhangBean;
 import zhang.bw.com.common.bean.ZhengBean;
 import zhang.bw.com.common.bean.ZixunBean;
 
@@ -220,11 +218,12 @@ public interface IAppRequest {
         //关键字搜索病友圈
     @GET("user/sickCircle/v1/searchSickCircle")
     Observable<Result<List<Byliebiao>>> guanjianzi(@Query("keyWord") String keyWord);
-        //请求H币信息
-    @GET("user/verify/v1/findHealthyCurrencyNoticeList")
-    Observable<Result<List<HbchaXun>>> Hchaxun(@Header("userId") long id, @Header("sessionId") String sessionId,
-                                               @Query("page") String page, @Query("count") String count);
-
+    //查询用户消费记录
+    @GET("user/verify/v1/findUserConsumptionRecordList")
+    Observable<Result<List<XfjlBean>>> findUserConsumptionRecordList(@Header("userId") long id,
+                                                                     @Header("sessionId") String sessionId,
+                                                                     @Query("page")int page,
+                                                                     @Query("count")int count);
     //病友圈请求详情
     @GET("user/sickCircle/v1/findSickCircleInfo")
     Observable<Result<ByXiangqingBean>> Byxiangqing(@Header("userId") long id, @Header("sessionId") String sessionId,
@@ -292,7 +291,7 @@ public interface IAppRequest {
                                                           @Query("count")int count);
     //查询用户关注医生列表
     @GET("user/verify/v1/findUserDoctorFollowList")
-    Observable<Result<WdgzBean>> findUserDoctorFollowList(@Header("userId")long userId,
+    Observable<Result<List<WdgzBean>>> findUserDoctorFollowList(@Header("userId")long userId,
                                                           @Header("sessionId")String sessionId,
                                                           @Query("page")int page,
                                                           @Query("count")int count);
@@ -315,4 +314,28 @@ public interface IAppRequest {
     @POST("user/sickCircle/verify/v1/publishSickCircle")
     Observable<Result> FaBubyq(@Header("userId") long id, @Header("sessionId") String sessionId,
                                @Body RequestBody body);
+    // 查看我的病友圈发帖列表
+    @GET("user/sickCircle/verify/v1/findMySickCircleList")
+    Observable<Result<List<BingyouBean>>> findMySickCircleList(@Header("userId")long userId,
+                                                               @Header("sessionId")String sessionId,
+                                                               @Query("page")int page,
+                                                               @Query("count")int count);
+    //查询我的病友圈帖子的评论列表
+    @GET("user/sickCircle/verify/v1/findMySickCircleCommentList")
+    Observable<Result<WoDeplBean>> findMySickCircleCommentList(@Header("userId")long userId,
+                                                               @Header("sessionId")String sessionId,
+                                                               @Query("sickCircleId")String sickCircleId,
+                                                               @Query("page")int page,
+                                                               @Query("count")int count);
+    //用户收藏病友圈列表
+    @GET("user/verify/v1/findUserSickCollectionList")
+    Observable<Result<List<SBingBean>>> findUserSickCollectionList(@Header("userId")long userId,
+                                                                   @Header("sessionId")String sessionId,
+                                                                   @Query("page")int page,
+                                                                   @Query("count")int count);
+    //提现
+    @POST("user/verify/v1/drawCash")
+    Observable<Result> drawCash(@Header("userId") long userId,
+                                @Header("sessionId") String sessionId,
+                                @Query("money")int money);
 }

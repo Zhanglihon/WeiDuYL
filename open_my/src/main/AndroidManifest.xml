@@ -21,7 +21,9 @@
         <activity android:name=".activity.SuggestActivity" />
         <activity android:name=".activity.BuyVideoActivity" />
         <activity android:name=".activity.BingYouActivity" />
-        <activity android:name=".activity.WdgzActivity"></activity>
+        <activity android:name=".activity.WdplActivity"></activity>
+        <activity android:name=".activity.WdgzActivity"/>
+        <activity android:name=".activity.WdrwActivity"/>
     </application>
 
 </manifest>

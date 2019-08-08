@@ -47,7 +47,7 @@ public class BuyVideoAdapter extends RecyclerView.Adapter<BuyVideoAdapter.holder
 
     @Override
     public void onBindViewHolder(@NonNull holder holder, int position) {
-        String url=list.get(position).original;
+        String url=list.get(position).originalUrl;
         try {
             holder.buyitem_time.setText(DateUtils.dateTransformer(list.get(position).createTime,DATE_TIME_PATTERN));
         } catch (ParseException e) {
@@ -57,8 +57,9 @@ public class BuyVideoAdapter extends RecyclerView.Adapter<BuyVideoAdapter.holder
         if(position==0){
             holder.buyitem_video_jzsp.startVideo();
         }
-        Glide.with(context).load(list.get(position).original).into(holder.buyitem_video_jzsp.thumbImageView);
+        Glide.with(context).load(list.get(position).originalUrl).into(holder.buyitem_video_jzsp.thumbImageView);
         holder.buyitem_video_jzsp.setUp(url,JZVideoPlayerStandard.CURRENT_STATE_NORMAL,list.get(position).title);
+        holder.buyitem_title.setText(list.get(position).title);
         holder.buyitem_video_jzsp.thumbImageView.setScaleType(ImageView.ScaleType.FIT_XY);
         // 7播放比例,可以设置为16:9,4:3
         holder.buyitem_video_jzsp.widthRatio = 4;
@@ -83,12 +84,14 @@ public class BuyVideoAdapter extends RecyclerView.Adapter<BuyVideoAdapter.holder
         private final JZVideoPlayerStandard buyitem_video_jzsp;
         private final TextView buyitem_time;
         private final TextView buyitem_sc;
+        private final TextView buyitem_title;
 
         public holder(@NonNull View itemView) {
             super(itemView);
             buyitem_video_jzsp = itemView.findViewById(R.id.buyitem_video_jzsp);
             buyitem_time = itemView.findViewById(R.id.buyitem_time);
             buyitem_sc = itemView.findViewById(R.id.buyitem_sc);
+            buyitem_title = itemView.findViewById(R.id.buyitem_title);
         }
     }
 }

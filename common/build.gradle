@@ -112,4 +112,5 @@ dependencies {
     //微信依赖
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
 
+
 }

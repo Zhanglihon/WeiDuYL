@@ -11,10 +11,15 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bw.open_wallet.prensenter.ZhiFuPresenter;
+import com.tencent.mm.opensdk.modelpay.PayReq;
+import com.tencent.mm.opensdk.openapi.IWXAPI;
+import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
+import java.security.AlgorithmConstraints;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,12 +28,14 @@ import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.Result;
+import zhang.bw.com.common.bean.WxBean;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
 
 import static java.lang.Float.parseFloat;
+import static java.lang.Integer.lowestOneBit;
 import static java.lang.Integer.parseInt;
 
 /**
@@ -52,7 +59,7 @@ public class RechargeActivity extends WDActivity {
     RadioGroup radio_group;
     EditText editText;
     TextView text_hh;
-    int tyep =1;
+    int tyep = 1;
     private ZhiFuPresenter zhiFuPresenter;
     private long id;
     private String sessionId;
@@ -65,9 +72,11 @@ public class RechargeActivity extends WDActivity {
     @Override
     protected void initView() {
 
-        editText=findViewById(R.id.edit_text);
-        text_hh=findViewById(R.id.text_hh);
-        radio_group=findViewById(R.id.radio_group);
+//        api = WXAPIFactory.createWXAPI(this, Constants.ACCOUNT.APP_ID);
+//        api.handleIntent(getIntent(), this);
+        editText = findViewById(R.id.edit_text);
+        text_hh = findViewById(R.id.text_hh);
+        radio_group = findViewById(R.id.radio_group);
 
         LoginBeanDao dao = DaoMaster.newDevSession(RechargeActivity.this, LoginBeanDao.TABLENAME).getLoginBeanDao();
         List<LoginBean> loginBeans = dao.loadAll();
@@ -79,6 +88,7 @@ public class RechargeActivity extends WDActivity {
 
 
     }
+
     //有点击事件
     private void onclicks() {
         //返回
@@ -98,12 +108,11 @@ public class RechargeActivity extends WDActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 String sss = editText.getText().toString();
-                Log.e("aaa", sss);
 
                 if (sss.equals("")) {
-                    text_hh.setText(0+"");
-                } else if(sss.equals(".")){
-                }else{
+                    text_hh.setText(0 + "");
+                } else if (sss.equals(".")) {
+                } else {
                     float ss = parseFloat(sss);
                     int s1 = (int) (ss * 100);
                     text_hh.setText(s1 + "");
@@ -120,13 +129,13 @@ public class RechargeActivity extends WDActivity {
         radioZfb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tyep=2;
+                tyep = 2;
             }
         });
         radioWx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                tyep=1;
+                tyep = 1;
             }
         });
 
@@ -138,14 +147,15 @@ public class RechargeActivity extends WDActivity {
             @Override
             public void onClick(View v) {
                 String s = editText.getText().toString();
-                if(tyep==2){
-                   //支付宝支付
-                    Log.i("aaa",id+"==="+sessionId+"==="+s+"===="+tyep);
-//                    zhiFuPresenter.reqeust(id,sessionId,s,tyep+"");
-                }else{
+                Log.e("aaa",tyep+"");
+                if (tyep == 2) {
+                    //支付宝支付
+                    Log.e("aaa", id + "===" + sessionId + "===" + s + "====" + tyep);
+                   //zhiFuPresenter.reqeust(id,sessionId,s,tyep+"");
+                } else if(tyep==1){
                     //微信支付
-                    Log.i("aaa",id+"==="+sessionId+"==="+s+"===="+tyep);
-//                    zhiFuPresenter.reqeust(id,sessionId,s,tyep+"");
+                    Log.e("aaa", id + "===" + sessionId + "===" + s + "====" + tyep);
+                   zhiFuPresenter.reqeust(id, sessionId, s, tyep + "");
                 }
             }
         });
@@ -163,16 +173,31 @@ public class RechargeActivity extends WDActivity {
         ButterKnife.bind(this);
     }
 
-    private class request implements DataCall<Result<String>> {
+    private class request implements DataCall<Result<String>>{
+
 
         @Override
         public void success(Result<String> data, Object... args) {
-            Log.i("message", "success: "+data.getResult());
+
+            IWXAPI api = WXAPIFactory.createWXAPI(RechargeActivity.this, null);
+            api.registerApp("wxe3fcbe8a55cd33ff");
+            PayReq req = new PayReq();
+            req.appId           = data.getAppId();//你的微信appid
+            req.partnerId       = data.getPartnerId();//商户号
+            req.prepayId        = data.getPrepayId();//预支付交易会话ID
+            req.nonceStr        = data.getNonceStr();//随机字符串
+            req.timeStamp       = data.getTimeStamp();//时间戳
+            req.packageValue    = "Sign=WXPay";//扩展字段,这里固定填写Sign=WXPay
+            req.sign            = data.getSign();//签名
+//              req.extData         = "app data"; // optional
+            // 在支付之前，如果应用没有注册到微信，应该先调用IWXMsg.registerApp将应用注册到微信
+            api.sendReq(req);
+
         }
 
         @Override
         public void fail(ApiException data, Object... args) {
-            Log.i("message", "success: "+data.getDisplayMessage());
+
         }
     }
 }

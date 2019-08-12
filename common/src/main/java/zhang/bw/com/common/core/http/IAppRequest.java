@@ -44,8 +44,10 @@ import zhang.bw.com.common.bean.WddaBean;
 import zhang.bw.com.common.bean.WdgzBean;
 import zhang.bw.com.common.bean.WdscVideoBean;
 import zhang.bw.com.common.bean.WoDeplBean;
+import zhang.bw.com.common.bean.WxBean;
 import zhang.bw.com.common.bean.XfjlBean;
 import zhang.bw.com.common.bean.XiangBean;
+import zhang.bw.com.common.bean.XiaoXiBean;
 import zhang.bw.com.common.bean.YaoBean;
 import zhang.bw.com.common.bean.YishengBean;
 import zhang.bw.com.common.bean.ZixunBean;
@@ -180,8 +182,8 @@ public interface IAppRequest {
     //支付
     @FormUrlEncoded
     @POST("user/verify/v1/recharge")
-    Observable<Result> zhifujiekou(@Header("userId") long id, @Header("sessionId") String sessionId,
-                                   @Field("money") String money, @Field("payType") String payType);
+    Observable<Result<String>> zhifujiekou(@Header("userId") long id, @Header("sessionId") String sessionId,
+                                           @Field("money") String money, @Field("payType") String payType);
 
     //我的钱包
     @GET("user/verify/v1/findUserWallet")
@@ -276,7 +278,8 @@ public interface IAppRequest {
                                                           @Query("count")int count);
     //查询用户关注医生列表
     @GET("user/verify/v1/findUserDoctorFollowList")
-    Observable<Result<WdgzBean>> findUserDoctorFollowList(@Header("userId")long userId,
+    Observable<Result<List<WdgzBean
+            >>> findUserDoctorFollowList(@Header("userId")long userId,
                                                           @Header("sessionId")String sessionId,
                                                           @Query("page")int page,
                                                           @Query("count")int count);
@@ -323,4 +326,9 @@ public interface IAppRequest {
     Observable<Result> drawCash(@Header("userId") long userId,
                                 @Header("sessionId") String sessionId,
                                 @Query("money")int money);
+
+    //消息查询
+    @GET("user/verify/v1/findUserNoticeReadNum")
+    Observable<Result<List<XiaoXiBean>>> XiaoXi(@Header("userId")long userId,
+                                                              @Header("sessionId")String sessionId);
 }

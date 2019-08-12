@@ -24,6 +24,7 @@ public class ZhiFuPresenter extends WDPresenter<IAppRequest> {
         return iRequest.zhifujiekou((long) args[0],(String)args[1],(String)args[2],(String)args[3]);
     }
 
+
     @Override
     protected Consumer getConsumer(Object... args) {
         return new Consumer<Result>() {

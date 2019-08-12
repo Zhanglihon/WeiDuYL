@@ -6,7 +6,7 @@
 
     android:useLevel= "false" >
 
-    <solid android:color= "#fff" />
+    <solid android:color= "#E8136A" />
 
     <stroke
 

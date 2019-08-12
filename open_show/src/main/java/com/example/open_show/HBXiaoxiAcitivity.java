@@ -1,8 +1,11 @@
 package com.example.open_show;
 
+import android.view.View;
+import android.widget.ImageView;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 
-import androidx.appcompat.app.AppCompatActivity;
+import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.util.Constant;
 
@@ -12,16 +15,24 @@ import zhang.bw.com.common.util.Constant;
  * @Date：2019/8/8
  * @Description：XXXX
  */
-@Route(path = Constant.ACTIVITY_URL_XIAOXI)
-public class XiaoXiAcitivity extends WDActivity{
+@Route(path = Constant.ACTIVITY_URL_HBXIAOXI)
+public class HBXiaoxiAcitivity extends WDActivity{
+    ImageView image_fan;
 
     @Override
     protected int getLayoutId() {
-        return R.layout.layout_xiaoxi;
+        return R.layout.layout_hbxiaoxi;
     }
 
     @Override
     protected void initView() {
+        image_fan=findViewById(R.id.image_fan);
+        image_fan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
     }
 

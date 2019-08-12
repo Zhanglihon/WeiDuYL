@@ -13,6 +13,11 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
 
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
+
+
+
+
 
 
     <application
@@ -49,12 +54,27 @@
         <activity android:name="com.example.open_show.SousuoActivity"/>
         <activity android:name="com.example.open_show.Chafabiao"/>
         <activity android:name="com.example.open_show.FaBiaoPingLun"/>
+        <activity android:name="com.example.open_show.XiaoXiAcitivity"/>
+        <activity android:name="com.example.open_show.HBXiaoxiAcitivity"/>
+        <activity android:name="com.example.open_show.WZXiaoxiAcitivity"/>
+        <activity android:name="com.example.open_show.XTXiaoxiAcitivity"/>
         <activity android:name="com.wd.health.wxapi.WXEntryActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:exported="true"
             android:theme="@style/Base.Theme.AppCompat"
             android:screenOrientation="portrait"
             />
+        <activity android:name="com.wd.health.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wxe3fcbe8a55cd33ff"/>
+            </intent-filter>
+        </activity>
+
+
 
         <!-- 张利宏-->
         <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>

@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="#fff"
-        android:gravity="clip_horizontal">
+        android:gravity="clip_horizontal"
+        android:layout_marginTop="30dp">
         <ImageView
             android:id="@+id/wdda_image_back"
             android:layout_width="16dp"

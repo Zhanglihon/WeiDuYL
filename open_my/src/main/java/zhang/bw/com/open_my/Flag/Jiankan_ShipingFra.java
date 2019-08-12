@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.util.List;
@@ -29,6 +30,8 @@ public class Jiankan_ShipingFra extends Fragment {
     private LoginBean loginBean;
     private RecyclerView wdsc_recycler_view;
     private WdscVideoAdapter wdscVideoAdapter;
+    private RelativeLayout shi_wsj;
+    private RelativeLayout shi_ysj;
 
     @Nullable
     @Override
@@ -36,6 +39,8 @@ public class Jiankan_ShipingFra extends Fragment {
         View view = inflater.inflate(R.layout.jian_kan_shi, container, false);
         loginBean = DaoMaster.newDevSession(getContext(),LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
         wdsc_recycler_view = view.findViewById(R.id.wdsc_Recycler_view);
+        shi_wsj = view.findViewById(R.id.shi_wsj);
+        shi_ysj = view.findViewById(R.id.shi_ysj);
         return view;
     }
 
@@ -57,9 +62,13 @@ public class Jiankan_ShipingFra extends Fragment {
 
         @Override
         public void success(List<WdscVideoBean> data, Object... args) {
-            wdscVideoAdapter.addAll(data);
-            wdscVideoAdapter.notifyDataSetChanged();
-            Toast.makeText(getContext(), "视频加载成功", Toast.LENGTH_SHORT).show();
+            if (data.size()==0){
+                shi_ysj.setVisibility(View.GONE);
+            }else {
+                shi_wsj.setVisibility(View.GONE);
+                wdscVideoAdapter.addAll(data);
+                wdscVideoAdapter.notifyDataSetChanged();
+            }
         }
 
         @Override

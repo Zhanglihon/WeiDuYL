@@ -166,10 +166,13 @@ public class MyActivity extends WDActivity {
                     startActivity(intent);
                 } else if (index == 6) {
                     Intent intent=new Intent(MyActivity.this,BingYouActivity.class);
+                    startActivity(intent);
                 } else if (index == 7) {
-                    // intentByRouter(Constant.ACTIVITY_URL_ATTENTION);
+                    Intent intent=new Intent(MyActivity.this,WdgzActivity.class);
+                    startActivity(intent);
                 } else if (index == 8) {
-                    // intentByRouter(Constant.ACTIVITY_URL_TASK);
+                    Intent intent=new Intent(MyActivity.this,WdrwActivity.class);
+                    startActivity(intent);
                 } else if (index == 9) {
                     Intent intent = new Intent(MyActivity.this, WdszActivity.class);
                     startActivity(intent);
@@ -200,12 +203,13 @@ public class MyActivity extends WDActivity {
 
         @Override
         public void success(Object data, Object... args) {
+            myQiandao.setText("已签到");
             Toast.makeText(MyActivity.this, "签到成功", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void fail(ApiException data, Object... args) {
-
+            Toast.makeText(MyActivity.this,data.getDisplayMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -219,7 +223,7 @@ public class MyActivity extends WDActivity {
 
         @Override
         public void fail(ApiException data, Object... args) {
-            Toast.makeText(MyActivity.this, "查询失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(MyActivity.this,data.getDisplayMessage(), Toast.LENGTH_SHORT).show();
         }
     }
     class usersign implements DataCall<Integer>{

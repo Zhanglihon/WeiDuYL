@@ -152,18 +152,17 @@ public class WddaActivity extends WDActivity {
                 NestedYsj.setVisibility(View.GONE);
             } else {
                 wddaWsj.setVisibility(View.GONE);
+                wddaZz.setText(data.diseaseMain);
+                wddaXbs.setText(data.diseaseNow);
+                wddaJwbs.setText(data.diseaseBefore);
+                wddaYy.setText(data.treatmentHospitalRecent);
+                wddaZljl.setText(data.treatmentProcess);
             }
-            wddaZz.setText(data.diseaseMain);
-            wddaXbs.setText(data.diseaseNow);
-            wddaJwbs.setText(data.diseaseBefore);
-            wddaYy.setText(data.treatmentHospitalRecent);
-            wddaZljl.setText(data.treatmentProcess);
-            Toast.makeText(WddaActivity.this, "用户档案查询成功", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void fail(ApiException data, Object... args) {
-            Toast.makeText(WddaActivity.this, "用户档案查询失败", Toast.LENGTH_SHORT).show();
+            Toast.makeText(WddaActivity.this,data.getDisplayMessage(), Toast.LENGTH_SHORT).show();
         }
     }
 }

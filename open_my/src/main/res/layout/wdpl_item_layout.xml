@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:id="@+id/wdpl_item_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_launcher"
+            android:layout_marginTop="10dp"/>
+        <TextView
+            android:id="@+id/wdpl_text_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="小妮子"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="50dp"/>
+        <ImageView
+            android:id="@+id/wdpl_item_doctor"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:background="@mipmap/common_icon_inquiry_n"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp">
+        <TextView
+            android:id="@+id/wdpl_text_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="看水电费健康上课了的房间是快点放假看了深刻的风景可心的的结构谁看得见快乐的算法结构"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/wdpl_item_data"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="14dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="10sp"
+            android:text="07/04/2018"/>
+
+        <CheckBox
+            android:id="@+id/wdpl_item_dz"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="120dp"
+            android:background="@drawable/wdpl_item_l"
+            android:button="@null" />
+
+        <TextView
+            android:id="@+id/wdpl_item_dznum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="100dp"
+            android:text="99" />
+
+        <CheckBox
+            android:id="@+id/wdpl_item_cai"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="75dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/unlike"
+            android:button="@null" />
+        <TextView
+            android:id="@+id/wdpl_item_cainum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="60dp"
+            android:text="5" />
+        <CheckBox
+            android:id="@+id/wdpl_item_caina"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:background="@drawable/caina"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="35dp"
+            android:button="@null"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="采纳"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="10dp"/>
+    </RelativeLayout>
+</LinearLayout>

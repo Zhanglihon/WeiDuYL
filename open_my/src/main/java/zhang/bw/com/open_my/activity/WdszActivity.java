@@ -69,7 +69,8 @@ public class WdszActivity extends WDActivity {
         wdszTcdl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginBean.setDatas(0);
+                LoginBeanDao loginBeanDao=DaoMaster.newDevSession(WdszActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao();
+                loginBeanDao.deleteAll();
                 ARouter.getInstance().build(Constant.ACTIVITY_URL_SHOW).navigation();
                 finish();
             }

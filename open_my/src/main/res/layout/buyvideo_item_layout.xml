@@ -3,12 +3,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
-    <cn.jzvd.JZVideoPlayerStandard
-        android:id="@+id/buyitem_video_jzsp"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="100dp">
-    </cn.jzvd.JZVideoPlayerStandard>
+        android:layout_height="wrap_content">
+        <cn.jzvd.JZVideoPlayerStandard
+            android:id="@+id/buyitem_video_jzsp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+        </cn.jzvd.JZVideoPlayerStandard>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:id="@+id/buyitem_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:textColor="#fff"
+            android:textSize="16sp"
+            android:text="啦啦啦啦" />
+    </RelativeLayout>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="30dp">

@@ -32,6 +32,7 @@
             android:text="我的关注" />
     </RelativeLayout>
     <RelativeLayout
+        android:id="@+id/wdgz_ysj"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#fff"
@@ -41,5 +42,31 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         </androidx.recyclerview.widget.RecyclerView>
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/wdgz_wsj"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="4dp"
+        android:background="#fff">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <ImageView
+                android:layout_width="126dp"
+                android:layout_height="135dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="150dp"
+                android:background="@mipmap/no_message"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30dp"
+                android:textSize="14sp"
+                android:textColor="#333333"
+                android:text="您暂无任何关注信息"/>
+        </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

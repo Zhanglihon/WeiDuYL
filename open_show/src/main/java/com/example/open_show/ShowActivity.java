@@ -62,8 +62,8 @@ public class ShowActivity extends AppCompatActivity {
 
 
 
-    }
 
+    }
     @OnClick({R2.id.btn1, R2.id.btn2, R2.id.btn3})
     public void onClick(View view) {
         int i = view.getId();
@@ -102,14 +102,6 @@ public class ShowActivity extends AppCompatActivity {
         falg=false;
 
 
-    }
-
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 }
 

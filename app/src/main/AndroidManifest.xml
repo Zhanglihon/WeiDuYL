@@ -33,16 +33,17 @@
         <activity android:name="com.example.open_show.SousuoActivity"/>
         <activity android:name="com.example.open_show.Chafabiao"/>
         <activity android:name="com.example.open_show.FaBiaoPingLun"/>
-        <activity android:name=".ZiXunActivity"/>
+        <activity android:name="com.example.health.ShouActivity"/>
+        <activity android:name="com.example.open_show.ShowActivity"/>
+        <activity android:name="com.example.open_show.ShowActivity1"/>
+        <activity android:name=".MainActivity"/>
         <!-- 张利宏-->
         <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>
         <!-- 张利宏-->
         <activity android:name="com.bw.open_wallet.ShengfzActivity"/>
         <activity android:name="com.bw.open_wallet.YinghkAcitivity"/>
-        <activity android:name="com.example.health.ShouActivity"/>
         <activity android:name="com.example.health.presenter.XiangActivity"/>
         <!-- 张利宏-->
-        <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>
         <!-- 张利宏-->
         <provider
             android:name="androidx.core.content.FileProvider"

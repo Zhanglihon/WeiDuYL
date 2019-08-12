@@ -2,7 +2,9 @@ package com.example.health;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -10,6 +12,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -23,6 +26,8 @@ import com.example.open_inquiry.R;
 import com.example.open_inquiry.R2;
 import com.example.health.adapter.YishengAdaoter;
 import com.facebook.drawee.view.SimpleDraweeView;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -93,6 +98,7 @@ public class ShouActivity extends WDActivity {
     ImageView ian;
     @BindView(R2.id.di)
     ImageView di;
+
     private FindDoctorList findDoctorList;
     private FindDoctorList1 findDoctorList1;
     private FindDoctorList2 findDoctorList2;
@@ -100,6 +106,8 @@ public class ShouActivity extends WDActivity {
     private Dialog dialog1;
     private String recordId;
     private String jiGuangPwd;
+    private String doctorName;
+    private View view1;
 
     @Override
     protected int getLayoutId() {
@@ -137,17 +145,18 @@ public class ShouActivity extends WDActivity {
         yishengAdaoter.setBaop(new YishengAdaoter.Baop() {
             @Override
             public void bop(int i, List<YishengBean> list) {
-                jiGuangPwd = list.get(i).jiGuangPwd;
-                recordId = list.get(i).recordId;
-                servicePrice = list.get(i).servicePrice;
-                doctorId = list.get(i).doctorId;
-                text_num.setText("服务患者数 "+list.get(i).serverNum);
-                text_haopin.setText("好评率 "+list.get(i).praise);
-                text_name.setText(list.get(i).doctorName);
-                text_zhiwu.setText(list.get(i).jobTitle);
-                text_adrss.setText(list.get(i).inauguralHospital);
-                text_cishu.setText(list.get(i).servicePrice+"H币/次");
-                image_ren.setImageURI(list.get(i).imagePic);
+                 doctorName = list.get(i).getDoctorName();
+                jiGuangPwd = list.get(i).getJiGuangPwd();
+                recordId = list.get(i).getRecordId();
+                servicePrice = list.get(i).getServicePrice();
+                doctorId = list.get(i).getDoctorId();
+                text_num.setText("服务患者数 "+list.get(i).getServerNum());
+                text_haopin.setText("好评率 "+list.get(i).getPraise());
+                text_name.setText(list.get(i).getDoctorName());
+                text_zhiwu.setText(list.get(i).getJobTitle());
+                text_adrss.setText(list.get(i).getInauguralHospital());
+                text_cishu.setText(list.get(i).getServicePrice()+"H币/次");
+                image_ren.setImageURI(list.get(i).getImagePic());
             }
         });
         xiaoxi.setOnClickListener(new View.OnClickListener() {
@@ -181,7 +190,6 @@ public class ShouActivity extends WDActivity {
                 confirm1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-
                         loginBean = DaoMaster.newDevSession(ShouActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
                         consultDoctor = new ConsultDoctor(new Backl());
                         consultDoctor.reqeust(loginBean.getId(),loginBean.getSessionId(),doctorId);
@@ -239,6 +247,11 @@ public class ShouActivity extends WDActivity {
      class Backm implements DataCall<List<ShowBean>> {
         @Override
         public void success(List<ShowBean> data, Object... args) {
+
+            for (int i = 0; i < data.size(); i++) {
+                data.get(i).textcolor = Color.BLACK;
+            }
+            data.get(0).textcolor = Color.parseColor("#3087ea");
             mingAdapter.addAll(data);
             mingAdapter.notifyDataSetChanged();
         }
@@ -252,17 +265,22 @@ public class ShouActivity extends WDActivity {
      class Bckp implements DataCall<List<YishengBean>> {
         @Override
             public void success(List<YishengBean> data, Object... args) {
-             jiGuangPwd = data.get(0).jiGuangPwd;
-             recordId = data.get(0).recordId;
-            servicePrice = data.get(0).servicePrice;
-                   doctorId = data.get(0).doctorId;
-                   text_num.setText("服务患者数 "+data.get(0).serverNum);
-                   text_haopin.setText("好评率 "+data.get(0).praise);
-                   text_name.setText(data.get(0).doctorName);
-                   text_zhiwu.setText(data.get(0).jobTitle);
-                   text_adrss.setText(data.get(0).inauguralHospital);
-                   text_cishu.setText(data.get(0).servicePrice+"H币/次");
-                   image_ren.setImageURI(data.get(0).imagePic);
+            for (int i = 0; i < data.size(); i++) {
+                data.get(i).textcolor = Color.WHITE;
+            }
+            data.get(0).textcolor = Color.parseColor("#3087ea");
+             doctorName = data.get(0).getDoctorName();
+            jiGuangPwd = data.get(0).getJiGuangPwd();
+             recordId = data.get(0).getRecordId();
+            servicePrice = data.get(0).getServicePrice();
+                   doctorId = data.get(0).getDoctorId();
+                   text_num.setText("服务患者数 "+data.get(0).getServerNum());
+                   text_haopin.setText("好评率 "+data.get(0).getPraise());
+                   text_name.setText(data.get(0).getDoctorName());
+                   text_zhiwu.setText(data.get(0).getJobTitle());
+                   text_adrss.setText(data.get(0).getInauguralHospital());
+                   text_cishu.setText(data.get(0).getServicePrice()+"H币/次");
+                   image_ren.setImageURI(data.get(0).getImagePic());
                 yishengAdaoter.adALL(data);
                yishengAdaoter.notifyDataSetChanged();
             }
@@ -277,7 +295,7 @@ public class ShouActivity extends WDActivity {
         @Override
         public void success(String data, Object... args) {
           if(data!=null){
-              View view1 =View.inflate(ShouActivity.this,R.layout.popw1,null);
+              view1 = View.inflate(ShouActivity.this,R.layout.popw1,null);
               TextView  textprice=  view1.findViewById(R.id.textView11);
               textprice.setText("你尚有咨询在进行中" +"\n"+
                       "请先关闭再开始新的咨询");
@@ -288,7 +306,7 @@ public class ShouActivity extends WDActivity {
               final TextView cancel2 =
                       (TextView) view1.findViewById(R.id.cancel2);
               final TextView confirm2 =
-                      (TextView)view1.findViewById(R.id.confirm2);
+                      (TextView) view1.findViewById(R.id.confirm2);
               cancel2.setOnClickListener(new View.OnClickListener() {
                   @Override
                   public void onClick(View v) {
@@ -302,7 +320,11 @@ public class ShouActivity extends WDActivity {
                   }
               });
           }else {
-              ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUN3).withString("data",data).navigation();
+              ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUNIM).withString("juu",doctorName).navigation();
+              Log.e("aaaa",doctorName);
+              dialog1.dismiss();
+              dialog.dismiss();
+
           }
         }
 

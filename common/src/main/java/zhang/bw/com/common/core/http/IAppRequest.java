@@ -140,6 +140,11 @@ public interface IAppRequest {
     Observable<Result> sendOutEmailCode(@Field("email")String email);
     @GET("user/inquiry/verify/v1/findCurrentInquiryRecord")
     Observable<Result<ZhengBean>>findCurrentInquiryRecord(@Header("userId")long userId, @Header("sessionId")String sessionId);
+    @FormUrlEncoded
+    @POST("user/verify/v1/addInfoCollection")
+    Observable<Result>addInfoCollection(@Header("userId")long userId, @Header("sessionId")String sessionId,@Field("infoId")String infoId);
+    @DELETE("user/verify/v1/cancelInfoCollection")
+    Observable<Result>cancelInfoCollection(@Header("userId")long userId, @Header("sessionId")String sessionId,@Query("infoId") String infoId);
     //注册
     @FormUrlEncoded
     @POST("user/v1/register")
@@ -160,6 +165,9 @@ public interface IAppRequest {
     //根据用户ID查询用户信息
     @GET("user/verify/v1/getUserInfoById")
     Observable<Result<CXBean>> getUserInfoById(@Header("userId") long userId,
+                                               @Header("sessionId") String sessionId);
+    @GET("user/verify/v1/getUserInfoById")
+    Observable<Result<CXBean>> getUserInfoById1(@Header("userId") long userId,
                                                @Header("sessionId") String sessionId);
     //检验验证码
     @FormUrlEncoded

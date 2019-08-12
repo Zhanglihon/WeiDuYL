@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wd.health">
     <application>
-       <activity android:name=".ZiXunActivity"/>
         <service android:name="cn.jpush.android.service.PushService"
             android:process=":multiprocess"
             tools:node="replace" >

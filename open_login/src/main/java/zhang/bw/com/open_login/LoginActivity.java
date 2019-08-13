@@ -1,6 +1,8 @@
 package zhang.bw.com.open_login;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -20,6 +22,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 import org.greenrobot.eventbus.EventBus;
 
+import androidx.core.app.ActivityCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -65,6 +68,11 @@ public class LoginActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        //注册
+        Thread.setDefaultUncaughtExceptionHandler(new MyException(this));
+        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
+        }
         loginPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
         loginRadiobuttonEyes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override

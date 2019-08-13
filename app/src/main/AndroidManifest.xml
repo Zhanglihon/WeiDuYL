@@ -41,9 +41,6 @@
         <activity android:name="com.bw.open_wallet.YinghkAcitivity"/>
         <activity android:name="com.example.health.ShouActivity"/>
         <activity android:name="com.example.health.presenter.XiangActivity"/>
-        <!-- 张利宏-->
-        <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>
-        <!-- 张利宏-->
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.wd.health.fileprovider"

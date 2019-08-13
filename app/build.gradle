@@ -51,5 +51,4 @@ dependencies {
     implementation 'com.android.support:multidex:1.0.3'
     implementation project(':open_inquiry')
     implementation project(':open_im')
-
 }

@@ -338,4 +338,10 @@ public interface IAppRequest {
     Observable<Result> drawCash(@Header("userId") long userId,
                                 @Header("sessionId") String sessionId,
                                 @Query("money")int money);
+    //查询用户身份证信息
+    @FormUrlEncoded
+    @POST("user/verify/v1/bindUserIdCard")
+    Observable<Result> bindUserIdCard(@Field("userId")long userId,
+                                      @Field("sessionId")String sessionId,
+                                      @Body RequestBody body);
 }

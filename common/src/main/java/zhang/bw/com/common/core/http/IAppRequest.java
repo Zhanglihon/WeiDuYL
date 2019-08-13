@@ -278,8 +278,7 @@ public interface IAppRequest {
                                                           @Query("count")int count);
     //查询用户关注医生列表
     @GET("user/verify/v1/findUserDoctorFollowList")
-    Observable<Result<List<WdgzBean
-            >>> findUserDoctorFollowList(@Header("userId")long userId,
+    Observable<Result<List<WdgzBean>>> findUserDoctorFollowList(@Header("userId")long userId,
                                                           @Header("sessionId")String sessionId,
                                                           @Query("page")int page,
                                                           @Query("count")int count);
@@ -326,6 +325,12 @@ public interface IAppRequest {
     Observable<Result> drawCash(@Header("userId") long userId,
                                 @Header("sessionId") String sessionId,
                                 @Query("money")int money);
+    //查询用户身份证信息
+    @FormUrlEncoded
+    @POST("user/verify/v1/bindUserIdCard")
+    Observable<Result> bindUserIdCard(@Field("userId")long userId,
+                                      @Field("sessionId")String sessionId,
+                                      @Body RequestBody body);
 
     //消息查询
     @GET("user/verify/v1/findUserNoticeReadNum")

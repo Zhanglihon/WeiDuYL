@@ -125,6 +125,13 @@ public interface IAppRequest {
     @FormUrlEncoded
     @POST("user/v1/sendOutEmailCode")
     Observable<Result> sendOutEmailCode(@Field("email")String email);
+    @GET("user/inquiry/verify/v1/findCurrentInquiryRecord")
+    Observable<Result<ZhengBean>>findCurrentInquiryRecord(@Header("userId")long userId, @Header("sessionId")String sessionId);
+    @FormUrlEncoded
+    @POST("user/verify/v1/addInfoCollection")
+    Observable<Result>addInfoCollection(@Header("userId")long userId, @Header("sessionId")String sessionId,@Field("infoId")String infoId);
+    @DELETE("user/verify/v1/cancelInfoCollection")
+    Observable<Result>cancelInfoCollection(@Header("userId")long userId, @Header("sessionId")String sessionId,@Query("infoId") String infoId);
     //注册
     @FormUrlEncoded
     @POST("user/v1/register")
@@ -145,6 +152,9 @@ public interface IAppRequest {
     //根据用户ID查询用户信息
     @GET("user/verify/v1/getUserInfoById")
     Observable<Result<CXBean>> getUserInfoById(@Header("userId") long userId,
+                                               @Header("sessionId") String sessionId);
+    @GET("user/verify/v1/getUserInfoById")
+    Observable<Result<CXBean>> getUserInfoById1(@Header("userId") long userId,
                                                @Header("sessionId") String sessionId);
     //检验验证码
     @FormUrlEncoded
@@ -278,8 +288,7 @@ public interface IAppRequest {
                                                           @Query("count")int count);
     //查询用户关注医生列表
     @GET("user/verify/v1/findUserDoctorFollowList")
-    Observable<Result<List<WdgzBean
-            >>> findUserDoctorFollowList(@Header("userId")long userId,
+    Observable<Result<List<WdgzBean>>> findUserDoctorFollowList(@Header("userId")long userId,
                                                           @Header("sessionId")String sessionId,
                                                           @Query("page")int page,
                                                           @Query("count")int count);

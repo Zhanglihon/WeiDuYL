@@ -1,6 +1,7 @@
-package com.example.open_inquiry.adapter;
+package com.example.health.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -37,12 +38,19 @@ public class MingAdapter extends RecyclerView.Adapter<MingAdapter.Holder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final Holder holder, final int i) {
-        holder.text_ming .setText(list.get(i).getDepartmentName());
+       public void onBindViewHolder(@NonNull final Holder holder, final int postion) {
+
+        holder.text_ming .setText(list.get(postion).getDepartmentName());
+        holder.text_ming.setTextColor(list.get(postion).textcolor);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                myCallBack.oncelicks(i,list);
+                for (int i = 0; i <list.size() ; i++) {
+                    list.get(i).textcolor=Color.BLACK;
+                }
+                list.get(postion).textcolor=Color.parseColor("#3087ea");
+                notifyDataSetChanged();
+                myCallBack.oncelicks(postion,list);
             }
         });
     }

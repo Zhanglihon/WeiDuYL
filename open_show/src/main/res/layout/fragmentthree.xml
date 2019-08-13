@@ -7,6 +7,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyc_thr2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:background="#000">
+    </androidx.recyclerview.widget.RecyclerView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyc_thr"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+    </androidx.recyclerview.widget.RecyclerView>
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyc_thr"
                 android:layout_width="match_parent"
@@ -49,12 +63,40 @@
             android:background="@mipmap/common_icon_on_slippery_n"
             android:layout_marginBottom="10dp"
             />
+  <RelativeLayout
+      android:gravity="center"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <ImageView
+          android:id="@+id/wozji1"
+          android:background="@mipmap/fell_gesture"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:id="@+id/hua"
+          android:textSize="14sp"
+          android:textColor="#ffff"
+          android:layout_marginTop="15dp"
+          android:text="上下滑查看下个视频"
+          android:layout_below="@id/wozji1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+      <ImageView
+          android:layout_below="@id/hua"
+          android:id="@+id/zhidao"
+          android:layout_marginTop="30dp"
+          android:background="@mipmap/know"
+          android:textColor="#ffff"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+  </RelativeLayout>
     <RelativeLayout
         android:background="#000000"
         android:gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/image_three"
             android:layout_width="14dp"
@@ -62,6 +104,7 @@
             android:background="@mipmap/common_icon_on_slippery_n"
             android:layout_marginBottom="4dp"
             />
+
     </RelativeLayout>
 
 </RelativeLayout>

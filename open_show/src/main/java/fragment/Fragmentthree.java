@@ -2,9 +2,12 @@ package fragment;
 
 import android.annotation.SuppressLint;
 
+import android.content.SharedPreferences;
+import android.os.Handler;
 import android.view.View;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.open_show.R;
@@ -37,6 +40,8 @@ import zhang.bw.com.common.core.FindVideoVoList;
 import zhang.bw.com.common.core.WDFragment;
 import zhang.bw.com.common.core.exception.ApiException;
 
+import static android.content.Context.MODE_PRIVATE;
+
 public class Fragmentthree extends WDFragment {
     @BindView(R2.id.recyc_thr)
     RecyclerView recyc_thr;
@@ -53,13 +58,24 @@ public class Fragmentthree extends WDFragment {
     ImageView three_image;
     @BindView(R2.id.barrageView)
     BarrageView barrageView;
+    @BindView(R2.id.zhidao)
+    ImageView zhidao;
+    @BindView(R2.id.hua)
+    TextView hua;
+    @BindView(R2.id.wozji1)
+    ImageView wozji1;
     private List<Barrage> mBarrages = new ArrayList<>();
     private FindVideoCommentList findVideoCommentList;
+    @BindView(R2.id.image_three)
+    ImageView image_three;
+    private  int tag=0;
     private String id;
     public boolean aa =true;
     public  boolean bb = true;
     private AddUserVideoCollection addUserVideoCollection;
-
+    private SharedPreferences pref1;
+    //用于判断是否是第一次运行，运行后变为false
+    private boolean isFirst = true;
     @Override
     protected int getLayoutId() {
         return R.layout.fragmentthree;
@@ -81,6 +97,27 @@ public class Fragmentthree extends WDFragment {
         recyc_thr2.setLayoutManager(layoutManager);
         myadapterGame = new MyadapterGame(getActivity());
         recyc_thr2.setAdapter(myadapterGame);
+        initB();
+
+        three_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (tag == 0) {
+                    recyc_thr.setVisibility(View.INVISIBLE);
+                    tag = 1;
+                } else {
+                    recyc_thr.setVisibility(View.VISIBLE);
+                    tag = 0;
+                }
+            }
+        }
+        );
+        image_three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         mynameAdapter.setBackv(new MynameAdapter.Backv() {
            @Override
            public void bv(int i, List<NameBean> list) {
@@ -148,6 +185,32 @@ public class Fragmentthree extends WDFragment {
         });
         barrageView.setBarrages(mBarrages);
     }
+
+    private void initB() {
+       pref1 =  getActivity().getSharedPreferences("logu", MODE_PRIVATE);
+        isFirst = pref1.getBoolean("isFirstIn", true);//如果第一次运行，无isFirstIn值，自动获取第二个参数为默认值
+        if (isFirst) {//如果为true，进入if语句
+            hua.setVisibility(View.VISIBLE);
+            zhidao.setVisibility(View.VISIBLE);
+            wozji1.setVisibility(View.VISIBLE);
+            zhidao.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    hua.setVisibility(View.GONE);
+                    zhidao.setVisibility(View.GONE);
+                    wozji1.setVisibility(View.GONE);
+                }
+            });
+            SharedPreferences.Editor editor = pref1.edit();
+            editor.putBoolean("isFirstIn", false);//保存isFirstIn值为false
+            editor.commit();//提交数据
+        } else {
+            hua.setVisibility(View.GONE);
+            zhidao.setVisibility(View.GONE);
+            wozji1.setVisibility(View.GONE);
+        }
+    }
+
     class Backj implements DataCall<List<NameBean>>{
 
         @Override

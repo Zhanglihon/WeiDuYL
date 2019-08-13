@@ -1,10 +1,13 @@
 package zhang.bw.com.open_my.adapter;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +27,10 @@ import zhang.bw.com.open_my.R;
 public class WdgzAdapter extends RecyclerView.Adapter<WdgzAdapter.holder> {
     Context context;
     List<WdgzBean>list;
-
+    private float moveX;
+    private float moveY;
+    private float pressX;
+    private float pressY;
     public WdgzAdapter(Context context) {
         this.context = context;
         list=new ArrayList<>();
@@ -38,16 +44,56 @@ public class WdgzAdapter extends RecyclerView.Adapter<WdgzAdapter.holder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull holder holder, int position) {
+    public void onBindViewHolder(@NonNull final holder holder, int position) {
         holder.guangzhu_name.setText(list.get(position).name);
         holder.guanzhu_zhuren.setText(list.get(position).jobTitle);
-        holder.guanzhu_dizhi.setText(list.get(position).inauguralHospital);
-
+        holder.guanzhu_dizhi.setText(list.get(position).inauguralHospital+"/");
+        holder.guanzhu_ks.setText(list.get(position).departmentName);
+        holder.haoping_shuliang.setText(list.get(position).praiseNum+"%");
+        holder.guanzhu_hznum.setText(list.get(position).number+"");
+        Glide.with(context).load(list.get(position).imagePic).into(holder.guanzhu_iamgeview);
+        holder.itemView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()){
+                    //按下
+                    case MotionEvent.ACTION_DOWN:
+                        pressX = event.getX();
+                        pressY = event.getY();
+                        break;
+                    //移动
+                    case MotionEvent.ACTION_MOVE:
+                        if (moveX-pressX>0&&Math.abs(moveY-pressY)<50){
+                            holder.guanzhu_image_view_view.setVisibility(View.GONE);
+                        }else if (moveX - pressX < 0 && Math.abs(moveY - pressY) < 50){
+                            holder.guanzhu_image_view_view.setVisibility(View.VISIBLE);
+                        }
+                        moveX = event.getX();
+                        moveY = event.getY();
+                        break;
+                    //松开
+                    case MotionEvent.ACTION_UP:
+                        if (moveX-pressX > 0 && Math.abs(moveY - pressY) < 50) {
+                            //Log.i("message", "向右");
+                        } else if (moveX - pressX < 0 && Math.abs(moveY - pressY) < 50) {
+                            //Log.i("message", "向左");
+                        }
+                        break;
+                    default:
+                        break;
+                }
+                return true;
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    public void addAll(List<WdgzBean> data) {
+        list.addAll(data);
     }
 
     public class holder extends RecyclerView.ViewHolder{
@@ -59,6 +105,7 @@ public class WdgzAdapter extends RecyclerView.Adapter<WdgzAdapter.holder> {
         private final TextView haoping_shuliang;
         private final TextView guanzhu_hznum;
         private final TextView guanzhu_ks;
+        private final TextView guanzhu_image_view_view;
 
         public holder(@NonNull View itemView) {
             super(itemView);
@@ -69,6 +116,7 @@ public class WdgzAdapter extends RecyclerView.Adapter<WdgzAdapter.holder> {
             haoping_shuliang = itemView.findViewById(R.id.haoping_shuliang);
             guanzhu_hznum = itemView.findViewById(R.id.guanzhu_hznum);
             guanzhu_ks = itemView.findViewById(R.id.guanzhu_ks);
+            guanzhu_image_view_view = itemView.findViewById(R.id.guanzhu_image_view_view);
         }
     }
 }

@@ -6,19 +6,19 @@ import zhang.bw.com.common.core.WDPresenter;
 import zhang.bw.com.common.core.http.IAppRequest;
 
 /**
- * @Author：郭强
- * @E-mail： 69666501@163.com
- * @Date：2019/7/15
- * @Description：XXXX
+ * Time:${Data}
+ * <p>
+ * Author:Lenovo
+ * <p>
+ * Description:写这个类的作用
  */
-public class WalletPresenter extends WDPresenter<IAppRequest>{
-
-    public WalletPresenter(DataCall dataCall) {
+public class XfjlPresenter extends WDPresenter<IAppRequest> {
+    public XfjlPresenter(DataCall dataCall) {
         super(dataCall);
     }
 
     @Override
     protected Observable getModel(Object... args) {
-        return iRequest.Hchaxun((long) args[0],(String)args[1],(String)args[2],(String)args[3]);
+        return iRequest.findUserConsumptionRecordList((long)args[0],(String)args[1],(int)args[2],(int)args[3]);
     }
 }

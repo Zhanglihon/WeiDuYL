@@ -38,15 +38,15 @@
             android:layout_marginTop="32dp"
             android:layout_below="@id/text_title"
             >
-        <TextView
-            android:textColor="#3087EA"
-            android:layout_marginTop="15dp"
-            android:layout_centerHorizontal="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="48sp"
-            android:id="@+id/text_hb"
-            android:text="500"/>
+            <TextView
+                android:textColor="#3087EA"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30dp"
+                android:id="@+id/text_hb"
+                android:text="500"/>
 
             <TextView
                 android:textColor="#3087EA"
@@ -59,7 +59,7 @@
                 android:text="H币"/>
 
         </RelativeLayout>
-        
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,12 +95,11 @@
             android:textColor="#3087EA"
             />
     </RelativeLayout>
-
-
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyc_view"></androidx.recyclerview.widget.RecyclerView>
+        android:id="@+id/recyc_view">
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </LinearLayout>

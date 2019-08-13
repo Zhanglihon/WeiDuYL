@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 
 import java.util.List;
@@ -26,15 +28,20 @@ import zhang.bw.com.open_my.presenter.ShouXixunPresenter;
 
 public class Jiankan_zixunFra extends Fragment {
 
+
     private LoginBean loginBeanDao;
     RecyclerView recyclerView;
     private ZixunItemAdapter zixunItemAdapter;
+    private RelativeLayout zixun_ysj;
+    private RelativeLayout zixun_wsj;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.jian_kan_zixun, container, false);
-        recyclerView=inflate.findViewById(R.id.xixun_recy);
+        recyclerView = inflate.findViewById(R.id.xixun_recy);
+        zixun_ysj = inflate.findViewById(R.id.zixun_ysj);
+        zixun_wsj = inflate.findViewById(R.id.zixun_wsj);
         return inflate;
     }
 
@@ -51,16 +58,21 @@ public class Jiankan_zixunFra extends Fragment {
         recyclerView.setAdapter(zixunItemAdapter);
 
         ShouXixunPresenter shouXixunPresenter = new ShouXixunPresenter(new Myxiun());
-        shouXixunPresenter.reqeust(loginBeanDao.getId(),loginBeanDao.getSessionId(),1+"",5+"");
-        Log.i("qw", "onActivityCreated: "+loginBeanDao.id+"----------"+loginBeanDao.sessionId);
+        shouXixunPresenter.reqeust(loginBeanDao.getId(), loginBeanDao.getSessionId(), 1 + "", 5 + "");
+        Log.i("qw", "onActivityCreated: " + loginBeanDao.id + "----------" + loginBeanDao.sessionId);
 
     }
 
     class Myxiun implements DataCall<List<ShouziBean>> {
         @Override
         public void success(List<ShouziBean> data, Object... args) {
-          zixunItemAdapter.addd(data);
-          zixunItemAdapter.notifyDataSetChanged();
+            if (data.size() == 0) {
+                zixun_ysj.setVisibility(View.GONE);
+            }else {
+                zixun_wsj.setVisibility(View.GONE);
+                zixunItemAdapter.addd(data);
+                zixunItemAdapter.notifyDataSetChanged();
+            }
         }
 
         @Override

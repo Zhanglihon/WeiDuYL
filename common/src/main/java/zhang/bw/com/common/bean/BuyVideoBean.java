@@ -11,7 +11,7 @@ public class BuyVideoBean {
     public int id;
     public int videoId;
     public String title;
-    public String original;
+    public String originalUrl;
     public int duration;
     public long createTime;
 }

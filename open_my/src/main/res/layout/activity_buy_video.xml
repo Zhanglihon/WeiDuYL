@@ -9,6 +9,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_marginTop="30dp"
         android:background="#fff">
 
         <ImageView
@@ -62,7 +63,7 @@
                 android:layout_marginTop="30dp"
                 android:textSize="14sp"
                 android:textColor="#333333"
-                android:text="您暂时还没有建议被采纳哦"/>
+                android:text="您还没有购买过视频"/>
         </LinearLayout>
     </RelativeLayout>
 </LinearLayout>

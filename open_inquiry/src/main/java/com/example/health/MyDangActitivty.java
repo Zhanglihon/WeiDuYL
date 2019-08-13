@@ -14,12 +14,15 @@ import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.open_inquiry.R;
 import com.example.open_inquiry.R2;
 import com.facebook.drawee.view.SimpleDraweeView;
@@ -46,6 +49,8 @@ public class MyDangActitivty extends AppCompatActivity {
     RelativeLayout bn;
     @BindView(R2.id.back1)
     ImageView back1;
+    @BindView(R2.id.jiexu)
+    TextView jixu;
     private EndInquiry endInquiry;
     private FindCurrentInquiryRecord findCurrentInquiryRecord;
     private LoginBean loginBean;
@@ -71,6 +76,12 @@ public class MyDangActitivty extends AppCompatActivity {
             public void onClick(View view) {
                 endInquiry.reqeust(loginBean.getId(),loginBean.getSessionId(),recordId);
                 findCurrentInquiryRecord.reqeust(loginBean.getId(),loginBean.getSessionId());
+            }
+        });
+        jixu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUNIM).navigation();
             }
         });
     }

@@ -228,6 +228,7 @@
                    android:layout_width="300dp"
                    android:layout_height="40dp" />
                <TextView
+                   android:id="@+id/liji"
                    android:layout_marginTop="20dp"
                    android:text="立即咨询"
                    android:background="#3087EA"

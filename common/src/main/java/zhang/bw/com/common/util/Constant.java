@@ -40,7 +40,7 @@ public class Constant {
     public final static String ACTIVITY_URL_FABIAOPINGLUN= "/show/FaBiaoPingLun";
     public final static String ACTIVITY_URL_FABIAOPINGLUN1= "/iquiryn/MyDangActivity";
     public final static String ACTIVITY_URL_FABIAOPINGLUN2= "/iquiryn/MyLishiActivity";
-    public final static String ACTIVITY_URL_FABIAOPINGLUN3= "/im/ZiXunActivity";
+    public final static String ACTIVITY_URL_FABIAOPINGLUNIM= "/im/MainActivity";
     //-----------open_show----首页模块随便动，我看提交历史删你库-----
 
     //-----------open_my----首页模块随便动，我看提交历史删你库-----

@@ -115,6 +115,7 @@
                     android:layout_height="wrap_content" />
             </RelativeLayout>
             <TextView
+                android:id="@+id/jiexu"
                 android:text="继续问诊"
                 android:gravity="center"
                 android:layout_marginLeft="60dp"

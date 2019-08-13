@@ -2,6 +2,8 @@ package com.example.open_show;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -60,8 +62,8 @@ public class ShowActivity extends AppCompatActivity {
 
 
 
-
     }
+
     @OnClick({R2.id.btn1, R2.id.btn2, R2.id.btn3})
     public void onClick(View view) {
         int i = view.getId();
@@ -84,7 +86,9 @@ public class ShowActivity extends AppCompatActivity {
             }
 
         } else if (i == R.id.btn3) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
+            FragmentManager fg = getSupportFragmentManager();
+            fg.popBackStack();
+            fg.beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
             btn2.setChecked(false);
             btn1.setChecked(false);
             falg=true;
@@ -100,6 +104,14 @@ public class ShowActivity extends AppCompatActivity {
         falg=false;
 
 
+    }
+
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }
 

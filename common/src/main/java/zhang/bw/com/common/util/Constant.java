@@ -38,9 +38,6 @@ public class Constant {
     public final static String ACTIVITY_URL_SOUSUO= "/show/SousuoActivity";
     public final static String ACTIVITY_URL_CHAFABIAO= "/show/Chafabiao";
     public final static String ACTIVITY_URL_FABIAOPINGLUN= "/show/FaBiaoPingLun";
-    public final static String ACTIVITY_URL_FABIAOPINGLUN1= "/iquiryn/MyDangActivity";
-    public final static String ACTIVITY_URL_FABIAOPINGLUN2= "/iquiryn/MyLishiActivity";
-    public final static String ACTIVITY_URL_FABIAOPINGLUNIM= "/im/MainActivity";
     public final static String ACTIVITY_URL_XIAOXI= "/show/XiaoXiAcitivity";
     public final static String ACTIVITY_URL_HBXIAOXI= "/show/HBXiaoXiAcitivity";
     public final static String ACTIVITY_URL_XTXIAOXI= "/show/XTXiaoXiAcitivity";

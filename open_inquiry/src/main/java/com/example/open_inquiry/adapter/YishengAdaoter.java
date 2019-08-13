@@ -1,7 +1,6 @@
 package com.example.open_inquiry.adapter;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -41,15 +40,9 @@ public class YishengAdaoter extends RecyclerView.Adapter<YishengAdaoter.Holder> 
 
                 holder.imageView.setImageURI(list.get(position).imagePic);
                 holder.textView.setText(list.get(position).doctorName);
-                holder.textView.setTextColor(list.get(position).textcolor);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                for (int i = 0; i <list.size() ; i++) {
-                    list.get(i).textcolor=Color.WHITE;
-                }
-                list.get(position).textcolor=Color.parseColor("#3087ea");
-                notifyDataSetChanged();
                 baop.bop(position,list);
             }
         });

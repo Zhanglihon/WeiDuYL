@@ -1,8 +1,6 @@
 package adapter;
 
 import android.content.Context;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,7 +50,6 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
     private TextView button_shu;
     private EditText edit_fa;
     private PopupWindow mPopWindow1;
-    private String s;
 
     public MyadapterGame(Context context) {
         this.context = context;
@@ -130,37 +127,15 @@ public class MyadapterGame extends RecyclerView.Adapter<MyadapterGame.VideoViewH
                     String id = list.get(position).id;
                     edit_fa = contentView.findViewById(R.id.eidt_fa);
                     button_shu = contentView.findViewById(R.id.button_shu);
-                    TextView  button_shu1 = contentView.findViewById(R.id.button_shu1);
-                    edit_fa.addTextChangedListener(new TextWatcher() {
-                        @Override
-                        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-                        }
-
-                        @Override
-                        public void onTextChanged(CharSequence s, int start, int before, int count) {
-                            if (s.length() > 0) {
-                                button_shu.setVisibility(View.GONE);
-                                button_shu1.setVisibility(View.VISIBLE);
-                            } else {
-                                button_shu.setVisibility(View.VISIBLE);
-                                button_shu1.setVisibility(View.GONE);
-                            }
-                        }
-
-                        @Override
-                        public void afterTextChanged(Editable s) {
-
-                        }
-                    });
-                    button_shu1.setOnClickListener(new View.OnClickListener() {
+                    button_shu.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            s = edit_fa.getText().toString();
+                            String s = edit_fa.getText().toString();
                             addVideoComment = new AddVideoComment(new Backn());
-                            addVideoComment.reqeust(loginBean.getId(),loginBean.getSessionId(),id, s);
+                            addVideoComment.reqeust(loginBean.getId(),loginBean.getSessionId(),id,s);
                         }
                     });
+
                     mPopWindow1 = new PopupWindow(contentView,
                             ViewGroup.LayoutParams.MATCH_PARENT,
                             ViewGroup.LayoutParams.WRAP_CONTENT,

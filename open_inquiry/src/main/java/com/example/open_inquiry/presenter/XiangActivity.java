@@ -2,17 +2,10 @@ package com.example.open_inquiry.presenter;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.health.ShouActivity;
-import com.example.health.adapter.MyDialog;
-import com.example.health.adapter.PingAdapter;
 import com.example.open_inquiry.R;
 import com.example.open_inquiry.R2;
 import com.example.open_inquiry.adapter.PingAdapter;
@@ -28,12 +21,10 @@ import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.ZixunBean;
 import zhang.bw.com.common.core.CancelFollow;
-import zhang.bw.com.common.core.ConsultDoctor;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.FindDoctorInfo;
 import zhang.bw.com.common.core.FollowDoctor;
 import zhang.bw.com.common.core.exception.ApiException;
-import zhang.bw.com.common.util.Constant;
 
 public class XiangActivity extends AppCompatActivity {
     private FindDoctorInfo findDoctorInfo;
@@ -62,15 +53,10 @@ public class XiangActivity extends AppCompatActivity {
     TextView shou;
     @BindView(R2.id.hi)
     ImageView hi;
-    @BindView(R2.id.liji)
-    TextView liji;
     private PingAdapter pingAdapter;
     private FollowDoctor followDoctor;
     private CancelFollow cancelFollow;
     private String oo;
-    private ConsultDoctor consultDoctor;
-    private MyDialog dialog;
-    private MyDialog dialog1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,16 +73,6 @@ public class XiangActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
-            }
-        });
-
-        liji.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                        loginBean = DaoMaster.newDevSession(XiangActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
-                        consultDoctor = new ConsultDoctor(new Backl());
-                        consultDoctor.reqeust(loginBean.getId(),loginBean.getSessionId(),oo);
-
             }
         });
 
@@ -130,6 +106,7 @@ public class XiangActivity extends AppCompatActivity {
                 }
 
             });
+
             a1.setImageURI(data.imagePic);
             a2.setText(data.doctorName);
             a3.setText(data.inauguralHospital);
@@ -170,48 +147,6 @@ public class XiangActivity extends AppCompatActivity {
         @Override
         public void success(Object data, Object... args) {
 
-        }
-
-        @Override
-        public void fail(ApiException data, Object... args) {
-
-        }
-    }
-    class Backl implements DataCall<String>{
-
-        @Override
-        public void success(String data, Object... args) {
-            if(data!=null){
-               View view1 = View.inflate(XiangActivity.this,R.layout.popw1,null);
-                TextView  textprice=  view1.findViewById(R.id.textView11);
-                textprice.setText("你尚有咨询在进行中" +"\n"+
-                        "请先关闭再开始新的咨询");
-                dialog1 = new MyDialog(XiangActivity.this, 200, 100, view1, R.style.dialog);
-                Window window = dialog1.getWindow();
-                window.setGravity(Gravity.LEFT);
-                dialog1.show();
-                final TextView cancel2 =
-                        (TextView) view1.findViewById(R.id.cancel2);
-                final TextView confirm2 =
-                        (TextView) view1.findViewById(R.id.confirm2);
-                cancel2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog1.dismiss();
-                    }
-                });
-                confirm2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUN1).navigation();
-                    }
-                });
-            }else {
-                ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUNIM).navigation();
-                dialog1.dismiss();
-                dialog.dismiss();
-
-            }
         }
 
         @Override

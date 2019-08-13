@@ -1,7 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.wd.health">
-    <application>
+    package="com.wd.health"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:name="zhang.bw.com.common.core.WDApplication"
+        android:label="@string/app_name" >
+
         <service android:name="cn.jpush.android.service.PushService"
             android:process=":multiprocess"
             tools:node="replace" >

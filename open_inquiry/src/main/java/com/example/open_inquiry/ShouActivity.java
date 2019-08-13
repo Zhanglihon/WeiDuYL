@@ -1,33 +1,22 @@
-package com.example.health;
+package com.example.open_inquiry;
 
-import android.app.Dialog;
 import android.content.Intent;
-import android.graphics.Color;
 import android.text.TextPaint;
-import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.health.adapter.MingAdapter;
-import com.example.health.adapter.MyDialog;
-import com.example.health.presenter.MingPresenter1;
-import com.example.health.presenter.XiangActivity;
-import com.example.health.presenter.YishengPresenter;
-import com.example.open_inquiry.R;
-import com.example.open_inquiry.R2;
-import com.example.health.adapter.YishengAdaoter;
+import com.example.open_inquiry.adapter.MingAdapter;
+import com.example.open_inquiry.adapter.MyDialog;
+import com.example.open_inquiry.adapter.YishengAdaoter;
+import com.example.open_inquiry.presenter.MingPresenter1;
+import com.example.open_inquiry.presenter.XiangActivity;
+import com.example.open_inquiry.presenter.YishengPresenter;
 import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -39,8 +28,6 @@ import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.ShowBean;
 import zhang.bw.com.common.bean.YishengBean;
-import zhang.bw.com.common.bean.ZhangBean;
-import zhang.bw.com.common.core.ConsultDoctor;
 import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.FindDoctorList;
 import zhang.bw.com.common.core.FindDoctorList1;
@@ -98,17 +85,9 @@ public class ShouActivity extends WDActivity {
     ImageView ian;
     @BindView(R2.id.di)
     ImageView di;
-
     private FindDoctorList findDoctorList;
     private FindDoctorList1 findDoctorList1;
     private FindDoctorList2 findDoctorList2;
-    private ConsultDoctor consultDoctor;
-    private Dialog dialog1;
-    private String recordId;
-    private String jiGuangPwd;
-    private String doctorName;
-    private View view1;
-
     @Override
     protected int getLayoutId() {
         return R.layout.layout_shou;
@@ -145,18 +124,15 @@ public class ShouActivity extends WDActivity {
         yishengAdaoter.setBaop(new YishengAdaoter.Baop() {
             @Override
             public void bop(int i, List<YishengBean> list) {
-                 doctorName = list.get(i).getDoctorName();
-                jiGuangPwd = list.get(i).getJiGuangPwd();
-                recordId = list.get(i).getRecordId();
-                servicePrice = list.get(i).getServicePrice();
-                doctorId = list.get(i).getDoctorId();
-                text_num.setText("服务患者数 "+list.get(i).getServerNum());
-                text_haopin.setText("好评率 "+list.get(i).getPraise());
-                text_name.setText(list.get(i).getDoctorName());
-                text_zhiwu.setText(list.get(i).getJobTitle());
-                text_adrss.setText(list.get(i).getInauguralHospital());
-                text_cishu.setText(list.get(i).getServicePrice()+"H币/次");
-                image_ren.setImageURI(list.get(i).getImagePic());
+                servicePrice = list.get(i).servicePrice;
+                doctorId = list.get(i).doctorId;
+                text_num.setText("服务患者数 "+list.get(i).serverNum);
+                text_haopin.setText("好评率 "+list.get(i).praise);
+                text_name.setText(list.get(i).doctorName);
+                text_zhiwu.setText(list.get(i).jobTitle);
+                text_adrss.setText(list.get(i).inauguralHospital);
+                text_cishu.setText(list.get(i).servicePrice+"H币/次");
+                image_ren.setImageURI(list.get(i).imagePic);
             }
         });
         xiaoxi.setOnClickListener(new View.OnClickListener() {
@@ -190,9 +166,9 @@ public class ShouActivity extends WDActivity {
                 confirm1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        loginBean = DaoMaster.newDevSession(ShouActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
-                        consultDoctor = new ConsultDoctor(new Backl());
-                        consultDoctor.reqeust(loginBean.getId(),loginBean.getSessionId(),doctorId);
+                        Intent intent = new Intent(ShouActivity.this,ZixunAcitivty.class);
+                        startActivity(intent);
+                        dialog.dismiss();
                     }
                 });
             }
@@ -208,7 +184,6 @@ public class ShouActivity extends WDActivity {
         rb_title_select.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 yishengPresenter = new YishengPresenter(new Bckp());
                 yishengPresenter.reqeust(loginBean.getId(), loginBean.getSessionId(), ide +"",1+"",1+"",1+"",5+"");
             }
@@ -248,10 +223,6 @@ public class ShouActivity extends WDActivity {
         @Override
         public void success(List<ShowBean> data, Object... args) {
 
-            for (int i = 0; i < data.size(); i++) {
-                data.get(i).textcolor = Color.BLACK;
-            }
-            data.get(0).textcolor = Color.parseColor("#3087ea");
             mingAdapter.addAll(data);
             mingAdapter.notifyDataSetChanged();
         }
@@ -265,68 +236,20 @@ public class ShouActivity extends WDActivity {
      class Bckp implements DataCall<List<YishengBean>> {
         @Override
             public void success(List<YishengBean> data, Object... args) {
-            for (int i = 0; i < data.size(); i++) {
-                data.get(i).textcolor = Color.WHITE;
-            }
-            data.get(0).textcolor = Color.parseColor("#3087ea");
-             doctorName = data.get(0).getDoctorName();
-            jiGuangPwd = data.get(0).getJiGuangPwd();
-             recordId = data.get(0).getRecordId();
-            servicePrice = data.get(0).getServicePrice();
-                   doctorId = data.get(0).getDoctorId();
-                   text_num.setText("服务患者数 "+data.get(0).getServerNum());
-                   text_haopin.setText("好评率 "+data.get(0).getPraise());
-                   text_name.setText(data.get(0).getDoctorName());
-                   text_zhiwu.setText(data.get(0).getJobTitle());
-                   text_adrss.setText(data.get(0).getInauguralHospital());
-                   text_cishu.setText(data.get(0).getServicePrice()+"H币/次");
-                   image_ren.setImageURI(data.get(0).getImagePic());
+               if(data!=null){
+                   servicePrice = data.get(0).servicePrice;
+                   doctorId = data.get(0).doctorId;
+                   text_num.setText("服务患者数 "+data.get(0).serverNum);
+                   text_haopin.setText("好评率 "+data.get(0).praise);
+                   text_name.setText(data.get(0).doctorName);
+                   text_zhiwu.setText(data.get(0).jobTitle);
+                   text_adrss.setText(data.get(0).inauguralHospital);
+                   text_cishu.setText(data.get(0).servicePrice+"H币/次");
+                   image_ren.setImageURI(data.get(0).imagePic);
+               }
                 yishengAdaoter.adALL(data);
                yishengAdaoter.notifyDataSetChanged();
             }
-
-        @Override
-        public void fail(ApiException data, Object... args) {
-
-        }
-    }
-    class Backl implements DataCall<String>{
-
-        @Override
-        public void success(String data, Object... args) {
-          if(data!=null){
-              view1 = View.inflate(ShouActivity.this,R.layout.popw1,null);
-              TextView  textprice=  view1.findViewById(R.id.textView11);
-              textprice.setText("你尚有咨询在进行中" +"\n"+
-                      "请先关闭再开始新的咨询");
-              dialog1 = new MyDialog(ShouActivity.this, 200, 100, view1, R.style.dialog);
-              Window window = dialog1.getWindow();
-              window.setGravity(Gravity.LEFT);
-              dialog1.show();
-              final TextView cancel2 =
-                      (TextView) view1.findViewById(R.id.cancel2);
-              final TextView confirm2 =
-                      (TextView) view1.findViewById(R.id.confirm2);
-              cancel2.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View v) {
-                      dialog1.dismiss();
-                  }
-              });
-              confirm2.setOnClickListener(new View.OnClickListener() {
-                  @Override
-                  public void onClick(View view) {
-                      ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUN1).navigation();
-                  }
-              });
-          }else {
-              ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUNIM).withString("juu",doctorName).navigation();
-              Log.e("aaaa",doctorName);
-              dialog1.dismiss();
-              dialog.dismiss();
-
-          }
-        }
 
         @Override
         public void fail(ApiException data, Object... args) {

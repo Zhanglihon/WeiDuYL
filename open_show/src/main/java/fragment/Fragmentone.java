@@ -72,6 +72,8 @@ public class Fragmentone extends WDFragment {
     SimpleDraweeView showTx;
     @BindView(R2.id.text_duo)
     TextView text_duo;
+    @BindView(R2.id.image_xiaoxi)
+    ImageView imageXiaoxi;
     private BannerPresenter bannerPresenter;
     private FindDepartmentPresenter findDepartmentPresenter;
     private FindInformationPlateList findInformationPlateList;
@@ -173,18 +175,24 @@ public class Fragmentone extends WDFragment {
         text_duo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ChaActivity.class);
-                intent.putExtra("rr",id);
+                Intent intent = new Intent(getActivity(), ChaActivity.class);
+                intent.putExtra("rr", id);
                 startActivity(intent);
             }
         });
-    ping_image.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            Intent intent = new Intent(getActivity(),PingActivity.class);
-            startActivity(intent);
-        }
-    });
+        ping_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), PingActivity.class);
+                startActivity(intent);
+            }
+        });
+        imageXiaoxi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_XIAOXI).navigation();
+            }
+        });
     }
 
     class Back1 implements DataCall<List<BannerBean>> {
@@ -201,8 +209,8 @@ public class Fragmentone extends WDFragment {
                         @Override
                         public void onItemClick(XBanner banner, Object model, View view, int position) {
                             String jumpUrl = data.get(position).jumpUrl;
-                            Intent intent = new Intent(getContext(),ShouBanner.class);
-                            intent.putExtra("ff",jumpUrl);
+                            Intent intent = new Intent(getContext(), ShouBanner.class);
+                            intent.putExtra("ff", jumpUrl);
                             startActivity(intent);
 
                         }
@@ -218,6 +226,7 @@ public class Fragmentone extends WDFragment {
 
         }
     }
+
     class Back2 implements DataCall<List<ShowBean>> {
 
         @Override
@@ -237,7 +246,7 @@ public class Fragmentone extends WDFragment {
 
         @Override
         public void success(List<MyjiankangBean> data, Object... args) {
-             id = data.get(0).id;
+            id = data.get(0).id;
             findInformationList.reqeust(id, "1", "5");
             myjikangAdapter.addALL(data);
             myjikangAdapter.notifyDataSetChanged();
@@ -269,13 +278,13 @@ public class Fragmentone extends WDFragment {
     @Override
     public void onResume() {
         super.onResume();
-        list=dao.loadAll();
+        list = dao.loadAll();
         showTx.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (list.size()==0){
+                if (list.size() == 0) {
                     ARouter.getInstance().build(Constant.ACTIVITY_URL_LOGIN).navigation();
-                }else{
+                } else {
                     ARouter.getInstance().build(Constant.ACTIVITY_URL_MY).navigation();
                 }
             }

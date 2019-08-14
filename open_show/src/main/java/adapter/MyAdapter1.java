@@ -39,9 +39,9 @@ public class MyAdapter1 extends RecyclerView.Adapter<MyAdapter1.ViewHolder> {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 int ide = list.get(position).id;
-                ARouter.getInstance().build(Constant.ACTIVITY_URL_INSHOW).withInt("ide",ide).navigation();
+                ShowBean showBean = list.get(position);
+                ARouter.getInstance().build(Constant.ACTIVITY_URL_INSHOW).withInt("ide",ide).withString("list",list.toString()).navigation();
             }
         });
     }

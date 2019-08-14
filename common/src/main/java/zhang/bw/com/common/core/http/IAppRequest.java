@@ -25,7 +25,6 @@ import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.GameBean;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
-import zhang.bw.com.common.bean.MyLishiBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
 import zhang.bw.com.common.bean.NameBean;
 import zhang.bw.com.common.bean.PingBean;
@@ -45,11 +44,12 @@ import zhang.bw.com.common.bean.WddaBean;
 import zhang.bw.com.common.bean.WdgzBean;
 import zhang.bw.com.common.bean.WdscVideoBean;
 import zhang.bw.com.common.bean.WoDeplBean;
+import zhang.bw.com.common.bean.WxBean;
 import zhang.bw.com.common.bean.XfjlBean;
 import zhang.bw.com.common.bean.XiangBean;
+import zhang.bw.com.common.bean.XiaoXiBean;
 import zhang.bw.com.common.bean.YaoBean;
 import zhang.bw.com.common.bean.YishengBean;
-import zhang.bw.com.common.bean.ZhengBean;
 import zhang.bw.com.common.bean.ZixunBean;
 
 /**
@@ -348,4 +348,15 @@ public interface IAppRequest {
     Observable<Result> drawCash(@Header("userId") long userId,
                                 @Header("sessionId") String sessionId,
                                 @Query("money")int money);
+    //查询用户身份证信息
+    @FormUrlEncoded
+    @POST("user/verify/v1/bindUserIdCard")
+    Observable<Result> bindUserIdCard(@Field("userId")long userId,
+                                      @Field("sessionId")String sessionId,
+                                      @Body RequestBody body);
+
+    //消息查询
+    @GET("user/verify/v1/findUserNoticeReadNum")
+    Observable<Result<List<XiaoXiBean>>> XiaoXi(@Header("userId")long userId,
+                                                              @Header("sessionId")String sessionId);
 }

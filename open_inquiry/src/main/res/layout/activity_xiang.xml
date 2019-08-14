@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context="com.example.health.presenter.XiangActivity">
+    tools:context=".presenter.XiangActivity">
    <LinearLayout
        android:orientation="vertical"
        android:layout_width="match_parent"
@@ -228,7 +228,6 @@
                    android:layout_width="300dp"
                    android:layout_height="40dp" />
                <TextView
-                   android:id="@+id/liji"
                    android:layout_marginTop="20dp"
                    android:text="立即咨询"
                    android:background="#3087EA"

@@ -1,13 +1,2 @@
-<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.open_inquiry">
-
-    <application>
-        <activity android:name="com.example.health.MyDangActitivty" />
-        <activity android:name="com.example.health.MyLishiActivity" />
-        <activity android:name="com.example.health.MyPingActivity" />
-        <activity android:name="com.example.health.MyPingActivity1"></activity>
-    </application>
-
-</manifest>
+    package="com.example.open_inquiry" />

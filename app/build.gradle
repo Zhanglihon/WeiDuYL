@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'health'
+            keyPassword '123456'
+            storeFile file('../health.keystore')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.wd.health"
@@ -19,24 +27,28 @@ android {
             abiFilters 'armeabi', 'armeabi-v7a', 'armeabi-v8a'
             // 还可以添加 'x86', 'x86_64', 'mips', 'mips64'
         }
-
         manifestPlaceholders = [
-                JPUSH_PKGNAME : applicationId,
+                JPUSH_PKGNAME: applicationId,
                 JPUSH_APPKEY : "c7f6a1d56cb8da740fd18bfa", //JPush上注册的包名对应的appkey.
-                JPUSH_CHANNEL : "developer-default", //暂时填写默认值即可.
+                JPUSH_CHANNEL: "developer-default", //暂时填写默认值即可.
         ]
-
-
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
         }
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    productFlavors {
     }
 }
 
@@ -48,8 +60,8 @@ dependencies {
     implementation project(path: ':open_show')
     implementation project(path: ':open_login')
     implementation project(path: ':open_my')
+    implementation project(path: ':open_wx')
     implementation 'com.android.support:multidex:1.0.3'
     implementation project(':open_inquiry')
     implementation project(':open_im')
-
 }

@@ -21,35 +21,61 @@
             </intent-filter>
         </activity>
 
+        <service android:name="cn.jpush.android.service.PushService"
+            android:process=":multiprocess"
+            tools:node="replace" >
+
+            ……
+        </service>
         <activity android:name="com.bw.open_wallet.WalletActivity"/>
         <activity android:name="com.bw.open_wallet.RechargeActivity"/>
         <activity android:name="com.bw.open_wallet.EmbodyActivity"/>
         <activity android:name="com.bw.open_wallet.SucceedActivity"/>
         <activity android:name="com.bw.open_wallet.DepositActivity"/>
         <activity android:name="com.bw.open_wallet.RecordActivity"/>
+        <activity android:name="com.example.open_inquiry.ShouActivity"/>
         <activity android:name="com.example.open_show.SousuoActivity"/>
         <activity android:name="com.example.open_show.Chafabiao"/>
         <activity android:name="com.example.open_show.FaBiaoPingLun"/>
-        <activity android:name="com.example.health.ShouActivity"/>
-        <activity android:name="com.example.open_show.ShowActivity"/>
-        <activity android:name="com.example.open_show.ShowActivity1"/>
-        <activity android:name=".MainActivity"/>
+        <activity android:name="com.example.open_show.XiaoXiAcitivity"/>
+        <activity android:name="com.example.open_show.HBXiaoxiAcitivity"/>
+        <activity android:name="com.example.open_show.WZXiaoxiAcitivity"/>
+        <activity android:name="com.example.open_show.XTXiaoxiAcitivity"/>
+        <activity android:name="com.wd.health.wxapi.WXEntryActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:exported="true"
+            android:theme="@style/Base.Theme.AppCompat"
+            android:screenOrientation="portrait"
+            />
+        <activity android:name="com.wd.health.wxapi.WXPayEntryActivity"
+            android:exported="true"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="wxe3fcbe8a55cd33ff"/>
+            </intent-filter>
+        </activity>
+
+
+
         <!-- 张利宏-->
         <activity android:name="zhang.bw.com.open_my.activity.MyActivity"/>
         <!-- 张利宏-->
         <activity android:name="com.bw.open_wallet.ShengfzActivity"/>
         <activity android:name="com.bw.open_wallet.YinghkAcitivity"/>
-        <activity android:name="com.example.health.presenter.XiangActivity"/>
+        <activity android:name="com.example.open_inquiry.ZixunAcitivty"/>
+        <activity android:name="com.example.open_inquiry.presenter.XiangActivity"/>
+
         <!-- 张利宏-->
-        <!-- 张利宏-->
-        <!--<provider-->
-            <!--android:name="androidx.core.content.FileProvider"-->
-            <!--android:authorities="com.wd.health.fileprovider"-->
-            <!--android:exported="false"-->
-            <!--android:grantUriPermissions="true">-->
-            <!--<meta-data-->
-                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
-                <!--android:resource="@xml/file_paths" />-->
-        <!--</provider>-->
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.wd.health.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 </manifest>

@@ -7,15 +7,18 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.StrictMode;
+import android.os.StrictMode;
 import android.util.DisplayMetrics;
+import android.util.DisplayMetrics;
+import android.os.StrictMode;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.danikula.videocache.HttpProxyCacheServer;
 import com.facebook.common.internal.Supplier;
 import com.facebook.common.util.ByteConstants;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.cache.MemoryCacheParams;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
-import com.danikula.videocache.HttpProxyCacheServer;
 
 import androidx.core.app.NotificationManagerCompat;
 import cn.jpush.im.android.api.JMessageClient;
@@ -91,6 +94,10 @@ public class WDApplication extends Application {
         ARouter.openDebug();
         ARouter.init(this);//阿里路由初始化
         Fresco.initialize(this,getConfigureCaches(this));//图片加载框架初始化
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+        }
         mContext = getApplicationContext();
         mInstance = this;
         initScreenSize();

@@ -11,7 +11,7 @@
         android:layout_marginTop="30dp"
         android:gravity="clip_horizontal">
         <ImageView
-            android:id="@+id/wdda_image_back"
+            android:id="@+id/sfz_image_back"
             android:layout_width="16dp"
             android:layout_height="16dp"
             android:layout_marginLeft="20dp"
@@ -27,87 +27,332 @@
             android:layout_marginTop="0dp"
             android:text="实名认证" />
     </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:background="#fff">
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="50dp"
-                android:layout_marginRight="50dp"
-                android:layout_marginTop="50dp"
-                android:scaleType="fitXY"
-                android:src="@mipmap/id_card_front" />
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:layout_marginRight="22dp"
-                    android:layout_marginTop="50dp"
-                    android:background="@mipmap/common_icon_close_n"
-                    android:layout_alignParentRight="true"
-                    android:visibility="gone"/>
-                <ImageView
-                    android:id="@+id/image_xiang"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="50dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/my_icon_camera_n" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/image_xiang"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="50dp"
-                    android:text="点击拍摄/上传人像面"
-                    android:textColor="#3087EA"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-    </RelativeLayout>
-    <RelativeLayout
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#fff">
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginTop="20dp"
-            android:scaleType="fitXY"
-            android:src="@mipmap/id_card_back" />
-        <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:layout_marginRight="22dp"
-            android:layout_marginTop="50dp"
-            android:background="@mipmap/common_icon_close_n"
-            android:layout_alignParentRight="true"
-            android:visibility="gone"/>
-        <ImageView
-            android:id="@+id/image_xiangj"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:src="@mipmap/my_icon_camera_n" />
+        android:background="#fff"
+        android:layout_marginTop="4dp">
 
-        <TextView
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/image_xiangj"
-            android:layout_centerHorizontal="true"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:id="@+id/rl_id_front_before"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="40dp"
+                android:background="@mipmap/id_card_front">
+
+                <ImageView
+                    android:id="@+id/iv_id_front"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@mipmap/my_icon_camera_n"/>
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_id_front_after"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="51dp"
+                    android:layout_marginTop="12dp"
+                    android:text="居民身份证-正面"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tv_desc"
+                    android:layout_below="@id/tv_desc"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="姓名"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text=""
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_birthday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/tv_desc"
+                    android:layout_marginLeft="56dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_toRightOf="@id/ll_name"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="出生"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_birthday"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text=""
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/ll_name"
+                    android:layout_below="@id/ll_name"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="性别"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_sex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text=""
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_adress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/ll_birthday"
+                    android:layout_below="@id/ll_name"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="住址"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_address"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:maxEms="8"
+                        android:singleLine="false"
+                        android:text=""
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_nation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/ll_sex"
+                    android:layout_below="@id/ll_sex"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginBottom="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="民族"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_nation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text=""
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/ll_nation"
+                    android:layout_below="@id/ll_adress"
+                    android:layout_marginTop="6dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="身份证号码"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_id_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text=""
+                        />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
-            android:text="点击拍摄/上传国徽面"
-            android:textColor="#3087EA"
-            android:textSize="14sp" />
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:id="@+id/rl_id_back_before"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@mipmap/id_card_back"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="30dp">
+
+                <ImageView
+                    android:id="@+id/iv_id_back"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:background="@mipmap/my_icon_camera_n"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp" />
+
+                </LinearLayout>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_id_back_after"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:visibility="gone">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+
+                <TextView
+                    android:id="@+id/tv_desc_b"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="51dp"
+                    android:layout_marginTop="12dp"
+                    android:text="居民身份证-背面"
+                    android:textSize="18sp" />
+
+                <LinearLayout
+                    android:id="@+id/ll_sign_orgin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/tv_desc_b"
+                    android:layout_below="@id/tv_desc_b"
+                    android:layout_marginTop="36dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="签发机关"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_sign_orgin"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text=""
+                        />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignLeft="@id/ll_sign_orgin"
+                    android:layout_below="@id/ll_sign_orgin"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="有效期限"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_ex_data"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="12dp"
+                        android:text=""
+                        />
+                </LinearLayout>
+
+            </RelativeLayout>
+
+        </RelativeLayout>
         <Button
             android:id="@+id/but_xyb"
             android:text="确定"
@@ -119,6 +364,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_marginBottom="60dp"/>
-    </RelativeLayout>
+            android:layout_marginTop="60dp"/>
+    </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </LinearLayout>

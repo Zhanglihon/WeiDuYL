@@ -2,37 +2,40 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#000000"
     android:layout_width="match_parent"
     android:layout_height="match_parent"><RelativeLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 </RelativeLayout>
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyc_thr"
-                android:layout_width="match_parent"
-                android:layout_height="40dp">
-            </androidx.recyclerview.widget.RecyclerView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyc_thr2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/recyc_thr"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="0dp"
-        android:background="#000"></androidx.recyclerview.widget.RecyclerView>
+        android:background="#000">
+    </androidx.recyclerview.widget.RecyclerView>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyc_thr"
+        android:background="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+    </androidx.recyclerview.widget.RecyclerView>
     <com.kd.easybarrage.BarrageView
         android:id="@+id/barrageView"
         android:layout_width="match_parent"
-        android:visibility="visible"
         android:layout_height="200dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:visibility="visible"
         app:allow_repeat="true"
         app:border_color="@color/colorAccent"
         app:line_height="20dp"
         app:max_text_size="20"
         app:min_text_size="14"
         app:random_color="false"
-        app:size="200"/>
+        app:size="200" />
     <ImageView
         android:button="@null"
         android:id="@+id/three_image"
@@ -41,20 +44,40 @@
         android:background="@mipmap/drop_down"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-        <ImageView
-            android:layout_width="12dp"
-            android:layout_gravity="center"
-            android:layout_height="13dp"
-            android:background="@mipmap/common_icon_on_slippery_n"
-            android:layout_marginBottom="10dp"
-            />
+  <RelativeLayout
+      android:gravity="center"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+      <ImageView
+          android:id="@+id/wozji1"
+          android:background="@mipmap/fell_gesture"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+      <TextView
+          android:id="@+id/hua"
+          android:textSize="14sp"
+          android:textColor="#ffff"
+          android:layout_marginTop="15dp"
+          android:text="上下滑查看下个视频"
+          android:layout_below="@id/wozji1"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+      <ImageView
+          android:layout_below="@id/hua"
+          android:id="@+id/zhidao"
+          android:layout_marginTop="30dp"
+          android:background="@mipmap/know"
+          android:textColor="#ffff"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content" />
+  </RelativeLayout>
     <RelativeLayout
         android:background="#000000"
         android:gravity="center"
         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <ImageView
             android:id="@+id/image_three"
             android:layout_width="14dp"
@@ -62,6 +85,7 @@
             android:background="@mipmap/common_icon_on_slippery_n"
             android:layout_marginBottom="4dp"
             />
+
     </RelativeLayout>
 
 </RelativeLayout>

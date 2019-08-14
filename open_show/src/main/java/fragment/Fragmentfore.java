@@ -233,6 +233,7 @@ public class Fragmentfore extends Fragment {
                         public boolean onKey(View v, int keyCode, KeyEvent event) {
                             if (keyCode == KeyEvent.KEYCODE_ENTER) {
                                 String ss = edit_shuru.getText().toString();
+                                Log.e("aaa",ss+"===="+lidsfe+"==="+sickCircleId);
                                 faBiaopl.reqeust(id,sessionId,lidsfe+"",ss);
 
                                 return false;
@@ -301,6 +302,7 @@ public class Fragmentfore extends Fragment {
             text_snum.setText(data.getCollectionNum() + "");
             text_pnum.setText(data.getCommentNum() + "");
             String picture = data.getPicture();
+            Log.e("aaa", picture);
 
 
 
@@ -309,6 +311,7 @@ public class Fragmentfore extends Fragment {
                 List<String> list = new ArrayList<>();
                 for (int i = 0; i < split.length; i++) {
                     list.add(split[i]);
+                    Log.e("aaa",split[i]);
                 }
 
 
@@ -333,7 +336,10 @@ public class Fragmentfore extends Fragment {
             } else {
                rv_post_list.setVisibility(View.GONE);
             }
+
+
             int collectionFlg = data.getCollectionFlg();
+            Log.e("aaa",collectionFlg+"");
             if(collectionFlg==0){
                 Glide.with(getActivity()).load(R.mipmap.common_button_collection_large_s).into(image_shoucang);
             }else{
@@ -347,6 +353,7 @@ public class Fragmentfore extends Fragment {
             if(adoptFlag==1){
                 relativeLayout.setVisibility(View.VISIBLE);
                 String adoptTim = formatter.format(k);
+                Log.e("aaa",adoptTim+"");
                 simpleDraweeView.setImageURI(data.getAdoptHeadPic());
                 text_yjcount.setText(data.getAdoptComment());
                 text_yjtime.setText(adoptTim+"");

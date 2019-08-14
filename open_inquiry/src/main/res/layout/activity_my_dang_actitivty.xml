@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.health.MyDangActitivty">
+    <LinearLayout
+        android:layout_marginTop="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/back1"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginTop="20dp"
+            android:background="@mipmap/common_icon_back_black_n"
+            />
+        <LinearLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:text="当前问诊"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:background="#F2F2F2"
+        android:layout_width="match_parent"
+        android:layout_height="6dp">
+    </LinearLayout>
+<LinearLayout
+    android:id="@+id/liu"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="220dp"
+            android:id="@+id/zheng_image1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <RelativeLayout
+            android:gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/dang_image"
+                android:background="@mipmap/no_message"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:layout_below="@id/dang_image"
+                android:id="@+id/dang_text"
+                android:gravity="center"
+                android:text="当前暂无问诊"
+                android:layout_marginTop="30dp"
+                android:textSize="14sp"
+                android:layout_width="125dp"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/bn"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="232dp">
+            <RelativeLayout
+                android:id="@+id/bb"
+                android:background="@drawable/aaw"
+                android:gravity="center"
+                android:layout_marginBottom="110dp"
+                android:layout_width="match_parent"
+                android:layout_height="112dp">
+                <TextView
+                    android:layout_marginTop="20dp"
+                    android:textSize="14sp"
+                    android:id="@+id/zheng_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="10sp"
+                    android:id="@+id/zheng_zhu"
+                    android:layout_marginTop="12dp"
+                    android:layout_below="@id/zheng_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:id="@+id/zheng_ke"
+                    android:textSize="10sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/zheng_zhu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <TextView
+                    android:textSize="12sp"
+                    android:layout_marginTop="10dp"
+                    android:layout_below="@id/zheng_ke"
+                    android:id="@+id/zheng_time"
+                    android:layout_marginBottom="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </RelativeLayout>
+            <TextView
+                android:id="@+id/jiexu"
+                android:text="继续问诊"
+                android:gravity="center"
+                android:layout_marginLeft="60dp"
+                android:background="@drawable/aaw1"
+               android:layout_alignParentBottom="true"
+                android:layout_marginBottom="40dp"
+                android:textColor="#ffff"
+                android:layout_width="84dp"
+                android:layout_height="34dp" />
+            <TextView
+                android:id="@+id/jiesu"
+                android:layout_marginBottom="40dp"
+                android:text="结束问诊"
+                android:gravity="center"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/aaw1"
+                android:textColor="#ffff"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="60dp"
+                android:layout_width="84dp"
+                android:layout_height="34dp" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+</LinearLayout>
+</LinearLayout>

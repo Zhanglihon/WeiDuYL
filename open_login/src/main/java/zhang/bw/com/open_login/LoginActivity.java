@@ -1,8 +1,6 @@
 package zhang.bw.com.open_login;
 
-import android.Manifest;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -19,15 +17,15 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.tencent.mm.opensdk.modelmsg.SendAuth;
-import com.tencent.mm.opensdk.openapi.IWXAPI;
-import com.tencent.mm.opensdk.openapi.WXAPIFactory;
 
 import org.greenrobot.eventbus.EventBus;
 
-import androidx.core.app.ActivityCompat;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import cn.jpush.im.android.api.JMessageClient;
+import cn.jpush.im.android.api.model.UserInfo;
+import cn.jpush.im.api.BasicCallback;
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.LoginBean;
@@ -35,6 +33,7 @@ import zhang.bw.com.common.core.DataCall;
 import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
+import zhang.bw.com.common.util.MD5Utils;
 import zhang.bw.com.common.util.RsaCoder;
 import zhang.bw.com.open_login.presenter.LoginPresenter;
 
@@ -56,8 +55,8 @@ public class LoginActivity extends WDActivity {
     @BindView(R2.id.login_radiobutton_eyes)
     CheckBox loginRadiobuttonEyes;
     private LoginBeanDao loginBeanDao;
-    private IWXAPI api;
-
+    private String s;
+    private String s1;
 
     @Override
     protected int getLayoutId() {
@@ -66,11 +65,6 @@ public class LoginActivity extends WDActivity {
 
     @Override
     protected void initView() {
-        //注册
-        Thread.setDefaultUncaughtExceptionHandler(new MyException(this));
-        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.WRITE_EXTERNAL_STORAGE)!=PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
-        }
         loginPwd.setTransformationMethod(PasswordTransformationMethod.getInstance());
         loginRadiobuttonEyes.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -101,7 +95,7 @@ public class LoginActivity extends WDActivity {
                 }
                 LoginPresenter loginPresenter = new LoginPresenter(new dl());
                 try {
-                    String s = RsaCoder.encryptByPublicKey(pwd);
+                    s = RsaCoder.encryptByPublicKey(pwd);
                     loginPresenter.reqeust(email, s);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -114,30 +108,6 @@ public class LoginActivity extends WDActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(LoginActivity.this, RegistActivity.class);
                 startActivity(intent);
-            }
-        });
-
-        loginWxdl.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // send oauth request
-                api = WXAPIFactory.createWXAPI(LoginActivity.this, "wxe3fcbe8a55cd33ff", true);
-                // 将应用的appId注册到微信
-                api.registerApp("wxe3fcbe8a55cd33ff");
-//                // 通过WXAPIFactory工厂，获取IWXAPI的实例
-//                SendAuth.Req req = new SendAuth.Req();
-//                req.scope = "snsapi_userinfo";
-//                api.sendReq(req);
-
-                SendAuth.Req req = new SendAuth.Req();
-                req.scope = "snsapi_userinfo";//
-//                req.scope = "snsapi_login";//提示 scope参数错误，或者没有scope权限
-                req.state = "wechat_sdk_微信登录";
-                api.sendReq(req);
-
-
-
             }
         });
     }
@@ -156,13 +126,10 @@ public class LoginActivity extends WDActivity {
 
     class dl implements DataCall<LoginBean> {
         @Override
-        public void success(LoginBean data, Object... args) {
+        public void success(final LoginBean data, Object... args) {
             Toast.makeText(LoginActivity.this, data.toString(), Toast.LENGTH_SHORT).show();
             data.datas = 1;
-            Log.i("aaa",data.id+"-----"+data.sessionId);
             loginBeanDao.insertOrReplaceInTx(data);
-            String sessionId = data.sessionId;
-            long id = data.id;
             ARouter.getInstance().build(Constant.ACTIVITY_URL_MY).navigation();
             finish();
         }

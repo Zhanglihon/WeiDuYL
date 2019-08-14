@@ -2,8 +2,6 @@ package com.example.open_show;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -46,12 +44,6 @@ public class ShowActivity extends AppCompatActivity {
     boolean falg=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        //必须在super 之前调用,不然无效。因为那时候fragment已经被恢复了。
-        if (savedInstanceState != null) {
-            // FRAGMENTS_TAG
-            savedInstanceState.remove("android:support:fragments");
-            savedInstanceState.remove("android:fragments");
-        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
         EventBus.getDefault().register(this);
@@ -68,8 +60,8 @@ public class ShowActivity extends AppCompatActivity {
 
 
 
-    }
 
+    }
     @OnClick({R2.id.btn1, R2.id.btn2, R2.id.btn3})
     public void onClick(View view) {
         int i = view.getId();
@@ -92,9 +84,7 @@ public class ShowActivity extends AppCompatActivity {
             }
 
         } else if (i == R.id.btn3) {
-            FragmentManager fg = getSupportFragmentManager();
-            fg.popBackStack();
-            fg.beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, fragments.get(2)).commit();
             btn2.setChecked(false);
             btn1.setChecked(false);
             falg=true;
@@ -110,14 +100,6 @@ public class ShowActivity extends AppCompatActivity {
         falg=false;
 
 
-    }
-
-
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        EventBus.getDefault().unregister(this);
     }
 }
 

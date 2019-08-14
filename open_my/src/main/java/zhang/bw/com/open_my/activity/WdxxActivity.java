@@ -1,13 +1,19 @@
 package zhang.bw.com.open_my.activity;
 
 import android.Manifest;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,9 +28,12 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
 import java.io.File;
+import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import zhang.bw.com.common.DaoMaster;
@@ -36,6 +45,7 @@ import zhang.bw.com.common.core.WDActivity;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
 import zhang.bw.com.common.util.RealPathFromUriUtils;
+import zhang.bw.com.open_my.BuildConfig;
 import zhang.bw.com.open_my.R;
 import zhang.bw.com.open_my.R2;
 import zhang.bw.com.open_my.presenter.MyPresenter;
@@ -192,7 +202,6 @@ public class WdxxActivity extends WDActivity {
             }
         });
     }
-
     private void startCamera() {
         //创建拍照的隐式意图对象
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

@@ -1,16 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.bw.open_wallet" >
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application>
-        <activity android:name=".ShengFenActivity"/>
         <activity android:name=".DepositActivity" />
         <activity android:name=".YinghkAcitivity" />
-        <activity android:name=".CameraScanActivity"/>
-        <activity android:name=".PositiveActivity"/>
-        <activity android:name=".OtherSideActivity"/>
     </application>
 </manifest>

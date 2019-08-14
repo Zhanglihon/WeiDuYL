@@ -2,11 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 28
-
-
-
     defaultConfig {
-        minSdkVersion 18
+        minSdkVersion 14
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -15,7 +12,6 @@ android {
                 arguments = [AROUTER_MODULE_NAME: project.getName()]
             }
         }
-
     }
 
     buildTypes {
@@ -23,6 +19,7 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+
     }
     sourceSets {
         main {
@@ -105,9 +102,6 @@ dependencies {
     // 此处以JCore 2.0.0 版本为例。
     api 'com.jaeger.ninegridimageview:library:1.1.1'
     api 'com.squareup.picasso:picasso:2.5.2'
-
-    //微信依赖
-    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
-
-
+    api 'com.jude:easyrecyclerview:4.2.3'
+    api 'com.kd.easybarrage:library:0.0.1'
 }

@@ -44,6 +44,12 @@ public class ShowActivity extends AppCompatActivity {
     boolean falg=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //必须在super 之前调用,不然无效。因为那时候fragment已经被恢复了。
+        if (savedInstanceState != null) {
+            // FRAGMENTS_TAG
+            savedInstanceState.remove("android:support:fragments");
+            savedInstanceState.remove("android:fragments");
+        }
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show);
         EventBus.getDefault().register(this);

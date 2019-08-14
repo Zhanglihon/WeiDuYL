@@ -143,6 +143,8 @@ public interface IAppRequest {
     Observable<Result>addInfoCollection(@Header("userId")long userId, @Header("sessionId")String sessionId,@Field("infoId")String infoId);
     @DELETE("user/verify/v1/cancelInfoCollection")
     Observable<Result>cancelInfoCollection(@Header("userId")long userId, @Header("sessionId")String sessionId,@Query("infoId") String infoId);
+    @DELETE("user/verify/v1/cancelVideoCollection")
+    Observable<Result>cancelVideoCollection(@Header("userId")long userId, @Header("sessionId")String sessionId,@Query("videoId") String videoId);
     //注册
     @FormUrlEncoded
     @POST("user/v1/register")

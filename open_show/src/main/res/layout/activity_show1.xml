@@ -12,7 +12,8 @@
         android:layout_height="60dp"
         android:orientation="horizontal">
 
-        <ImageView
+        <com.facebook.drawee.view.SimpleDraweeView
+            app:roundAsCircle="true"
             android:id="@+id/show_tx"
             android:layout_width="32dp"
             android:layout_height="32dp"

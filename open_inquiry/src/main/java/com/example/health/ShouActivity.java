@@ -88,6 +88,8 @@ public class ShouActivity extends WDActivity {
     private MyDialog dialog;
     @BindView(R2.id.hao)
     RadioButton hao;
+    @BindView(R2.id.image_haid)
+    SimpleDraweeView image_haid;
     @BindView(R2.id.zishu)
     RadioButton zishu;
     @BindView(R2.id.jiage)
@@ -108,7 +110,9 @@ public class ShouActivity extends WDActivity {
     private String jiGuangPwd;
     private String doctorName;
     private View view1;
-
+    private LoginBeanDao dao;
+    private List<LoginBean> loginBeans;
+    private String headPic;
     @Override
     protected int getLayoutId() {
         return R.layout.layout_shou;
@@ -116,7 +120,15 @@ public class ShouActivity extends WDActivity {
 
     @Override
     protected void initView() {
+        dao = DaoMaster.newDevSession(ShouActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao();
         loginBean = DaoMaster.newDevSession(ShouActivity.this,LoginBeanDao.TABLENAME).getLoginBeanDao().loadAll().get(0);
+        loginBeans = dao.loadAll();
+
+        if (loginBeans.size() != 0) {
+            headPic = loginBeans.get(0).getHeadPic();
+            Log.e("aaa", headPic);
+            image_haid.setImageURI(headPic);
+        }
         recycler_view = findViewById(R.id.recyc_view);
         recyc_view_1 = findViewById(R.id.recyc_view_1);
         TextPaint paint2 = text_name.getPaint();
@@ -266,7 +278,7 @@ public class ShouActivity extends WDActivity {
         @Override
             public void success(List<YishengBean> data, Object... args) {
             for (int i = 0; i < data.size(); i++) {
-                data.get(i).textcolor = Color.WHITE;
+                data.get(i).textcolor = Color.parseColor("#999999");
             }
             data.get(0).textcolor = Color.parseColor("#3087ea");
              doctorName = data.get(0).getDoctorName();
@@ -320,8 +332,7 @@ public class ShouActivity extends WDActivity {
                   }
               });
           }else {
-              ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUNIM).withString("juu",doctorName).navigation();
-              Log.e("aaaa",doctorName);
+              ARouter.getInstance().build(Constant.ACTIVITY_URL_FABIAOPINGLUNIM).navigation();
               dialog1.dismiss();
               dialog.dismiss();
 

@@ -2,11 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.wd.health">
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.DOWNLOAD_WITHOUT_NOTIFICATION" />
-
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:supportsRtl="true"
         android:largeHeap="true"
@@ -24,6 +20,7 @@
                 <category android:name="android.intent.category.LAUNCHER" /><!--种类。类别-->
             </intent-filter>
         </activity>
+
         <activity android:name="com.bw.open_wallet.WalletActivity"/>
         <activity android:name="com.bw.open_wallet.RechargeActivity"/>
         <activity android:name="com.bw.open_wallet.EmbodyActivity"/>
@@ -45,14 +42,14 @@
         <activity android:name="com.example.health.presenter.XiangActivity"/>
         <!-- 张利宏-->
         <!-- 张利宏-->
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.wd.health.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
+        <!--<provider-->
+            <!--android:name="androidx.core.content.FileProvider"-->
+            <!--android:authorities="com.wd.health.fileprovider"-->
+            <!--android:exported="false"-->
+            <!--android:grantUriPermissions="true">-->
+            <!--<meta-data-->
+                <!--android:name="android.support.FILE_PROVIDER_PATHS"-->
+                <!--android:resource="@xml/file_paths" />-->
+        <!--</provider>-->
     </application>
 </manifest>

@@ -104,31 +104,26 @@ public class XiangActivity extends AppCompatActivity {
         @SuppressLint("WrongConstant")
         @Override
         public void success(final ZixunBean data, Object... args) {
-            if(data.followFlag == 2){
-                shou.setBackgroundResource(R.mipmap.common_icon_attention_large_n);
 
-            }
-            if(data.followFlag == 1){
-                shou.setBackgroundResource(R.mipmap.common_icon_attention_large_s);
-            }
             shou.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(data.followFlag == 2){
                         followDoctor.reqeust(loginBean.getId(),loginBean.getSessionId(),oo);
-                        data.followFlag=2;
-                        findDoctorInfo.reqeust(loginBean.getId(),loginBean.getSessionId(), oo);
-
                     }
                     if(data.followFlag == 1){
                         cancelFollow.reqeust(loginBean.getId(),loginBean.getSessionId(),oo);
-                        data.followFlag=1;
-                        findDoctorInfo.reqeust(loginBean.getId(),loginBean.getSessionId(), oo);
                     }
-
                 }
 
             });
+            if(data.followFlag == 2){
+                shou.setBackgroundResource(R.mipmap.common_icon_attention_large_n);
+            }
+            if(data.followFlag == 1){
+                shou.setBackgroundResource(R.mipmap.common_icon_attention_large_s);
+            }
+            findDoctorInfo.reqeust(loginBean.getId(),loginBean.getSessionId(), oo);
             a1.setImageURI(data.imagePic);
             a2.setText(data.doctorName);
             a3.setText(data.inauguralHospital);

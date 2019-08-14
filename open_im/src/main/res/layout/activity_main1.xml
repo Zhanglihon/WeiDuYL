@@ -8,6 +8,7 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
     <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
@@ -18,6 +19,13 @@
             android:layout_width="20dp"
             android:layout_marginBottom="20dp"
             android:layout_height="20dp" />
+        <TextView
+            android:textSize="14sp"
+            android:text="孟文凯"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
     <com.jude.easyrecyclerview.EasyRecyclerView
         android:id="@+id/chat_list"

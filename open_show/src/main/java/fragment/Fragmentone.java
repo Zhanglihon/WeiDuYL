@@ -3,6 +3,7 @@ package fragment;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -10,6 +11,8 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.open_show.ChaActivity;
 import com.example.open_show.PingActivity;
 import com.example.open_show.R;
@@ -18,6 +21,7 @@ import com.example.open_show.ShouBanner;
 import com.example.open_show.ShoucuoActivity;
 import com.example.open_show.ShowActivity1;
 import com.example.open_show.Xiangqing;
+import com.facebook.drawee.view.SimpleDraweeView;
 import com.stx.xhb.xbanner.XBanner;
 import java.util.List;
 import adapter.MyAdapter1;
@@ -30,6 +34,7 @@ import butterknife.BindView;
 import zhang.bw.com.common.DaoMaster;
 import zhang.bw.com.common.LoginBeanDao;
 import zhang.bw.com.common.bean.BannerBean;
+import zhang.bw.com.common.bean.CXBean;
 import zhang.bw.com.common.bean.JanBean;
 import zhang.bw.com.common.bean.LoginBean;
 import zhang.bw.com.common.bean.MyjiankangBean;
@@ -40,6 +45,7 @@ import zhang.bw.com.common.core.FindDepartmentPresenter;
 import zhang.bw.com.common.core.FindInformationList;
 import zhang.bw.com.common.core.FindInformationPlateList;
 import zhang.bw.com.common.core.WDFragment;
+import zhang.bw.com.common.core.WdxxPresenter1;
 import zhang.bw.com.common.core.exception.ApiException;
 import zhang.bw.com.common.util.Constant;
 
@@ -63,7 +69,7 @@ public class Fragmentone extends WDFragment {
     @BindView(R2.id.one_image2)
     ImageView one_image2;
     @BindView(R2.id.show_tx)
-    ImageView showTx;
+    SimpleDraweeView showTx;
     @BindView(R2.id.text_duo)
     TextView text_duo;
     private BannerPresenter bannerPresenter;
@@ -76,8 +82,11 @@ public class Fragmentone extends WDFragment {
     private List<LoginBean> list;
     private LoginBeanDao dao;
     private String id;
+    private List<LoginBean> loginBeans;
     @BindView(R2.id.ping_image)
     ImageView ping_image;
+    private String headPic;
+    private WdxxPresenter1 wdxxPresenter;
     @Override
     protected int getLayoutId() {
         return R.layout.fragmentone;
@@ -96,7 +105,6 @@ public class Fragmentone extends WDFragment {
         bannerPresenter.reqeust();
         findDepartmentPresenter = new FindDepartmentPresenter(new Back2());
         findDepartmentPresenter.reqeust();
-
         findInformationPlateList = new FindInformationPlateList(new Back3());
         findInformationPlateList.reqeust();
         myAdapter1 = new MyAdapter1(getContext());
@@ -106,6 +114,14 @@ public class Fragmentone extends WDFragment {
         two_recyc.setAdapter(myjikangAdapter);
         findInformationList = new FindInformationList(new Back4());
         two_recyc.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        loginBeans = dao.loadAll();
+
+
+        if (loginBeans.size() != 0) {
+            headPic = loginBeans.get(0).getHeadPic();
+            Log.e("aaa", headPic);
+            showTx.setImageURI(headPic);
+        }
         myjikangAdapter.setJianBack(new MyjikangAdapter.JianBack() {
             @Override
             public void jian(int i, List<MyjiankangBean> list) {
@@ -202,7 +218,6 @@ public class Fragmentone extends WDFragment {
 
         }
     }
-
     class Back2 implements DataCall<List<ShowBean>> {
 
         @Override

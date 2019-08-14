@@ -75,8 +75,6 @@ import static cn.jmessage.biz.httptask.task.GetUserInfoListTask.IDType.username;
  */
 @Route(path = Constant.ACTIVITY_URL_FABIAOPINGLUNIM)
 public class MainActivity extends AppCompatActivity {
-    @Autowired
-     String juu;
     @BindView(R2.id.chat_list)
     EasyRecyclerView chatList;
     @BindView(R2.id.emotion_voice)
@@ -127,6 +125,7 @@ public class MainActivity extends AppCompatActivity {
         EventBus.getDefault().register(this);
         JMessageClient.registerEventReceiver(this);//接收消息
         initWidget();
+
     }
 
     private void initWidget() {

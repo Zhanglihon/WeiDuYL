@@ -40,7 +40,6 @@ dependencies {
     //播放器
     implementation 'cn.jzvd:jiaozivideoplayer:6.2.12'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.35'
-
     //视频缓存
     implementation 'com.danikula:videocache:2.7.1'
     //权限

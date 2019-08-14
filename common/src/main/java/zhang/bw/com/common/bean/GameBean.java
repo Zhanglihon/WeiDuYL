@@ -9,6 +9,6 @@ public class GameBean {
     public int whetherCollection;
     public int  whetherBuy;
     public int buyNum;
-    public String id;
+    public int id;
     public String originalUrl;
 }

@@ -67,26 +67,26 @@ public class Xiangqing extends AppCompatActivity {
             //这个就是HTML后缀的数据
             String details = data.content;
             webView.loadDataWithBaseURL(null, details + js + "</html></body>","text/html", "utf-8", null);
+
+           xing.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   if(data.whetherCollection == 0){
+                       addInfoCollection.reqeust(loginBean.getId(),loginBean.getSessionId(),rr);
+                   }
+                   if(data.whetherCollection == 1){
+                       cancelInfoCollection.reqeust(loginBean.getId(),loginBean.getSessionId(),rr);
+                   }
+               }
+
+           });
             if(data.whetherCollection == 0){
                 xing.setBackgroundResource(R.mipmap.common_button_collection_large_n);
             }
             if(data.whetherCollection == 1){
                 xing.setBackgroundResource(R.mipmap.common_button_collection_large_s);
             }
-           xing.setOnClickListener(new View.OnClickListener() {
-               @Override
-               public void onClick(View v) {
-                   if(data.whetherCollection == 0){
-                       addInfoCollection.reqeust(loginBean.getId(),loginBean.getSessionId(),rr);
-                       findInformation.reqeust(loginBean.getId(),loginBean.getSessionId(), rr);
-                   }
-                   if(data.whetherCollection == 1){
-                       cancelInfoCollection.reqeust(loginBean.getId(),loginBean.getSessionId(),rr);
-                       findInformation.reqeust(loginBean.getId(),loginBean.getSessionId(), rr);
-                   }
-
-               }
-           });
+            findInformation.reqeust(loginBean.getId(),loginBean.getSessionId(), rr);
         }
 
         @Override

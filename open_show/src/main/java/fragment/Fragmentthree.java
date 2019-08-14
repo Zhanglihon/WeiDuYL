@@ -69,11 +69,10 @@ public class Fragmentthree extends WDFragment {
     @BindView(R2.id.image_three)
     ImageView image_three;
     private  int tag=0;
-    private String id;
+    private int id;
     public boolean aa =true;
     public  boolean bb = true;
     public boolean gg=true;
-    private AddUserVideoCollection addUserVideoCollection;
     private SharedPreferences pref1;
     //用于判断是否是第一次运行，运行后变为false
     private boolean isFirst = true;
@@ -123,7 +122,7 @@ public class Fragmentthree extends WDFragment {
            @Override
            public void bv(int i, List<NameBean> list) {
                 id = list.get(i).id;
-               findVideoVoList.reqeust(loginBean.getId(),loginBean.getSessionId(),id,"1","10");
+               findVideoVoList.reqeust(loginBean.getId(),loginBean.getSessionId(),id+"","1","10");
 
            }
        });
@@ -163,13 +162,6 @@ public class Fragmentthree extends WDFragment {
         });
 
         findVideoCommentList = new FindVideoCommentList(new Backg());
-        addUserVideoCollection = new AddUserVideoCollection(new Backd());
-        myadapterGame.setBach(new MyadapterGame.Bach() {
-            @Override
-            public void ba(int i, List<GameBean> list) {
-                addUserVideoCollection.reqeust(loginBean.getId(),loginBean.getSessionId(),id);
-            }
-        });
         myadapterGame.setBacc(new MyadapterGame.Bacc() {
             @Override
             public void bi(int i, List<GameBean> list) {
@@ -217,7 +209,7 @@ public class Fragmentthree extends WDFragment {
         @Override
         public void success(List<NameBean> data, Object... args) {
            id = data.get(0).id;
-            findVideoVoList.reqeust(loginBean.getId(),loginBean.getSessionId(),id,"1","10");
+            findVideoVoList.reqeust(loginBean.getId(),loginBean.getSessionId(),id+"","1","10");
             mynameAdapter.addAll(data);
             mynameAdapter.notifyDataSetChanged();
         }
@@ -232,7 +224,7 @@ public class Fragmentthree extends WDFragment {
         @Override
         public void success(List<GameBean> data, Object... args) {
              id = data.get(0).id;
-            findVideoCommentList.reqeust(id);
+            findVideoCommentList.reqeust(id+"");
             myadapterGame.addAll(data);
             myadapterGame.notifyDataSetChanged();
         }

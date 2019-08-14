@@ -1,6 +1,6 @@
 package zhang.bw.com.common.bean;
 
 public class NameBean {
-    public String id;
+    public int id;
     public String name;
 }
